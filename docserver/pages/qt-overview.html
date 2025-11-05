@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUI Overview - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+<aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item active">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>GUI Overview</h1>
+            </div>
+
+            <section class="content-section">
+                <h2>Qt GUI Client</h2>
+                <p>Fleet Credits Qt GUI provides a full-featured graphical interface for the wallet and blockchain.</p>
+                <p><strong>Files:</strong> <code>src/qt/fleetcreditsgui.h</code>, <code>src/qt/fleetcredits.cpp</code>, <code>src/qt/fleetcreditsgui.cpp</code></p>
+                
+                <h3>Main Window</h3>
+                <p><code>FleetCreditsGUI</code> is the main application window:</p>
+                <ul>
+                    <li><strong>Menu Bar:</strong> File, Settings, Help menus</li>
+                    <li><strong>Toolbar:</strong> Quick access to common functions</li>
+                    <li><strong>Status Bar:</strong> Network status, sync progress, connection count</li>
+                    <li><strong>Tab Interface:</strong> Overview, Send, Receive, Transactions, etc.</li>
+                </ul>
+                
+                <h3>Core Models</h3>
+                
+                <h4>ClientModel</h4>
+                <p>Provides blockchain and network information to the GUI:</p>
+                <ul>
+                    <li>Block count and sync status</li>
+                    <li>Network connections</li>
+                    <li>Blockchain information</li>
+                    <li>Update notifications</li>
+                </ul>
+                
+                <h4>WalletModel</h4>
+                <p>Manages wallet state and operations:</p>
+                <ul>
+                    <li>Balance and transaction history</li>
+                    <li>Address management</li>
+                    <li>Transaction sending</li>
+                    <li>Wallet encryption status</li>
+                </ul>
+                
+                <h4>TransactionTableModel</h4>
+                <p>Provides transaction data for tables:</p>
+                <ul>
+                    <li>Transaction list with status</li>
+                    <li>Sorting and filtering</li>
+                    <li>Real-time updates</li>
+                </ul>
+                
+                <h4>AddressTableModel</h4>
+                <p>Manages address book:</p>
+                <ul>
+                    <li>Receiving addresses</li>
+                    <li>Sending addresses</li>
+                    <li>Address labels</li>
+                </ul>
+                
+                <h3>Key Dialogs</h3>
+                
+                <h4>SendCoinsDialog</h4>
+                <p>Send Fleet Credits to addresses:</p>
+                <ul>
+                    <li>Multi-recipient support</li>
+                    <li>Fee calculation and display</li>
+                    <li>Coin control (UTXO selection)</li>
+                    <li>Confirmation dialog</li>
+                </ul>
+                
+                <h4>ReceiveCoinsDialog</h4>
+                <p>Generate receiving addresses:</p>
+                <ul>
+                    <li>Address generation</li>
+                    <li>QR code display</li>
+                    <li>Payment request creation</li>
+                </ul>
+                
+                <h4>OptionsDialog</h4>
+                <p>Configure application settings:</p>
+                <ul>
+                    <li>Wallet settings</li>
+                    <li>Network settings</li>
+                    <li>Display preferences</li>
+                    <li>Theme selection</li>
+                </ul>
+                
+                <h4>CoinControlDialog</h4>
+                <p>Select specific UTXOs for transactions:</p>
+                <ul>
+                    <li>UTXO list with details</li>
+                    <li>Selection and filtering</li>
+                    <li>Fee calculation preview</li>
+                </ul>
+                
+                <h3>UI Components</h3>
+                
+                <h4>FleetCreditsAmountField</h4>
+                <p>Specialized input field for FC amounts:</p>
+                <ul>
+                    <li>Currency unit display (MFC, kFC, FC, mFC, μFC)</li>
+                    <li>Input validation</li>
+                    <li>Format conversion</li>
+                </ul>
+                
+                <h4>FleetCreditsAddressValidator</h4>
+                <p>Validates Fleet Credits addresses:</p>
+                <ul>
+                    <li>Base58 validation</li>
+                    <li>Network prefix checking</li>
+                    <li>Checksum verification</li>
+                </ul>
+                
+                <h3>Theme System</h3>
+                <p>Fleet Credits GUI supports custom themes:</p>
+                <ul>
+                    <li><strong>Theme Manager:</strong> Loads and applies themes</li>
+                    <li><strong>Theme Builder:</strong> Create custom themes</li>
+                    <li><strong>CSS Support:</strong> Stylesheet-based theming</li>
+                    <li><strong>Dark/Light Modes:</strong> Built-in theme variants</li>
+                </ul>
+                
+                <h3>Features</h3>
+                <ul>
+                    <li><strong>Transaction History:</strong> Complete transaction list with filters</li>
+                    <li><strong>Address Book:</strong> Labeled addresses for easy access</li>
+                    <li><strong>RPC Console:</strong> Direct RPC command interface</li>
+                    <li><strong>Network Monitor:</strong> Connection status and peer information</li>
+                    <li><strong>Mining Status:</strong> Block generation status</li>
+                    <li><strong>Contribution Interface:</strong> Submit and view contributions</li>
+                    <li><strong>MWEB Interface:</strong> Peg-in/peg-out operations</li>
+                </ul>
+                
+                <h3>Currency Units</h3>
+                <p>Fleet Credits GUI displays amounts in multiple units:</p>
+                <ul>
+                    <li><strong>MFC:</strong> Mega Fleet Credits (1,000,000 FC)</li>
+                    <li><strong>kFC:</strong> Kilo Fleet Credits (1,000 FC)</li>
+                    <li><strong>FC:</strong> Fleet Credits (base unit)</li>
+                    <li><strong>mFC:</strong> Milli Fleet Credits (0.001 FC)</li>
+                    <li><strong>μFC:</strong> Micro Fleet Credits (0.000001 FC)</li>
+                </ul>
+                
+                <h3>See Also</h3>
+                <ul>
+                    <li><a href="qt-components.html">Qt Components</a> - Detailed component documentation</li>
+                    <li><a href="qt-models.html">Qt Models</a> - Model architecture</li>
+                    <li><a href="qt-themes.html">Qt Themes</a> - Theme system documentation</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

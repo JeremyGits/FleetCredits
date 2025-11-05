@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Parameters - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item active">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="network-architecture.html" class="nav-item">
+                        <span class="nav-icon">🌐</span>
+                        <span>Network Architecture</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Network Parameters</h1>
+                <p class="subtitle">Network configuration for Fleet Credits</p>
+            </div>
+
+            <section class="content-section">
+                <h2>Network Configuration</h2>
+                <p>Fleet Credits operates on three networks: Mainnet, Testnet, and Regtest.</p>
+
+                <h3>Mainnet</h3>
+                <table>
+                    <tr><th>Parameter</th><th>Value</th></tr>
+                    <tr><td>P2P Port</td><td>22556</td></tr>
+                    <tr><td>RPC Port</td><td>22555</td></tr>
+                    <tr><td>Message Start</td><td><code>0xFC 0x43 0x52 0x45</code> ("FCRE" for Fleet Credits)</td></tr>
+                    <tr><td>Genesis Timestamp</td><td>January 1, 2026 00:00:00 UTC (1704067200)</td></tr>
+                    <tr><td>Block Time</td><td>60 seconds</td></tr>
+                    <tr><td>Block Reward</td><td>10,000 FC (fixed, no halving)</td></tr>
+                    <tr><td>Max Block Size</td><td>1 MB</td></tr>
+                    <tr><td>Difficulty Algorithm</td><td>Digishield</td></tr>
+                    <tr><td>Seed Nodes</td><td>None (fresh network - manual connections required)</td></tr>
+                </table>
+
+                <h3>Testnet</h3>
+                <table>
+                    <tr><th>Parameter</th><th>Value</th></tr>
+                    <tr><td>P2P Port</td><td>44556</td></tr>
+                    <tr><td>RPC Port</td><td>44555</td></tr>
+                    <tr><td>Message Start</td><td><code>0xFC 0x54 0x45 0x53</code> ("FTES" for Fleet Credits Testnet)</td></tr>
+                    <tr><td>Genesis Timestamp</td><td>January 1, 2026 00:00:00 UTC</td></tr>
+                    <tr><td>Block Time</td><td>60 seconds</td></tr>
+                    <tr><td>Seed Nodes</td><td>None (fresh network - manual connections required)</td></tr>
+                </table>
+
+                <h3>Regtest</h3>
+                <table>
+                    <tr><th>Parameter</th><th>Value</th></tr>
+                    <tr><td>P2P Port</td><td>18444</td></tr>
+                    <tr><td>RPC Port</td><td>18332</td></tr>
+                    <tr><td>Difficulty</td><td>0x207fffff (minimum, instant blocks)</td></tr>
+                    <tr><td>Genesis Mining</td><td>Dynamic during initialization</td></tr>
+                    <tr><td>Use Case</td><td>Local development and testing</td></tr>
+                </table>
+                
+                <h3>Genesis Block</h3>
+                <p>All networks share the same genesis block properties:</p>
+                <table>
+                    <tr><th>Property</th><th>Value</th></tr>
+                    <tr><td>Timestamp</td><td>January 1, 2026 00:00:00 UTC (1704067200)</td></tr>
+                    <tr><td>Block Reward</td><td>10,000 FC</td></tr>
+                    <tr><td>Coinbase Message</td><td>"Nintondo"</td></tr>
+                    <tr><td>Previous Hash</td><td>0000000000000000000000000000000000000000000000000000000000000000</td></tr>
+                    <tr><td>PoW Mining</td><td>Explicitly mined during initialization (regtest)</td></tr>
+                    <tr><td>Checkpoint</td><td>Genesis hash stored at height 0</td></tr>
+                </table>
+                
+                <h4>Genesis Block Mining Process</h4>
+                <p>For regtest networks, the genesis block is dynamically mined during chain parameter initialization:</p>
+                <ol>
+                    <li>Create genesis block with initial parameters (timestamp, difficulty, reward)</li>
+                    <li>Mine block by incrementing nonce until <code>CheckProofOfWork()</code> passes</li>
+                    <li>Handle nonce wraparound by incrementing timestamp if needed</li>
+                    <li>Verify mined block passes PoW validation</li>
+                    <li>Store genesis hash in consensus parameters</li>
+                    <li>Add genesis hash to checkpoint data at height 0</li>
+                </ol>
+                <p>This ensures the genesis block always has valid PoW, guaranteeing blockchain integrity from block 0.</p>
+
+                <h3>Base58 Address Prefixes</h3>
+                <table>
+                    <tr><th>Type</th><th>Mainnet</th><th>Testnet</th></tr>
+                    <tr><td>Pubkey Address</td><td>0x23 (35)</td><td>0x71 (113)</td></tr>
+                    <tr><td>Script Address</td><td>0x16 (22)</td><td>0xc4 (196)</td></tr>
+                    <tr><td>Secret Key</td><td>0x9e (158)</td><td>0xf1 (241)</td></tr>
+                    <tr><td>Extended Pubkey</td><td>0x04, 0x88, 0xB2, 0x1E</td><td>0x04, 0x35, 0x87, 0xCF</td></tr>
+                    <tr><td>Extended Secret</td><td>0x04, 0x88, 0xAD, 0xE4</td><td>0x04, 0x35, 0x83, 0x94</td></tr>
+                </table>
+
+                <h3>Consensus Parameters</h3>
+                <table>
+                    <tr><th>Parameter</th><th>Value</th></tr>
+                    <tr><td>Subsidy</td><td>10,000 FC per block</td></tr>
+                    <td>Target Timespan</td><td>60 seconds</td></tr>
+                    <tr><td>Target Spacing</td><td>60 seconds</td></tr>
+                    <tr><td>Difficulty Adjustment</td><td>Every block</td></tr>
+                    <tr><td>Pow Algorithm</td><td>Scrypt</td></tr>
+                </table>
+
+                <h3>Configuration File</h3>
+                <p>Edit <code>~/.fleetcredits/fleetcredits.conf</code> (Linux/Mac) or <code>%APPDATA%\\FleetCredits\\fleetcredits.conf</code> (Windows):</p>
+                <pre><code># Basic Configuration
+rpcuser=your_username
+rpcpassword=your_password
+rpcport=22555
+rpcallowip=127.0.0.1
+server=1
+
+# Network Selection
+# mainnet=1    # Mainnet (default)
+# testnet=1   # Testnet
+# regtest=1   # Regtest
+
+# Optional Settings
+# checkpoints=0    # Disable checkpoints
+# daemon=1         # Run as daemon
+# listen=1         # Accept connections</code></pre>
+
+                <h3>Network Isolation</h3>
+                <p>Fleet Credits is <strong>completely isolated</strong> from Dogecoin and other networks:</p>
+                <ul>
+                    <li><strong>Magic Bytes:</strong> Unique 4-byte identifiers prevent connecting to wrong networks
+                        <ul>
+                            <li>Mainnet: <code>0xFC 0x43 0x52 0x45</code> ("FCRE")</li>
+                            <li>Testnet: <code>0xFC 0x54 0x45 0x53</code> ("FTES")</li>
+                            <li>Regtest: <code>0xFA 0xBF 0xB5 0xDA</code> (standard)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Genesis Block:</strong> Unique genesis block hash identifies Fleet Credits network</li>
+                    <li><strong>Seed Nodes:</strong> Old Dogecoin seeds removed - fresh network starting from scratch</li>
+                    <li><strong>Port Numbers:</strong> Different ports prevent accidental connections</li>
+                </ul>
+                <p>These ensure Fleet Credits nodes only connect to other Fleet Credits nodes and not Dogecoin or Bitcoin nodes.</p>
+                
+                <div class="info-box">
+                    <strong>Note:</strong> For development, use <code>-regtest</code> mode which is completely isolated. For testing, manually connect nodes with <code>-addnode</code> flags.
+                </div>
+                
+                <h3>See Also</h3>
+                <ul>
+                    <li><a href="network-architecture.html">Network Architecture</a> - How the peer-to-peer network works</li>
+                    <li><a href="consensus.html">Consensus & PoW</a> - Proof-of-Work mechanism</li>
+                    <li><a href="building.html">Building & Setup</a> - How to build and run Fleet Credits</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
+

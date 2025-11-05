@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribution RPC - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item active">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Contribution RPC</h1>
+                <p class="subtitle">RPC commands for submitting and querying contribution transactions</p>
+            </div>
+
+            <section class="content-section">
+                <h2>Overview</h2>
+                <p>The Contribution RPC API allows you to submit contribution transactions to the Fleet Credits network and query their status. Contribution transactions can represent code contributions, charitable acts, creative work, educational content, mentorship, AI validation, data labeling, or ethical reviews.</p>
+            </section>
+
+            <section class="content-section">
+                <h2>Endpoints</h2>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header">
+                        <span class="api-method post">POST</span>
+                        <span class="api-path">submitcontribution</span>
+                    </div>
+                    <div class="api-description">
+                        Submit a contribution transaction to the Fleet Credits network.
+                    </div>
+                    <div class="api-params">
+                        <h4>Parameters</h4>
+                        <table>
+                            <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+                            <tr><td>contrib_type</td><td>string</td><td>Yes</td><td>Contribution type: CODE_CONTRIBUTION, CHARITABLE_ACT, CREATIVE_WORK, EDUCATIONAL_CONTENT, CODE_MENTORSHIP, AI_VALIDATION, DATA_LABELING, ETHICAL_REVIEW</td></tr>
+                            <tr><td>proof_data</td><td>string</td><td>Yes</td><td>Proof data (GitHub commit hash, IPFS hash, etc.)</td></tr>
+                            <tr><td>metadata</td><td>string</td><td>No</td><td>Additional metadata JSON string</td></tr>
+                        </table>
+                        <h4>Response</h4>
+                        <pre><code>{
+  "txid": "hash",
+  "status": "pending",
+  "message": "Contribution transaction created"
+}</code></pre>
+                        <h4>Example</h4>
+                        <pre><code>fleetcredits-cli submitcontribution "CODE_CONTRIBUTION" "abc123def456..."
+fleetcredits-cli submitcontribution "AI_VALIDATION" "ipfs_hash_here" '{"accuracy_score": 0.95}'</code></pre>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header">
+                        <span class="api-method get">GET</span>
+                        <span class="api-path">getcontributionstatus</span>
+                    </div>
+                    <div class="api-description">
+                        Get the status of a contribution transaction.
+                    </div>
+                    <div class="api-params">
+                        <h4>Parameters</h4>
+                        <table>
+                            <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+                            <tr><td>txid</td><td>string</td><td>Yes</td><td>The contribution transaction ID</td></tr>
+                        </table>
+                        <h4>Response</h4>
+                        <pre><code>{
+  "txid": "hash",
+  "status": "verified",
+  "bonus_level": "HIGH",
+  "reward": 11500
+}</code></pre>
+                        <h4>Example</h4>
+                        <pre><code>fleetcredits-cli getcontributionstatus "abc123..."</code></pre>
+                    </div>
+                </div>
+
+                <div class="api-endpoint">
+                    <div class="api-endpoint-header">
+                        <span class="api-method get">GET</span>
+                        <span class="api-path">listcontributions</span>
+                    </div>
+                    <div class="api-description">
+                        List contribution transactions, optionally filtered by address or type.
+                    </div>
+                    <div class="api-params">
+                        <h4>Parameters</h4>
+                        <table>
+                            <tr><th>Name</th><th>Type</th><th>Required</th><th>Description</th></tr>
+                            <tr><td>address</td><td>string</td><td>No</td><td>Filter by contributor address</td></tr>
+                            <tr><td>contrib_type</td><td>string</td><td>No</td><td>Filter by contribution type</td></tr>
+                        </table>
+                        <h4>Response</h4>
+                        <pre><code>[
+  {
+    "txid": "hash",
+    "type": "CODE_CONTRIBUTION",
+    "status": "verified",
+    "reward": 1000
+  },
+  ...
+]</code></pre>
+                        <h4>Example</h4>
+                        <pre><code>fleetcredits-cli listcontributions
+fleetcredits-cli listcontributions "FleetCreditsAddress" "AI_VALIDATION"</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Contribution Types</h2>
+                <table>
+                    <tr><th>Type</th><th>Value</th><th>Description</th></tr>
+                    <tr><td>CODE_CONTRIBUTION</td><td>0x01</td><td>Open-source code commits</td></tr>
+                    <tr><td>CHARITABLE_ACT</td><td>0x02</td><td>Verified charitable donations</td></tr>
+                    <tr><td>CREATIVE_WORK</td><td>0x03</td><td>Art, writing, music with IPFS hash</td></tr>
+                    <tr><td>EDUCATIONAL_CONTENT</td><td>0x04</td><td>Teaching materials or courses</td></tr>
+                    <tr><td>CODE_MENTORSHIP</td><td>0x05</td><td>Mentor-mentee code reviews</td></tr>
+                    <tr><td>AI_VALIDATION</td><td>0x06</td><td>Human validation of AI outputs</td></tr>
+                    <tr><td>DATA_LABELING</td><td>0x07</td><td>Dataset labeling with inter-annotator agreement</td></tr>
+                    <tr><td>ETHICAL_REVIEW</td><td>0x08</td><td>Ethical review (requires MWEB)</td></tr>
+                </table>
+            </section>
+
+            <section class="content-section">
+                <h2>Implementation Status</h2>
+                <div class="note">
+                    <strong>Note:</strong> The contribution RPC commands are currently implemented with placeholder functionality. Full implementation includes:
+                    <ul>
+                        <li>Transaction signing with wallet keys</li>
+                        <li>Proof data hash calculation</li>
+                        <li>Mempool submission</li>
+                        <li>Network broadcast</li>
+                        <li>Blockchain query for status</li>
+                        <li>Verification record lookup</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
+

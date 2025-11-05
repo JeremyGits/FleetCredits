@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verification System - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+<aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item active">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                    <a href="contribution-ethics.html" class="nav-item">
+                        <span class="nav-icon">⚖️</span>
+                        <span>Ethics & Value Judgment</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Verification System</h1>
+            </div>
+
+            <section class="content-section">
+                <h2>Contribution Verification</h2>
+                <p>Fleet Credits uses a multi-layered verification system combining automated checks, oracle consensus, and human validator pools to ensure contribution quality and prevent abuse.</p>
+                
+                <p><strong>Files:</strong> <code>src/primitives/verification.h</code>, <code>src/primitives/verification.cpp</code>, <code>src/rpc/contribution.cpp</code></p>
+                
+                <h3>Verification Methods</h3>
+                
+                <h4>1. Automated Verification</h4>
+                <p>Certain contribution types can be automatically verified:</p>
+                <ul>
+                    <li><strong>Code Contributions:</strong> GitHub API integration verifies commits, pull requests, and code quality metrics</li>
+                    <li><strong>AI Validation:</strong> Accuracy scores ≥0.8 automatically qualify for rewards</li>
+                    <li><strong>Data Labeling:</strong> Consistency checks against ground truth datasets</li>
+                </ul>
+                <p>Automated verification provides instant validation and reduces oracle workload for high-volume, quantifiable contributions.</p>
+                
+                <h4>2. Oracle Consensus</h4>
+                <p>For subjective or complex contributions, oracle nodes provide consensus-based verification:</p>
+                <ul>
+                    <li><strong>Charitable Acts:</strong> Requires 3-of-5 oracle votes for verification</li>
+                    <li><strong>Ethical Reviews:</strong> Requires 3-of-5 oracle votes for verification</li>
+                    <li><strong>Educational Content:</strong> Quality assessment by oracle consensus</li>
+                    <li><strong>Creative Works:</strong> Community value assessment</li>
+                </ul>
+                <p>Oracle consensus ensures decentralized verification while maintaining high standards for subjective contributions.</p>
+                
+                <h4>3. Human Validator Pools</h4>
+                <p>Reputation-gated validator pools provide batch verification for:</p>
+                <ul>
+                    <li>High-volume contribution types</li>
+                    <li>Community oversight and quality control</li>
+                    <li>Cross-validation of oracle decisions</li>
+                </ul>
+                <p>Validators must maintain reputation scores above thresholds and face slashing for incorrect verifications.</p>
+                
+                <h3>Oracle Nodes</h3>
+                <p>Oracle nodes are trusted validators responsible for verifying contributions that require human judgment:</p>
+                
+                <h4>Requirements</h4>
+                <ul>
+                    <li><strong>Minimum Stake:</strong> 500,000 FC must be locked</li>
+                    <li><strong>Reputation:</strong> Must maintain positive reputation score</li>
+                    <li><strong>Availability:</strong> Must respond to verification requests within time limits</li>
+                </ul>
+                
+                <h4>Selection Process</h4>
+                <ol>
+                    <li>Candidates submit stake and metadata</li>
+                    <li>Community governance votes on oracle selection</li>
+                    <li>Selected oracles enter active pool</li>
+                    <li>Performance is tracked and affects reputation</li>
+                </ol>
+                
+                <h4>Slashing Mechanism</h4>
+                <p>Oracles face slashing (loss of stake) for:</p>
+                <ul>
+                    <li>Incorrect verification votes (caught by consensus)</li>
+                    <li>Missing too many verification requests</li>
+                    <li>Collusion or malicious behavior</li>
+                </ul>
+                
+                <h3>Verification Status</h3>
+                <p>Contributions progress through verification states:</p>
+                <ul>
+                    <li><strong>pending</strong>: Submitted but not yet verified</li>
+                    <li><strong>confirmed</strong>: Transaction confirmed in block (1+ confirmations)</li>
+                    <li><strong>verified</strong>: Successfully verified (12+ confirmations)</li>
+                    <li><strong>orphaned</strong>: Transaction included in an orphaned block</li>
+                </ul>
+                
+                <h3>Verification Timing</h3>
+                <p>Verification typically occurs:</p>
+                <ul>
+                    <li><strong>Automated:</strong> Immediately upon submission</li>
+                    <li><strong>Oracle Consensus:</strong> Within 1-3 blocks (60-180 seconds)</li>
+                    <li><strong>Final Status:</strong> After 12 confirmations for reward eligibility</li>
+                </ul>
+                
+                <h3>Future Enhancements</h3>
+                <p>Planned verification improvements include:</p>
+                <ul>
+                    <li>GitHub API integration for automated code verification</li>
+                    <li>AI accuracy scoring system integration</li>
+                    <li>Reputation-weighted oracle voting</li>
+                    <li>Automated slashing for detected fraud</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

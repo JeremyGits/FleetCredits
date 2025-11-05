@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Overview - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+<aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item active">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Testing Overview</h1>
+            </div>
+
+            <section class="content-section">
+                <h2>Testing Fleet Credits</h2>
+                <p>Fleet Credits includes comprehensive test suites covering all major components, from cryptographic primitives to blockchain validation and contribution systems.</p>
+                
+                <p><strong>Test Directory:</strong> <code>src/test/</code></p>
+                
+                <h3>Test Framework</h3>
+                <p>Fleet Credits uses <strong>Boost.Test</strong> for unit testing, providing:</p>
+                <ul>
+                    <li>Test fixtures and setup/teardown</li>
+                    <li>Assertion macros (<code>BOOST_CHECK</code>, <code>BOOST_REQUIRE</code>, etc.)</li>
+                    <li>Test suites and cases</li>
+                    <li>Mock objects and test utilities</li>
+                </ul>
+                
+                <h3>Test Types</h3>
+                
+                <h4>1. Unit Tests</h4>
+                <p>Individual component tests:</p>
+                <ul>
+                    <li><code>test_fleetcredits.cpp</code> - Main test suite</li>
+                    <li><code>fleetcredits_tests.cpp</code> - Fleet Credits-specific tests</li>
+                    <li><code>crypto_tests.cpp</code> - Cryptographic function tests</li>
+                    <li><code>hash_tests.cpp</code> - Hash function tests</li>
+                    <li><code>scrypt_tests.cpp</code> - Scrypt PoW algorithm tests</li>
+                    <li><code>key_tests.cpp</code> - Key generation and signing tests</li>
+                    <li><code>amount_tests.cpp</code> - Amount calculation tests</li>
+                    <li><code>arith_uint256_tests.cpp</code> - 256-bit arithmetic tests</li>
+                    <li><code>serialize_tests.cpp</code> - Serialization/deserialization tests</li>
+                </ul>
+                
+                <h4>2. Blockchain Tests</h4>
+                <p>Blockchain and consensus validation:</p>
+                <ul>
+                    <li><code>main_tests.cpp</code> - Main blockchain validation tests</li>
+                    <li><code>pow_tests.cpp</code> - Proof-of-Work difficulty tests</li>
+                    <li><code>auxpow_tests.cpp</code> - Auxiliary Proof-of-Work tests</li>
+                    <li><code>merkle_tests.cpp</code> - Merkle tree tests</li>
+                    <li><code>blockencodings_tests.cpp</code> - Block encoding tests</li>
+                    <li><code>coins_tests.cpp</code> - UTXO set tests</li>
+                    <li><code>mempool_tests.cpp</code> - Memory pool tests</li>
+                </ul>
+                
+                <h4>3. Transaction Tests</h4>
+                <p>Transaction creation and validation:</p>
+                <ul>
+                    <li><code>transaction_tests.cpp</code> - Transaction structure tests</li>
+                    <li><code>script_tests.cpp</code> - Script execution tests</li>
+                    <li><code>script_P2SH_tests.cpp</code> - Pay-to-Script-Hash tests</li>
+                    <li><code>multisig_tests.cpp</code> - Multisignature tests</li>
+                    <li><code>sighash_tests.cpp</code> - Signature hash tests</li>
+                </ul>
+                
+                <h4>4. MWEB Tests</h4>
+                <p>Mimblewimble Extension Blocks:</p>
+                <ul>
+                    <li><code>mweb_tests.cpp</code> - MWEB structure and operations tests</li>
+                    <li><code>mweb_test.cpp</code> - Additional MWEB functionality tests</li>
+                </ul>
+                
+                <h4>5. Wallet Tests</h4>
+                <p>Wallet functionality (in <code>src/wallet/test/</code>):</p>
+                <ul>
+                    <li><code>wallet_tests.cpp</code> - Core wallet operations</li>
+                    <li><code>crypto_tests.cpp</code> - Wallet cryptography</li>
+                </ul>
+                
+                <h4>6. Network Tests</h4>
+                <p>Network and peer management:</p>
+                <ul>
+                    <li><code>net_tests.cpp</code> - Network protocol tests</li>
+                    <li><code>netbase_tests.cpp</code> - Network address tests</li>
+                    <li><code>addrman_tests.cpp</code> - Address manager tests</li>
+                </ul>
+                
+                <h4>7. RPC Tests</h4>
+                <p>RPC command tests:</p>
+                <ul>
+                    <li><code>rpc_tests.cpp</code> - RPC command execution tests</li>
+                </ul>
+                
+                <h3>Running Tests</h3>
+                
+                <h4>Run All Tests</h4>
+                <pre><code>cd fleetcredits
+make check
+# or
+./src/test/test_fleetcredits</code></pre>
+                
+                <h4>Run Specific Test Suite</h4>
+                <pre><code>./src/test/test_fleetcredits --run_test=fleetcredits_tests
+./src/test/test_fleetcredits --run_test=mweb_tests</code></pre>
+                
+                <h4>Run with Verbose Output</h4>
+                <pre><code>./src/test/test_fleetcredits --log_level=all</code></pre>
+                
+                <h3>Fuzzy Testing</h3>
+                <p>Fleet Credits includes fuzzy testing for deserialization robustness:</p>
+                <ul>
+                    <li><code>test_fleetcredits_fuzzy.cpp</code> - Fuzz tests for deserialization</li>
+                </ul>
+                <p>Fuzzy tests help ensure the client handles malformed or malicious input gracefully.</p>
+                
+                <h3>Test Utilities</h3>
+                <p>Test helper functions are available in:</p>
+                <ul>
+                    <li><code>testutil.h</code> / <code>testutil.cpp</code> - Common test utilities</li>
+                    <li><code>test_fleetcredits.h</code> - Test suite headers</li>
+                </ul>
+                
+                <h3>Continuous Integration</h3>
+                <p>Tests should be run before:</p>
+                <ul>
+                    <li>Submitting pull requests</li>
+                    <li>Creating releases</li>
+                    <li>Making significant code changes</li>
+                </ul>
+                
+                <h3>Writing New Tests</h3>
+                <p>When adding new features, include corresponding tests:</p>
+                <ol>
+                    <li>Create test file in <code>src/test/</code> or appropriate subdirectory</li>
+                    <li>Use Boost.Test macros for assertions</li>
+                    <li>Include test in main test suite</li>
+                    <li>Run tests locally before committing</li>
+                </ol>
+                
+                <h3>Test Coverage</h3>
+                <p>Current test coverage includes:</p>
+                <ul>
+                    <li>✅ Core blockchain structures</li>
+                    <li>✅ Consensus and PoW</li>
+                    <li>✅ Transaction validation</li>
+                    <li>✅ MWEB structures (basic)</li>
+                    <li>✅ Wallet operations</li>
+                    <li>🔄 Contribution system (in progress)</li>
+                    <li>🔄 Oracle verification (planned)</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribution Types - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+<aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item active">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                    <a href="contribution-ethics.html" class="nav-item">
+                        <span class="nav-icon">⚖️</span>
+                        <span>Ethics & Value Judgment</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Contribution Types</h1>
+            </div>
+
+            <section class="content-section">
+                <h2>The Concept</h2>
+                <p>Fleet Credits rewards contributors for verified community contributions that create value. In an era of AI-driven automation displacing traditional jobs, FC creates economic opportunities for human validation, verification, and input processing—essential for training, refining, and ethically guiding AI systems.</p>
+                
+                <div class="note">
+                    <strong>Philosophy:</strong> This fosters a symbiotic human-AI economy where humans earn FC for irreplaceable oversight, ensuring AI benefits society equitably. Contributions are not just rewarded—they're the foundation of a post-scarcity economy where value derives from utility and impact, not speculation.
+                </div>
+
+                <h3>How It Works</h3>
+                <ol>
+                    <li><strong>Submit:</strong> Contributor submits their work via <code>submitcontribution</code> RPC</li>
+                    <li><strong>Embed:</strong> Contribution data is embedded in transaction via OP_RETURN</li>
+                    <li><strong>Verify:</strong> Automated verification or oracle consensus validates the contribution</li>
+                    <li><strong>Reward:</strong> Block reward includes bonus based on contribution level and verification</li>
+                </ol>
+
+                <h3>Verification Methods</h3>
+                <ul>
+                    <li><strong>Automated:</strong> Code contributions (GitHub API), AI validation (accuracy scores ≥0.8)</li>
+                    <li><strong>Oracle Consensus:</strong> Charitable acts, ethical reviews (3-of-5 oracle votes required)</li>
+                    <li><strong>Human Validators:</strong> Reputation-gated pools for batch verification</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>All 8 Contribution Types</h2>
+                <p>Fleet Credits supports 8 types of contributions, each with specific verification requirements and reward structures.</p>
+                <p><strong>File:</strong> <code>src/primitives/contribution.h</code></p>
+
+                <div class="api-endpoint">
+                    <h3>1. CODE_CONTRIBUTION (0x01)</h3>
+                    <p><strong>Description:</strong> Open-source code commits to public repositories (GitHub, GitLab, etc.)</p>
+                    <p><strong>Concept:</strong> Rewards developers for contributing to open-source projects, fostering innovation and collaboration.</p>
+                    
+                    <h4>Proof Data</h4>
+                    <ul>
+                        <li>GitHub commit hash</li>
+                        <li>Repository URL</li>
+                        <li>Commit metadata (lines changed, language, etc.)</li>
+                    </ul>
+                    
+                    <h4>Verification Requirements</h4>
+                    <ul>
+                        <li>GitHub API verification: Commit exists and belongs to repo</li>
+                        <li>Minimum 10 lines changed</li>
+                        <li>Code passes linting checks</li>
+                        <li>Account age >30 days (prevents spam)</li>
+                        <li>Replay prevention: Commit hash not used before</li>
+                    </ul>
+                    
+                    <h4>Class Structure</h4>
+                    <pre><code>class CCodeContributionTransaction : public CContributionTransaction {
+    std::string repo_url;
+    uint256 commit_hash;
+    uint32_t lines_changed;      // >10 required
+    std::string language;
+    bool passes_lint;
+    uint32_t account_age_days;   // >30 required
+};</code></pre>
+                    
+                    <h4>Verification Process</h4>
+                    <pre><code>verify_code_submission(tx) → bool {
+    commit = github_api.get_commit(tx.proof_data.commit_hash)
+    return commit.lines_changed > 10 &&
+           commit.passes_lint &&
+           github_api.account_age(tx.contributor) > 30_days &&
+           !is_replay_attack(tx.commit_hash)
+}</code></pre>
+                    
+                    <h4>Bonus Level</h4>
+                    <p>LOW to HIGH based on code quality, impact, and repository significance.</p>
+                    
+                    <h4>MWEB Required</h4>
+                    <p>No (optional for privacy)</p>
+                    
+                    <h4>Example Use Case</h4>
+                    <p>A developer fixes a critical bug in a popular open-source library. The commit has 50 lines changed, passes all linting, and the GitHub account is 2 years old. This gets verified automatically and receives a HIGH bonus level.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>2. CHARITABLE_ACT (0x02)</h3>
+                    <p><strong>Description:</strong> Verified charitable donations or community service</p>
+                    <p><strong>Concept:</strong> Rewards altruistic actions that benefit the community, incentivizing public goods and social impact.</p>
+                    
+                    <h4>Proof Data</h4>
+                    <ul>
+                        <li>Receipt hash (donation receipt, service certificate)</li>
+                        <li>Attestation or verification link</li>
+                        <li>Description of charitable act</li>
+                    </ul>
+                    
+                    <h4>Verification Requirements</h4>
+                    <ul>
+                        <li><strong>Oracle Consensus Required:</strong> 3-of-5 oracle votes</li>
+                        <li>Minimum 60% approval rate</li>
+                        <li>Verifiable proof (receipt, certificate, etc.)</li>
+                        <li>Oracle reputation-based selection</li>
+                    </ul>
+                    
+                    <h4>Verification Process</h4>
+                    <pre><code>verify_charitable_act(tx, oracle_votes) → bool {
+    approve_count = count_approve_votes(oracle_votes)
+    total_votes = count_non_abstain_votes(oracle_votes)
+    
+    if total_votes < 3:
+        return false  // Need at least 3 votes
+    
+    approval_rate = approve_count / total_votes
+    return approval_rate >= 0.6  // 60% threshold (3 of 5)
+}</code></pre>
+                    
+                    <h4>Bonus Level</h4>
+                    <p>MEDIUM to HIGH based on impact and oracle consensus strength.</p>
+                    
+                    <h4>MWEB Required</h4>
+                    <p>No (optional for privacy-sensitive donations)</p>
+                    
+                    <h4>Example Use Case</h4>
+                    <p>A contributor donates 10,000 FC to a verified disaster relief fund. They submit a receipt hash. Five oracles review the submission, with 4 approving and 1 rejecting. The 80% approval rate exceeds the 60% threshold, so the contribution is verified and receives a HIGH bonus level.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>3. CREATIVE_WORK (0x03)</h3>
+                    <p><strong>Description:</strong> Art, writing, music, or other creative content published on IPFS</p>
+                    <p><strong>Concept:</strong> Rewards artists and creators for sharing their work, fostering a vibrant creative economy.</p>
+                    
+                    <h4>Proof Data</h4>
+                    <ul>
+                        <li>IPFS hash of the creative work</li>
+                        <li>Work metadata (title, description, type)</li>
+                        <li>Creator attribution</li>
+                    </ul>
+                    
+                    <h4>Verification Requirements</h4>
+                    <ul>
+                        <li>IPFS hash resolves to valid content</li>
+                        <li>Content is original (not duplicate)</li>
+                        <li>Community validation or oracle consensus</li>
+                        <li>Minimum quality threshold (optional)</li>
+                    </ul>
+                    
+                    <h4>Bonus Level</h4>
+                    <p>LOW to MEDIUM based on community engagement and quality.</p>
+                    
+                    <h4>MWEB Required</h4>
+                    <p>No</p>
+                    
+                    <h4>Example Use Case</h4>
+                    <p>An artist creates a digital painting, uploads it to IPFS, and submits the IPFS hash. The content is verified to exist and be original. Community members upvote it, resulting in a MEDIUM bonus level.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>4. EDUCATIONAL_CONTENT (0x04)</h3>
+                    <p><strong>Description:</strong> Teaching materials, tutorials, courses, or educational resources</p>
+                    <p><strong>Concept:</strong> Rewards educators for creating and sharing knowledge, democratizing education.</p>
+                    
+                    <h4>Proof Data</h4>
+                    <ul>
+                        <li>IPFS hash or URL to educational content</li>
+                        <li>Content metadata (subject, level, format)</li>
+                        <li>Engagement metrics (views, completion rate)</li>
+                    </ul>
+                    
+                    <h4>Verification Requirements</h4>
+                    <ul>
+                        <li>Content accessible and valid</li>
+                        <li>Quiz responses show 80%+ accuracy (if quiz included)</li>
+                        <li>Minimum engagement metrics</li>
+                        <li>Quality checks (non-spam, educational value)</li>
+                    </ul>
+                    
+                    <h4>Verification Process</h4>
+                    <pre><code>verify_educational_content(tx) → bool {
+    if has_quiz(tx.proof_data):
+        quiz_result = verify_quiz(tx.proof_data)
+        if quiz_result.score < 0.8:
+            return false
+    
+    engagement = get_engagement_metrics(tx.proof_data)
+    return engagement.meets_minimum() && is_educational(tx.proof_data)
+}</code></pre>
+                    
+                    <h4>Bonus Level</h4>
+                    <p>LOW to MEDIUM based on engagement and educational value.</p>
+                    
+                    <h4>MWEB Required</h4>
+                    <p>No</p>
+                    
+                    <h4>Example Use Case</h4>
+                    <p>A teacher creates a comprehensive tutorial on blockchain basics, uploads it to IPFS, and includes a quiz. Students complete the quiz with an average score of 85%. The content receives engagement metrics above the threshold and gets verified with a MEDIUM bonus level.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>5. CODE_MENTORSHIP (0x05)</h3>
+                    <p><strong>Description:</strong> Code reviews and mentorship between mentor and mentee</p>
+                    <p><strong>Concept:</strong> Creates a learning ecosystem where experienced developers mentor novices, building community and skills.</p>
+                    
+                    <h4>Proof Data</h4>
+                    <ul>
+                        <li>Mentor and mentee public keys</li>
+                        <li>Feedback hash (mentor's review)</li>
+                        <li>Improvement commit hash (mentee's improvements)</li>
+                        <li>Approval status (APPROVED, REJECTED, NEEDS_WORK)</li>
+                        <li>Both mentor and mentee signatures</li>
+                    </ul>
+                    
+                    <h4>Verification Requirements</h4>
+                    <ul>
+                        <li>Both mentor and mentee identities verified (DID)</li>
+                        <li>Feedback is substantial (>50 words, non-boilerplate)</li>
+                        <li>Both signatures valid</li>
+                        <li>Random 10% audit via oracle consensus</li>
+                        <li>Approval status indicates legitimate review</li>
+                    </ul>
+                    
+                    <h4>Class Structure</h4>
+                    <pre><code>class CMentorshipTransaction : public CContributionTransaction {
+    CPubKey mentor;
+    CPubKey mentee;
+    std::vector<unsigned char> mentor_signature;
+    std::vector<unsigned char> mentee_signature;
+    ApprovalStatus approval_status;  // APPROVED, REJECTED, NEEDS_WORK
+    uint256 feedback_hash;
+    uint256 improvement_commit_hash;
+};</code></pre>
+                    
+                    <h4>Verification Process</h4>
+                    <pre><code>verify_mentorship(tx, oracles) → bool {
+    if length(tx.proof_data.feedback) < 50 ||
+       is_boilerplate(tx.proof_data.feedback) ||
+       !identity_verified(tx.mentor) ||
+       !identity_verified(tx.mentee):
+        return false
+    
+    if random_audit_trigger():  // 10% chance
+        votes = select_random_oracles(oracles, count=5)
+        oracle_votes = [oracle.verify(tx.proof_data) for oracle in votes]
+        return sum(approve_votes) >= (5 * 3 / 5)  // 3 of 5
+    
+    return true
+}</code></pre>
+                    
+                    <h4>Reward Structure</h4>
+                    <ul>
+                        <li><strong>Mentees:</strong> 1000 FC base + 500 FC for improvements</li>
+                        <li><strong>Mentors:</strong> 2000 FC per review + 1.10x–1.15x for complexity</li>
+                        <li><strong>Milestones:</strong> 5 contributions = 1.10x bonus, 10 contributions = 1.15x bonus</li>
+                    </ul>
+                    
+                    <h4>Bonus Level</h4>
+                    <p>MEDIUM to HIGH based on feedback quality and improvement impact.</p>
+                    
+                    <h4>MWEB Required</h4>
+                    <p>No</p>
+                    
+                    <h4>Example Use Case</h4>
+                    <p>A novice developer ("vibe coder") submits code for review. An experienced developer ("real coder") reviews it, provides detailed feedback (200 words), and marks it as NEEDS_WORK. The mentee improves the code based on feedback and resubmits. Both receive rewards: mentor gets 2200 FC (2000 base + 10% complexity bonus), mentee gets 1500 FC (1000 base + 500 improvement).</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>6. AI_VALIDATION (0x06)</h3>
+                    <p><strong>Description:</strong> Human validation of AI model outputs</p>
+                    <p><strong>Concept:</strong> Critical for the AI era—humans verify AI-generated content, code, or decisions, ensuring accuracy and preventing hallucinations. This creates scalable job opportunities as AI adoption increases.</p>
+                    
+                    <h4>Proof Data</h4>
+                    <ul>
+                        <li>AI model ID</li>
+                        <li>Accuracy score (≥0.8 required)</li>
+                        <li>Validation report hash (IPFS)</li>
+                        <li>Human override hash (if human corrected AI errors)</li>
+                        <li>Unique nonce (prevents replay attacks)</li>
+                    </ul>
+                    
+                    <h4>Verification Requirements</h4>
+                    <ul>
+                        <li>Accuracy score ≥0.8 (80% threshold)</li>
+                        <li>Validation report exists and is valid</li>
+                        <li>Nonce prevents duplicate validations</li>
+                        <li>Human override verification (if applicable)</li>
+                    </ul>
+                    
+                    <h4>Class Structure</h4>
+                    <pre><code>class CAIValidationTransaction : public CContributionTransaction {
+    std::string ai_model_id;
+    float accuracy_score;  // >= 0.8 required
+    uint256 validation_report_hash;
+    uint256 human_override_hash;
+    bool human_override_verified;
+};</code></pre>
+                    
+                    <h4>Verification Process</h4>
+                    <pre><code>verify_ai_validation(tx) → bool {
+    if tx.accuracy_score < 0.8:
+        return false
+    
+    if !verify_report_exists(tx.validation_report_hash):
+        return false
+    
+    if tx.human_override_verified:
+        if !verify_human_override(tx.human_override_hash):
+            return false
+    
+    if is_replay_attack(tx.nonce):
+        return false
+    
+    return true
+}</code></pre>
+                    
+                    <h4>Bonus Level</h4>
+                    <p><strong>CRITICAL with 1.25x multiplier</strong> (higher than standard CRITICAL 1.20x) because AI validation is essential for safe AI deployment.</p>
+                    
+                    <h4>MWEB Required</h4>
+                    <p>No (optional for privacy-sensitive validations)</p>
+                    
+                    <h4>Example Use Case</h4>
+                    <p>An AI model generates code for a function. A human validator reviews the code, finds it's 92% accurate, corrects 2 bugs, and submits a validation report. The accuracy score of 0.92 exceeds the 0.8 threshold, and the human override is verified. The validator receives rewards with a 1.25x multiplier.</p>
+                    
+                    <h4>Future Vision</h4>
+                    <p>As AI adoption increases, AI_VALIDATION becomes a scalable job market. Humans earn FC by validating AI outputs in various domains: code review, content moderation, medical diagnosis assistance, legal document review, etc.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>7. DATA_LABELING (0x07)</h3>
+                    <p><strong>Description:</strong> Dataset labeling with inter-annotator agreement for AI training</p>
+                    <p><strong>Concept:</strong> Rewards crowdsourced data labeling, essential for training accurate AI models. Uses consensus mechanisms to ensure quality.</p>
+                    
+                    <h4>Proof Data</h4>
+                    <ul>
+                        <li>Dataset ID</li>
+                        <li>Labels hash (IPFS hash of labeled data)</li>
+                        <li>Labels count</li>
+                        <li>Inter-annotator agreement score (≥0.7 required)</li>
+                        <li>Annotator count (≥3 required)</li>
+                    </ul>
+                    
+                    <h4>Verification Requirements</h4>
+                    <ul>
+                        <li>Minimum 3 annotators (for consensus)</li>
+                        <li>Inter-annotator agreement ≥0.7 (70% consensus)</li>
+                        <li>Labels hash points to valid IPFS data</li>
+                        <li>Quality checks (labels are accurate and consistent)</li>
+                    </ul>
+                    
+                    <h4>Class Structure</h4>
+                    <pre><code>class CDataLabelingTransaction : public CContributionTransaction {
+    std::string dataset_id;
+    uint32_t labels_count;
+    uint256 labels_hash;  // IPFS hash
+    float inter_annotator_agreement;  // >= 0.7 required
+    uint32_t annotator_count;  // >= 3 required
+};</code></pre>
+                    
+                    <h4>Verification Process</h4>
+                    <pre><code>verify_data_labeling(tx) → bool {
+    if tx.annotator_count < 3:
+        return false
+    
+    if tx.inter_annotator_agreement < 0.7:
+        return false
+    
+    if !verify_labels_hash_exists(tx.labels_hash):
+        return false
+    
+    // Verify agreement calculation
+    agreement = calculate_consensus_score(tx.labels_hash, tx.annotator_count)
+    return agreement >= 0.7
+}</code></pre>
+                    
+                    <h4>Bonus Level</h4>
+                    <p>MEDIUM to HIGH based on agreement score and dataset importance.</p>
+                    
+                    <h4>MWEB Required</h4>
+                    <p>No</p>
+                    
+                    <h4>Example Use Case</h4>
+                    <p>Five annotators label images for a computer vision dataset. Their labels show 75% inter-annotator agreement (above the 0.7 threshold). The labeled data is uploaded to IPFS, and the hash is submitted. All five annotators receive rewards with a MEDIUM bonus level.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>8. ETHICAL_REVIEW (0x08)</h3>
+                    <p><strong>Description:</strong> Ethical review of AI systems or proposals</p>
+                    <p><strong>Concept:</strong> Ensures AI systems are safe, unbiased, and aligned with human values. Critical for responsible AI deployment.</p>
+                    
+                    <h4>Proof Data</h4>
+                    <ul>
+                        <li>Review report hash (IPFS)</li>
+                        <li>Ethical rationale (≥100 words required)</li>
+                        <li>Rationale length</li>
+                        <li>Oracle consensus status</li>
+                    </ul>
+                    
+                    <h4>Verification Requirements</h4>
+                    <ul>
+                        <li>Rationale ≥100 words (substantive review)</li>
+                        <li>Oracle consensus achieved (3-of-5 votes)</li>
+                        <li>Review report exists and is valid</li>
+                        <li><strong>MWEB mandatory</strong> for privacy (sensitive reviews)</li>
+                    </ul>
+                    
+                    <h4>Class Structure</h4>
+                    <pre><code>class CEthicalReviewTransaction : public CContributionTransaction {
+    uint256 rationale_hash;  // >= 100 words required
+    uint64_t rationale_length;
+    bool oracle_consensus_achieved;
+};</code></pre>
+                    
+                    <h4>Verification Process</h4>
+                    <pre><code>verify_ethical_review(tx, oracle_votes) → bool {
+    if tx.rationale_length < 100:
+        return false
+    
+    if !tx.requires_mweb:
+        return false  // MWEB mandatory
+    
+    if !verify_oracle_consensus(tx, oracle_votes):
+        return false
+    
+    return true
+}</code></pre>
+                    
+                    <h4>Bonus Level</h4>
+                    <p>HIGH to CRITICAL based on review depth and impact.</p>
+                    
+                    <h4>MWEB Required</h4>
+                    <p><strong>Yes (mandatory)</strong> for privacy—ethical reviews may contain sensitive information about AI systems.</p>
+                    
+                    <h4>Example Use Case</h4>
+                    <p>An ethicist reviews an AI hiring system for bias. They write a 500-word analysis identifying potential discrimination, submit it via MWEB for privacy, and five oracles review it. Four approve, one rejects, achieving 80% consensus (above the 60% threshold). The review is verified and receives a CRITICAL bonus level.</p>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>Technical Implementation</h2>
+                
+                <h3>Transaction Embedding</h3>
+                <p>Contributions are embedded in standard transactions using OP_RETURN outputs:</p>
+                <pre><code>// Contribution data is serialized and embedded in OP_RETURN
+CTransaction tx;
+CTxOut contrib_out;
+contrib_out.scriptPubKey = CScript() << OP_RETURN << contribution_data;
+tx.vout.push_back(contrib_out);</code></pre>
+                
+                <h3>Base Structure</h3>
+                <pre><code>class CContributionTransaction {
+    uint256 tx_id;
+    CPubKey contributor;
+    ContributionType contrib_type;
+    CProofData proof_data;
+    uint64_t timestamp;
+    uint32_t bonus_level;
+    bool requires_mweb;
+    std::vector<unsigned char> signature;
+};</code></pre>
+                
+                <h3>Proof Data Structure</h3>
+                <pre><code>class CProofData {
+    uint256 hash;
+    ContributionType contrib_type;
+    std::vector<unsigned char> evidence;  // IPFS hash, GitHub commit, etc.
+    std::vector<unsigned char> nonce;      // Unique per AI validation
+    uint64_t timestamp;
+    std::vector<unsigned char> metadata;
+};</code></pre>
+                
+                <h3>Serialization</h3>
+                <p>All contribution types use custom serialization via <code>ADD_SERIALIZE_METHODS</code> macro, ensuring compatibility with blockchain storage and network transmission.</p>
+            </section>
+
+            <section class="content-section">
+                <h2>Reward Integration</h2>
+                <p>When a block contains verified contributions, the block reward is calculated as:</p>
+                <pre><code>base_reward = 10000 * COIN
+bonus_multiplier = GetBonusMultiplier(highest_bonus_level_in_block, contrib_type)
+final_reward = base_reward * bonus_multiplier</code></pre>
+                
+                <h3>Bonus Multipliers</h3>
+                <table>
+                    <tr><th>Bonus Level</th><th>Standard Multiplier</th><th>AI_VALIDATION Multiplier</th></tr>
+                    <tr><td>BONUS_NONE</td><td>1.0x</td><td>1.0x</td></tr>
+                    <tr><td>BONUS_LOW</td><td>1.05x</td><td>1.05x</td></tr>
+                    <tr><td>BONUS_MEDIUM</td><td>1.10x</td><td>1.10x</td></tr>
+                    <tr><td>BONUS_HIGH</td><td>1.15x</td><td>1.15x</td></tr>
+                    <tr><td>BONUS_CRITICAL</td><td>1.20x</td><td><strong>1.25x</strong></td></tr>
+                </table>
+                
+                <p>See <a href="contribution-rewards.html">Reward System</a> for detailed reward calculation.</p>
+            </section>
+
+            <section class="content-section">
+                <h2>Future Vision</h2>
+                <p>As AI adoption increases, these contribution types become scalable job markets:</p>
+                <ul>
+                    <li><strong>AI_VALIDATION:</strong> Humans verify AI outputs across domains (code, content, medical, legal)</li>
+                    <li><strong>DATA_LABELING:</strong> Crowdsourced labeling for training better AI models</li>
+                    <li><strong>ETHICAL_REVIEW:</strong> Ensuring AI systems are safe and aligned with human values</li>
+                    <li><strong>CODE_MENTORSHIP:</strong> Teaching both humans and AI how to code better</li>
+                </ul>
+                
+                <p>Fleet Credits incentivizes these contributions, creating economic opportunities in an AI-driven world where human oversight, validation, and guidance remain irreplaceable.</p>
+            </section>
+
+            <section class="content-section">
+                <h2>Related Documentation</h2>
+                <ul>
+                    <li><a href="contribution-overview.html">Contribution Overview</a> - How the system works</li>
+                    <li><a href="contribution-rewards.html">Reward System</a> - How rewards are calculated</li>
+                    <li><a href="verification-system.html">Verification System</a> - How contributions are verified</li>
+                    <li><a href="rpc-contribution.html">Contribution RPC</a> - API for submitting contributions</li>
+                    <li><a href="mweb-overview.html">MWEB Overview</a> - Privacy for sensitive contributions</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

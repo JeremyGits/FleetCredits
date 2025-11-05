@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee System - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+<aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item active">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Fee System</h1>
+            </div>
+
+            <section class="content-section">
+                <h2>Transaction Fee System</h2>
+                <p>Fleet Credits implements a unique fee structure with zero fees for micro-transactions.</p>
+                <p><strong>Files:</strong> <code>src/policy/fleetcredits-fees.h</code>, <code>src/policy/fleetcredits-fees.cpp</code>, <code>src/policy/policy.h</code></p>
+                
+                <h3>Fee Rules</h3>
+                <p>Fleet Credits uses a tiered fee structure:</p>
+                
+                <h4>Zero Fees for Micro-Transactions</h4>
+                <p>Transactions with total output value <strong>&lt; 1,000 FC</strong> pay zero fees:</p>
+                <ul>
+                    <li><strong>Threshold:</strong> <code>MICRO_TX_THRESHOLD = 1000 * COIN</code> (1,000 FC)</li>
+                    <li><strong>Purpose:</strong> Encourage micro-transactions and small payments</li>
+                    <li><strong>Validation:</strong> Checked during transaction creation and relay</li>
+                    <li><strong>Relay:</strong> Zero-fee micro-transactions are relayed normally</li>
+                </ul>
+                
+                <h4>Standard Fees for Larger Transactions</h4>
+                <p>Transactions with total output value <strong>≥ 1,000 FC</strong> pay standard fees:</p>
+                <ul>
+                    <li><strong>Fee Calculation:</strong> Based on transaction size (bytes)</li>
+                    <li><strong>Minimum Fee:</strong> <code>GetFleetCreditsMinFee()</code> calculates minimum required fee</li>
+                    <li><strong>Fee Rate:</strong> Configurable fee rate per kilobyte</li>
+                    <li><strong>Priority:</strong> Higher fees increase transaction priority</li>
+                </ul>
+                
+                <h3>Fee Calculation</h3>
+                <p>The <code>GetFleetCreditsMinFee()</code> function determines transaction fees:</p>
+                <pre><code>CAmount GetFleetCreditsMinFee(unsigned int nBytes, unsigned int nBlockHeight) {
+    // Check if transaction is a micro-transaction (< 1000 FC total output)
+    if (totalOutputValue < MICRO_TX_THRESHOLD) {
+        return 0;  // Zero fees for micro-transactions
+    }
+    
+    // Standard fee calculation for larger transactions
+    // Based on transaction size and current fee rate
+    return CalculateStandardFee(nBytes, nBlockHeight);
+}</code></pre>
+                
+                <h3>Fee Parameters</h3>
+                <table>
+                    <tr><th>Parameter</th><th>Value</th><th>Description</th></tr>
+                    <tr><td>MICRO_TX_THRESHOLD</td><td>1,000 FC</td><td>Threshold for zero-fee transactions</td></tr>
+                    <tr><td>MIN_RELAY_TX_FEE</td><td>Configurable</td><td>Minimum fee for transaction relay</td></tr>
+                    <tr><td>MIN_TX_FEE</td><td>Configurable</td><td>Minimum fee for transaction creation</td></tr>
+                    <tr><td>MAX_FEERATE</td><td>10 FC/kB</td><td>Maximum fee rate</td></tr>
+                </table>
+                
+                <h3>Fee Calculation Details</h3>
+                <h4>For Micro-Transactions (&lt; 1,000 FC)</h4>
+                <ul>
+                    <li><strong>Fee:</strong> 0 FC</li>
+                    <li><strong>Relay:</strong> Accepted without fee</li>
+                    <li><strong>Mining:</strong> May be included in blocks with lower priority</li>
+                    <li><strong>Purpose:</strong> Encourage small payments and micro-contributions</li>
+                </ul>
+                
+                <h4>For Standard Transactions (≥ 1,000 FC)</h4>
+                <ul>
+                    <li><strong>Fee Base:</strong> Calculated from transaction size</li>
+                    <li><strong>Fee Rate:</strong> Fee per kilobyte of transaction data</li>
+                    <li><strong>Minimum:</strong> Enforced minimum fee based on network conditions</li>
+                    <li><strong>Priority:</strong> Higher fees increase chance of inclusion in next block</li>
+                </ul>
+                
+                <h3>Fee-Free Transaction Types</h3>
+                <p>Certain transaction types always pay zero fees:</p>
+                <ul>
+                    <li><strong>Micro-Transactions:</strong> Total output &lt; 1,000 FC</li>
+                    <li><strong>Coinbase Transactions:</strong> Block rewards (no fees)</li>
+                    <li><strong>Contribution Transactions:</strong> Small contributions may qualify for zero fees</li>
+                </ul>
+                
+                <h3>Fee Estimation</h3>
+                <p>The wallet provides fee estimation for transactions:</p>
+                <ul>
+                    <li><strong>Automatic Estimation:</strong> Based on network conditions</li>
+                    <li><strong>Manual Override:</strong> Users can set custom fees</li>
+                    <li><strong>Fee Levels:</strong> Slow, Normal, Fast priority levels</li>
+                    <li><strong>Fee Display:</strong> Shows estimated fee before sending</li>
+                </ul>
+                
+                <h3>Community Reserve</h3>
+                <p>Non-zero fees contribute to the Community Reserve:</p>
+                <ul>
+                    <li><strong>Allocation:</strong> Portion of transaction fees allocated to reserve</li>
+                    <li><strong>Purpose:</strong> Funds public goods and community projects</li>
+                    <li><strong>Management:</strong> Controlled by multisig governance</li>
+                    <li><strong>See:</strong> <a href="community-reserve.html">Community Reserve</a> for details</li>
+                </ul>
+                
+                <h3>Configuration</h3>
+                <p>Fee parameters can be configured in <code>fleetcredits.conf</code>:</p>
+                <pre><code># Minimum relay fee (in FC/kB)
+minrelaytxfee=0.00001
+
+# Minimum transaction fee (in FC/kB)
+mintxfee=0.00001
+
+# Send free transactions if possible
+sendfreetransactions=1</code></pre>
+                
+                <h3>RPC Commands</h3>
+                <p>Fee-related RPC commands:</p>
+                <ul>
+                    <li><code>estimatesmartfee</code> - Estimate fee for confirmation target</li>
+                    <li><code>estimaterawfee</code> - Raw fee estimation</li>
+                    <li><code>getmempoolinfo</code> - Mempool fee information</li>
+                </ul>
+                
+                <div class="note">
+                    <strong>Note:</strong> The zero-fee threshold for micro-transactions (1,000 FC) is designed to encourage small payments and contributions while maintaining network security through standard fees for larger transactions.
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

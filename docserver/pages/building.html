@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building & Setup - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+<aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="building.html" class="nav-item active">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Building & Setup</h1>
+            </div>
+
+            <section class="content-section">
+                <h2>Building Fleet Credits Core</h2>
+                
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li><strong>Compiler:</strong> GCC 7+ or Clang 5+</li>
+                    <li><strong>Build Tools:</strong> Autotools (autoconf, automake, libtool)</li>
+                    <li><strong>pkg-config:</strong> For dependency detection</li>
+                    <li><strong>Boost:</strong> 1.64+ (system, filesystem, thread, chrono, program_options)</li>
+                    <li><strong>OpenSSL:</strong> For cryptographic functions</li>
+                    <li><strong>Qt 5.x:</strong> For GUI (optional, if building fleetcredits-qt)</li>
+                    <li><strong>Berkeley DB:</strong> 4.8+ for wallet storage</li>
+                </ul>
+
+                <h3>Linux Build</h3>
+                <pre><code># Install dependencies (Ubuntu/Debian)
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-all-dev libdb-dev libdb++-dev
+
+# Install Qt dependencies (if building GUI)
+sudo apt-get install qt5-default qttools5-dev-tools
+
+# Build
+./autogen.sh
+./configure
+make -j$(nproc)</code></pre>
+
+                <h3>macOS Build</h3>
+                <pre><code># Install dependencies via Homebrew
+brew install autoconf automake libtool pkg-config boost openssl berkeley-db4 qt5
+
+# Build
+./autogen.sh
+./configure
+make -j$(sysctl -n hw.ncpu)</code></pre>
+
+                <h3>Windows Build (Cross-Compilation)</h3>
+                <p>Fleet Credits can be cross-compiled for Windows from Linux using WSL (Windows Subsystem for Linux) or a native Linux environment.</p>
+                
+                <h4>Prerequisites for Windows Cross-Compilation</h4>
+                <ul>
+                    <li><strong>WSL (Ubuntu/Debian):</strong> Recommended approach for Windows users</li>
+                    <li><strong>MinGW-w64:</strong> Cross-compilation toolchain</li>
+                    <li><strong>Autotools:</strong> Autoconf, automake, libtool</li>
+                    <li><strong>Dependencies:</strong> Same as Linux build, but cross-compiled</li>
+                </ul>
+                
+                <h4>Automated Windows Build Script</h4>
+                <p>Use the provided <code>build_windows.sh</code> script for automated cross-compilation:</p>
+                <pre><code># From WSL or Linux environment
+cd fleetcredits
+chmod +x build_windows.sh
+./build_windows.sh</code></pre>
+                
+                <h4>Manual Windows Build Steps</h4>
+                <p>If building manually:</p>
+                <pre><code># Install MinGW-w64 toolchain
+sudo apt-get install g++-mingw-w64-x86-64
+
+# Build dependencies for Windows
+cd depends
+make HOST=x86_64-w64-mingw32
+
+# Configure for Windows cross-compilation
+cd ..
+./autogen.sh
+./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 \
+            --host=x86_64-w64-mingw32 \
+            --disable-tests \
+            --disable-bench
+
+# Build
+make -j$(nproc)
+
+# Binaries will be in src/ and src/qt/</code></pre>
+                
+                <h4>Windows Build Output</h4>
+                <p>After successful cross-compilation, binaries will be located in:</p>
+                <ul>
+                    <li><code>src/fleetcreditsd.exe</code> - Core daemon</li>
+                    <li><code>src/qt/fleetcredits-qt.exe</code> - Qt GUI client</li>
+                    <li><code>src/fleetcredits-cli.exe</code> - Command-line interface</li>
+                    <li><code>src/fleetcredits-tx.exe</code> - Transaction utility</li>
+                </ul>
+                <p>Required DLLs will also be built and should be copied alongside executables.</p>
+                
+                <h4>Common Build Issues</h4>
+                <ul>
+                    <li><strong>secp256k1 build-aux missing:</strong> Script automatically copies build-aux files</li>
+                    <li><strong>Missing dependencies:</strong> Ensure all depends are built before configuring</li>
+                    <li><strong>Permission errors:</strong> Some steps may require sudo for directory creation</li>
+                    <li><strong>Long build time:</strong> Cross-compilation can take 30+ minutes</li>
+                </ul>
+                
+                <h3>Build Output Locations</h3>
+                <p>After successful build, binaries are located in:</p>
+                <ul>
+                    <li><code>src/fleetcreditsd</code> (Linux) or <code>src/fleetcreditsd.exe</code> (Windows) - Core daemon</li>
+                    <li><code>src/qt/fleetcredits-qt</code> (Linux) or <code>src/qt/fleetcredits-qt.exe</code> (Windows) - Qt GUI client</li>
+                    <li><code>src/fleetcredits-cli</code> (Linux) or <code>src/fleetcredits-cli.exe</code> (Windows) - Command-line interface</li>
+                    <li><code>src/fleetcredits-tx</code> (Linux) or <code>src/fleetcredits-tx.exe</code> (Windows) - Transaction utility</li>
+                </ul>
+                
+                <h3>Running Fleet Credits</h3>
+                <h4>Linux</h4>
+                <pre><code># Run daemon
+./src/fleetcreditsd -regtest -printtoconsole
+
+# Run GUI client
+./src/qt/fleetcredits-qt -regtest
+
+# Run CLI
+./src/fleetcredits-cli -regtest getblockcount</code></pre>
+                
+                <h4>Windows</h4>
+                <pre><code># Run daemon
+fleetcreditsd.exe -regtest -printtoconsole
+
+# Run GUI client
+fleetcredits-qt.exe -regtest
+
+# Run CLI
+fleetcredits-cli.exe -regtest getblockcount</code></pre>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
