@@ -117,33 +117,33 @@ void OptionsDialog::setModel(OptionsModel *model)
 void OptionsDialog::setMapper()
 {
     /* Main */
-    // mapper->addMapping(ui->dogecoinAtStartup, OptionsModel::StartAtStartup);
-    // mapper->addMapping(ui->threadsScriptVerif, OptionsModel::ThreadsScriptVerif);
-    // mapper->addMapping(ui->databaseCache, OptionsModel::DatabaseCache);
-    // mapper->addMapping(ui->prune, OptionsModel::Prune);
-    // mapper->addMapping(ui->pruneSize, OptionsModel::PruneSize);
+    mapper->addMapping(ui->fleetcreditsAtStartup, OptionsModel::StartAtStartup);
+    mapper->addMapping(ui->threadsScriptVerif, OptionsModel::ThreadsScriptVerif);
+    mapper->addMapping(ui->databaseCache, OptionsModel::DatabaseCache);
+    mapper->addMapping(ui->prune, OptionsModel::Prune);
+    mapper->addMapping(ui->pruneSize, OptionsModel::PruneSize);
 
     /* Wallet */
-    // mapper->addMapping(ui->spendZeroConfChange, OptionsModel::SpendZeroConfChange);
-    // mapper->addMapping(ui->coinControlFeatures, OptionsModel::CoinControlFeatures);
+    mapper->addMapping(ui->spendZeroConfChange, OptionsModel::SpendZeroConfChange);
+    mapper->addMapping(ui->coinControlFeatures, OptionsModel::CoinControlFeatures);
 
     /* Network */
-    // mapper->addMapping(ui->mapPortUpnp, OptionsModel::MapPortUPnP);
-    // mapper->addMapping(ui->allowIncoming, OptionsModel::Listen);
+    mapper->addMapping(ui->mapPortUpnp, OptionsModel::MapPortUPnP);
+    mapper->addMapping(ui->allowIncoming, OptionsModel::Listen);
 
-    // mapper->addMapping(ui->connectSocks, OptionsModel::ProxyUse);
-    // mapper->addMapping(ui->proxyIp, OptionsModel::ProxyIP);
-    // mapper->addMapping(ui->proxyPort, OptionsModel::ProxyPort);
+    mapper->addMapping(ui->connectSocks, OptionsModel::ProxyUse);
+    mapper->addMapping(ui->proxyIp, OptionsModel::ProxyIP);
+    mapper->addMapping(ui->proxyPort, OptionsModel::ProxyPort);
 
     /* Window */
-    // mapper->addMapping(ui->hideTrayIcon, OptionsModel::HideTrayIcon);
-    // mapper->addMapping(ui->minimizeToTray, OptionsModel::MinimizeToTray);
-    // mapper->addMapping(ui->minimizeOnClose, OptionsModel::MinimizeOnClose);
+    mapper->addMapping(ui->hideTrayIcon, OptionsModel::HideTrayIcon);
+    mapper->addMapping(ui->minimizeToTray, OptionsModel::MinimizeToTray);
+    mapper->addMapping(ui->minimizeOnClose, OptionsModel::MinimizeOnClose);
 
     /* Display */
-    // mapper->addMapping(ui->lang, OptionsModel::Language);
-    // mapper->addMapping(ui->unit, OptionsModel::DisplayUnit);
-    // mapper->addMapping(ui->thirdPartyTxUrls, OptionsModel::ThirdPartyTxUrls);
+    mapper->addMapping(ui->lang, OptionsModel::Language);
+    mapper->addMapping(ui->unit, OptionsModel::DisplayUnit);
+    mapper->addMapping(ui->thirdPartyTxUrls, OptionsModel::ThirdPartyTxUrls);
 }
 
 void OptionsDialog::enableApplyButton()

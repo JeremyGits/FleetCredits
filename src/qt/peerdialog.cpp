@@ -44,35 +44,29 @@ QString PeerTools::ManagePeer(QString type, QString peer)
 
     if (type == "onetry")
     {
+        // Parse address:port properly
+        CService addr;
+        if (!Lookup(peerAddress.c_str(), addr, 0, false) || !addr.IsValid()) {
+            return tr("Error: Invalid peer address format. Use IP:PORT (e.g., 96.126.123.195:22556)");
+        }
+        
         // Check for localhost/self-connection attempt
-        CService selfService;
-        if (Lookup(peerAddress.c_str(), selfService, 0, false)) {
-            // Check if it's localhost (127.x.x.x) - most common case
-            // Note: IsLocal() checks if it's a bound local address, which may not catch all cases
-            if (selfService.IsIPv4() && selfService.GetByte(3) == 127) {
-                return tr("Warning: Attempting to connect to localhost (127.x.x.x).\n\n") +
-                       tr("For testing peer connections, you need TWO instances:\n") +
-                       tr("Instance 1: -port=18444 -rpcport=18332 -datadir=./node1\n") +
-                       tr("Instance 2: -port=18445 -rpcport=18333 -datadir=./node2\n\n") +
-                       tr("Connection attempt made, but self-connections typically fail.");
-            }
+        if (addr.IsIPv4() && addr.GetByte(3) == 127) {
+            return tr("Warning: Attempting to connect to localhost (127.x.x.x).\n\n") +
+                   tr("For testing peer connections, you need TWO instances:\n") +
+                   tr("Instance 1: -port=18444 -rpcport=18332 -datadir=./node1\n") +
+                   tr("Instance 2: -port=18445 -rpcport=18333 -datadir=./node2\n\n") +
+                   tr("Connection attempt made, but self-connections typically fail.");
         }
         
         // Attempt immediate connection (one-shot)
-        // OpenNetworkConnection will parse the address string internally
-        CAddress addr(CService(), NODE_NONE);
-        bool connected = g_connman->OpenNetworkConnection(addr, false, NULL, peerAddress.c_str(), true);
+        // OpenNetworkConnection is async, so it may return false even if connection is initiated
+        CAddress addrObj(addr, NODE_NONE);
+        g_connman->OpenNetworkConnection(addrObj, false, NULL, NULL, true);
         
-        if (connected) {
-            return tr("Connection attempt initiated to: ") + peer + tr("\n\nPeer should appear in list within 1-5 seconds if connection succeeds.");
-        } else {
-            return tr("Could not initiate connection. Possible reasons:\n") +
-                   tr("- Peer is unreachable\n") +
-                   tr("- Already connected to this peer\n") +
-                   tr("- Self-connection attempt (localhost)\n") +
-                   tr("- Network not active\n\n") +
-                   tr("Address: ") + peer;
-        }
+        return tr("Connection attempt initiated to: ") + peer + 
+               tr("\n\nPeer should appear in list within 1-5 seconds if connection succeeds.\n\n") +
+               tr("Note: Connection is asynchronous. If peer doesn't appear, it may be unreachable or the network may still be starting.");
     }
 
     if (type == "add")
@@ -90,20 +84,29 @@ QString PeerTools::ManagePeer(QString type, QString peer)
             }
         }
         
-        // Add to persistent list
-        if(!g_connman->AddNode(peerAddress))
-            return tr("Error: Unable to add node (may already be in list)");
-        
-        // Also attempt immediate connection
-        CAddress addr(CService(), NODE_NONE);
-        bool connected = g_connman->OpenNetworkConnection(addr, false, NULL, peerAddress.c_str(), false, false, true);
-        
-        if (connected) {
-            return tr("Node added and connection initiated: ") + peer + tr("\n\nPeer should appear in list within 1-5 seconds.");
-        } else {
-            return tr("Node added to persistent list: ") + peer + tr("\n\nConnection attempt made. Peer will appear when connection succeeds (may take a few seconds).\n\n") +
-                   tr("Note: If connecting to localhost, you need TWO instances on different ports.");
+        // Parse address:port properly
+        CService addr;
+        if (!Lookup(peerAddress.c_str(), addr, 0, false) || !addr.IsValid()) {
+            return tr("Error: Invalid peer address format. Use IP:PORT (e.g., 96.126.123.195:22556)");
         }
+        
+        // Add to persistent list (this also triggers connection attempts)
+        if(!g_connman->AddNode(peerAddress)) {
+            // Try to trigger immediate connection anyway (peer may already be in list)
+            CAddress addrObj(addr, NODE_NONE);
+            g_connman->OpenNetworkConnection(addrObj, false, NULL, NULL, false, false, true);
+            
+            return tr("Node may already be in list, but connection attempt made: ") + peer + 
+                   tr("\n\nIf peer is already connected, it will appear in the list. Otherwise, check back in a few seconds.");
+        }
+        
+        // Also attempt immediate connection (OpenNetworkConnection is async, so it may return false even if initiated)
+        CAddress addrObj(addr, NODE_NONE);
+        g_connman->OpenNetworkConnection(addrObj, false, NULL, NULL, false, false, true);
+        
+        return tr("Node added and connection initiated: ") + peer + 
+               tr("\n\nPeer should appear in list within 1-5 seconds if connection succeeds.\n\n") +
+               tr("Note: Connection is asynchronous. If peer doesn't appear, it may be unreachable or the network may still be starting.");
     }
     else if(type == "remove")
     {
