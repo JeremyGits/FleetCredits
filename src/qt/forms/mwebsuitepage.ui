@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MWEBSuitePage</class>
+ <widget class="QWidget" name="MWEBSuitePage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MWEB Suite</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot;font-size:24pt; font-weight:600; color:#4FC3F7;&quot;&gt;🔒 MWEB Suite&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="mwebTabs">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="pegInTab">
+      <attribute name="title">
+       <string>Peg-In</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QLabel" name="pegInDescription">
+         <property name="text">
+          <string>Move Fleet Credits from Main Chain to MWEB for private transactions</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="pegInAddress">
+         <property name="placeholderText">
+          <string>Enter address or select from wallet...</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="pegInAmount">
+         <property name="placeholderText">
+          <string>Amount (FC)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pegInButton">
+         <property name="text">
+          <string>Create Peg-In</string>
+         </property>
+         <property name="styleSheet">
+          <string>background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #4FC3F7, stop:1 #2196F3); color: white; border-radius: 8px; padding: 10px; font-weight: bold;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="pegOutTab">
+      <attribute name="title">
+       <string>Peg-Out</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QLabel" name="pegOutDescription">
+         <property name="text">
+          <string>Move Fleet Credits from MWEB back to Main Chain</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="pegOutCommitment">
+         <property name="placeholderText">
+          <string>MWEB Commitment (hex)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="pegOutAddress">
+         <property name="placeholderText">
+          <string>Destination Address</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="pegOutAmount">
+         <property name="placeholderText">
+          <string>Amount (FC)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pegOutButton">
+         <property name="text">
+          <string>Create Peg-Out</string>
+         </property>
+         <property name="styleSheet">
+          <string>background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #4FC3F7, stop:1 #2196F3); color: white; border-radius: 8px; padding: 10px; font-weight: bold;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="mwebTransactionsTab">
+      <attribute name="title">
+       <string>MWEB Transactions</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QTableView" name="mwebTransactionTable">
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="viewKeysTab">
+      <attribute name="title">
+       <string>View Keys</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5">
+       <item>
+        <widget class="QLabel" name="viewKeysDescription">
+         <property name="text">
+          <string>Manage view keys for selective disclosure and auditing</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="viewKeysDisplay">
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="exportViewKeysButton">
+         <property name="text">
+          <string>Export View Keys</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
+

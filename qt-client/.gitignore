@@ -1,0 +1,23 @@
+# Qt build artifacts
+build/
+*.pro.user
+*.pro.user.*
+*.qmake.stash
+Makefile*
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+
+# Qt Creator
+*.creator
+*.creator.user
+*.creator.user.*
+*.files
+*.includes
+
+# Compiled binaries
+fleetcredits-qt
+fleetcredits-qt.exe
+

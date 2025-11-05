@@ -1,0 +1,19 @@
+{
+  "name": "Dark Mode",
+  "description": "Professional dark theme with easy-on-the-eyes colors",
+  "author": "Dogecoin Core Team",
+  "version": "1.0",
+  "type": "template",
+  "preview": "",
+  "tags": ["dark", "professional", "modern", "night"],
+  "compatibility": "1.14.99+",
+  "customProperties": {
+    "primaryColor": "#0d6efd",
+    "backgroundColor": "#1a1a1a",
+    "textColor": "#ffffff",
+    "borderColor": "#404040",
+    "accentColor": "#0d6efd",
+    "fontFamily": "Segoe UI, Arial, sans-serif",
+    "fontSize": "12px"
+  }
+}

@@ -1,0 +1,30 @@
+Name "Fleet Credits Core (@PACKAGE_VERSION@)"
+
+RequestExecutionLevel highest
+SetCompressor /SOLID lzma
+
+# General Symbol Definitions
+!define REGKEY "SOFTWARE\$(^Name)"
+!define VERSION @PACKAGE_VERSION@
+!define COMPANY "Fleet Credits Core project"
+!define URL https://fleetcredits.com/
+
+# MUI Symbol Definitions
+!define MUI_ICON "${srcdir}/share/pixmaps/fleetcredits.ico"
+!define MUI_WELCOMEFINISHPAGE_BITMAP "${srcdir}/share/pixmaps/nsis-wizard.bmp"
+!define MUI_HEADERIMAGE
+!define MUI_HEADERIMAGE_RIGHT
+!define MUI_HEADERIMAGE_BITMAP "${srcdir}/share/pixmaps/nsis-header.bmp"
+!define MUI_FINISHPAGE_NOAUTOCLOSE
+!define MUI_STARTMENUPAGE_REGISTRY_ROOT HKLM
+!define MUI_STARTMENUPAGE_REGISTRY_KEY ${REGKEY}
+!define MUI_STARTMENUPAGE_REGISTRY_VALUENAME StartMenuGroup
+!define MUI_STARTMENUPAGE_DEFAULTFOLDER "Fleet Credits Core"
+!define MUI_FINISHPAGE_RUN $INSTDIR\fleetcredits-qt
+!define MUI_UNICON "${NSISDIR}\Contrib\Graphics\Icons\modern-uninstall.ico"
+!define MUI_UNWELCOMEFINISHPAGE_BITMAP "${srcdir}/share/pixmaps/nsis-wizard.bmp"
+!define MUI_UNFINISHPAGE_NOAUTOCLOSE
+
+# Included files
+!include Sections.nsh
+!include MUI2.nsh

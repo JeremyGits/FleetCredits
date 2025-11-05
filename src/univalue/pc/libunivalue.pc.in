@@ -1,0 +1,10 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libunivalue
+Description: JSON library for C++ with SAX and DOM style APIs
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -lunivalue
+Cflags: -I${includedir}

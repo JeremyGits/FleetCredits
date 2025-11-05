@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ContributionsPage</class>
+ <widget class="QWidget" name="ContributionsPage">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Contributions</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QLabel" name="titleLabel">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot;font-size:24pt; font-weight:600; color:#4FC3F7;&quot;&gt;📝 Contributions&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTabWidget" name="contribTabs">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="submitTab">
+      <attribute name="title">
+       <string>Submit Contribution</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_2">
+       <item>
+        <widget class="QComboBox" name="contribTypeCombo">
+         <item>
+          <property name="text">
+           <string>CODE_CONTRIBUTION</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>CHARITABLE_ACT</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>CREATIVE_WORK</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>EDUCATIONAL_CONTENT</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>CODE_MENTORSHIP</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>AI_VALIDATION</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>DATA_LABELING</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>ETHICAL_REVIEW</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="proofDataInput">
+         <property name="placeholderText">
+          <string>Proof Data (GitHub commit hash, IPFS hash, etc.)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTextEdit" name="metadataInput">
+         <property name="placeholderText">
+          <string>Metadata (JSON format, optional)</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="submitButton">
+         <property name="text">
+          <string>Submit Contribution</string>
+         </property>
+         <property name="styleSheet">
+          <string>background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #4FC3F7, stop:1 #2196F3); color: white; border-radius: 8px; padding: 10px; font-weight: bold;</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="statusTab">
+      <attribute name="title">
+       <string>My Contributions</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <item>
+        <widget class="QTableView" name="contributionsTable">
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="rewardsTab">
+      <attribute name="title">
+       <string>Rewards</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QLabel" name="totalRewardsLabel">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot;font-size:18pt;&quot;&gt;Total Rewards: &lt;span style=&quot;color:#4CAF50; font-weight:bold;&quot;&gt;0.00 FC&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="bonusMultiplierLabel">
+         <property name="text">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Current Bonus Multiplier: &lt;span style=&quot;color:#4FC3F7;&quot;&gt;1.00x&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
+

@@ -1,0 +1,19 @@
+{
+  "name": "Minimal",
+  "description": "Clean and minimal design with subtle colors and modern typography",
+  "author": "Dogecoin Core Team",
+  "version": "1.0",
+  "type": "template",
+  "preview": "",
+  "tags": ["minimal", "clean", "modern", "light"],
+  "compatibility": "1.14.99+",
+  "customProperties": {
+    "primaryColor": "#007bff",
+    "backgroundColor": "#ffffff",
+    "textColor": "#333333",
+    "borderColor": "#dee2e6",
+    "accentColor": "#007bff",
+    "fontFamily": "Segoe UI, Arial, sans-serif",
+    "fontSize": "12px"
+  }
+}

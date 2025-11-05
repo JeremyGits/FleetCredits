@@ -1,0 +1,207 @@
+/* Fleet Credits Modern Stylesheet */
+
+/* Main Application */
+QMainWindow {
+    background-color: #1E1E1E;
+    color: #FFFFFF;
+}
+
+/* Sidebar Navigation */
+QSideBar {
+    background-color: #252526;
+    border-right: 1px solid #3E3E42;
+    padding: 10px;
+}
+
+QPushButton {
+    background-color: #2D2D30;
+    color: #CCCCCC;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+QPushButton:hover {
+    background-color: #3E3E42;
+    color: #4FC3F7;
+}
+
+QPushButton:pressed {
+    background-color: #007ACC;
+}
+
+/* Gradient Buttons */
+QPushButton[class="gradient"] {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
+        stop:0 #4FC3F7, stop:1 #2196F3);
+    color: white;
+    font-weight: bold;
+}
+
+QPushButton[class="gradient"]:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
+        stop:0 #5FD5FF, stop:1 #42A5F5);
+}
+
+/* Modern Cards */
+QWidget[class="card"] {
+    background-color: rgba(45, 45, 48, 0.8);
+    border: 1px solid #3E3E42;
+    border-radius: 12px;
+    padding: 20px;
+}
+
+QWidget[class="card"]:hover {
+    background-color: rgba(45, 45, 48, 0.9);
+    border-color: #4FC3F7;
+}
+
+/* Input Fields */
+QLineEdit, QTextEdit {
+    background-color: #2D2D30;
+    border: 1px solid #3E3E42;
+    border-radius: 6px;
+    padding: 10px;
+    color: #CCCCCC;
+    selection-background-color: #4FC3F7;
+}
+
+QLineEdit:focus, QTextEdit:focus {
+    border-color: #4FC3F7;
+    background-color: #323233;
+}
+
+/* ComboBox */
+QComboBox {
+    background-color: #2D2D30;
+    border: 1px solid #3E3E42;
+    border-radius: 6px;
+    padding: 8px;
+    color: #CCCCCC;
+}
+
+QComboBox:hover {
+    border-color: #4FC3F7;
+}
+
+QComboBox::drop-down {
+    border: none;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #CCCCCC;
+}
+
+/* Tables */
+QTableView {
+    background-color: #252526;
+    border: 1px solid #3E3E42;
+    border-radius: 8px;
+    gridline-color: #3E3E42;
+    selection-background-color: #4FC3F7;
+    selection-color: white;
+}
+
+QHeaderView::section {
+    background-color: #2D2D30;
+    color: #CCCCCC;
+    padding: 8px;
+    border: none;
+    border-bottom: 2px solid #4FC3F7;
+    font-weight: bold;
+}
+
+/* Tabs */
+QTabWidget::pane {
+    background-color: #1E1E1E;
+    border: 1px solid #3E3E42;
+    border-radius: 8px;
+}
+
+QTabBar::tab {
+    background-color: #2D2D30;
+    color: #CCCCCC;
+    padding: 10px 20px;
+    border: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    margin-right: 2px;
+}
+
+QTabBar::tab:selected {
+    background-color: #4FC3F7;
+    color: white;
+    font-weight: bold;
+}
+
+QTabBar::tab:hover {
+    background-color: #3E3E42;
+}
+
+/* Labels */
+QLabel {
+    color: #CCCCCC;
+}
+
+QLabel[class="title"] {
+    color: #4FC3F7;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+QLabel[class="subtitle"] {
+    color: #999999;
+    font-size: 14px;
+}
+
+/* Scrollbars */
+QScrollBar:vertical {
+    background-color: #2D2D30;
+    width: 12px;
+    border: none;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #3E3E42;
+    min-height: 20px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #4FC3F7;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+/* Progress Bars */
+QProgressBar {
+    background-color: #2D2D30;
+    border: 1px solid #3E3E42;
+    border-radius: 4px;
+    text-align: center;
+    color: white;
+}
+
+QProgressBar::chunk {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0, 
+        stop:0 #4FC3F7, stop:1 #2196F3);
+    border-radius: 3px;
+}
+
+/* Contribution Type Colors */
+QWidget[contribType="CODE_CONTRIBUTION"] { border-left: 4px solid #2196F3; }
+QWidget[contribType="CHARITABLE_ACT"] { border-left: 4px solid #4CAF50; }
+QWidget[contribType="CREATIVE_WORK"] { border-left: 4px solid #FF9800; }
+QWidget[contribType="EDUCATIONAL_CONTENT"] { border-left: 4px solid #9C27B0; }
+QWidget[contribType="CODE_MENTORSHIP"] { border-left: 4px solid #00BCD4; }
+QWidget[contribType="AI_VALIDATION"] { border-left: 4px solid #E91E63; }
+QWidget[contribType="DATA_LABELING"] { border-left: 4px solid #FFC107; }
+QWidget[contribType="ETHICAL_REVIEW"] { border-left: 4px solid #F44336; }
+
