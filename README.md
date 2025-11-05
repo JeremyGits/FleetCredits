@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Fleet Credits](share/pixmaps/fleetcredits256.svg)
+![Fleet Credits](share/pixmaps/fleetcredits256.png)
 
 **A decentralized cryptocurrency with MWEB privacy features and contribution-based rewards**
 
