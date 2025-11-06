@@ -7,6 +7,7 @@
 
 #include "guiutil.h"
 #include "walletmodel.h"
+#include "optionsmodel.h"
 #include "clientmodel.h"
 #include "fleetcreditsunits.h"
 #include "rpc/server.h"
