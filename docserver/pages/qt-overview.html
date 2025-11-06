@@ -330,12 +330,40 @@
                 <ul>
                     <li><strong>Transaction History:</strong> Complete transaction list with filters</li>
                     <li><strong>Address Book:</strong> Labeled addresses for easy access</li>
-                    <li><strong>RPC Console:</strong> Direct RPC command interface</li>
+                    <li><strong>RPC Console:</strong> Direct RPC command interface with peer management</li>
                     <li><strong>Network Monitor:</strong> Connection status and peer information</li>
                     <li><strong>Mining Status:</strong> Block generation status</li>
-                    <li><strong>Contribution Interface:</strong> Submit and view contributions</li>
+                    <li><strong>Contribution Interface:</strong> Submit and view contributions (fully integrated with RPC)</li>
                     <li><strong>MWEB Interface:</strong> Peg-in/peg-out operations</li>
                 </ul>
+                
+                <h3>Peer Management</h3>
+                <p>The Qt client includes robust peer management functionality:</p>
+                <ul>
+                    <li><strong>Add Peer Dialog:</strong> Add persistent peer connections with IP:PORT format</li>
+                    <li><strong>Remove Peer:</strong> Remove peers from persistent list (IP-based matching for reliability)</li>
+                    <li><strong>Test Peer:</strong> One-shot connection test to verify peer connectivity</li>
+                    <li><strong>IP-Based Matching:</strong> Add/remove operations match by IP address, allowing port updates</li>
+                    <li><strong>Peer Table:</strong> Real-time display of connected peers with connection details</li>
+                </ul>
+                
+                <div class="info-box">
+                    <strong>Note:</strong> Peers added via GUI/RPC are stored in memory (<code>vAddedNodes</code>). To persist across restarts, manually add them to <code>fleetcredits.conf</code> using the <code>addnode</code> configuration option.
+                </div>
+                
+                <h3>Contribution Submission</h3>
+                <p>The Contributions page provides full GUI integration for submitting contributions:</p>
+                <ul>
+                    <li><strong>Submit Form:</strong> Select contribution type, enter proof data, and optional metadata</li>
+                    <li><strong>RPC Integration:</strong> Directly calls <code>submitcontribution</code> RPC command</li>
+                    <li><strong>Transaction Feedback:</strong> Displays transaction ID, status, and success/error messages</li>
+                    <li><strong>Form Validation:</strong> Validates proof data format and JSON metadata before submission</li>
+                    <li><strong>Auto-Refresh:</strong> Automatically refreshes contribution list after successful submission</li>
+                </ul>
+                
+                <div class="note">
+                    <strong>Transaction Fees:</strong> When submitting a contribution, a small transaction fee (typically 0.01-0.05 FC) is deducted from your wallet. This is the cost of submitting the transaction to the blockchain, not part of the reward. Rewards are issued separately after verification.
+                </div>
                 
                 <h3>Currency Units</h3>
                 <p>Fleet Credits GUI displays amounts in multiple units:</p>

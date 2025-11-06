@@ -268,15 +268,39 @@
                 </table>
                 
                 <h3>Extraction and Processing</h3>
-                <p>When a block is validated, contributions are extracted using <code>ExtractContributionsFromBlock</code>, which:</p>
+                <p>When a block is validated, contributions are extracted using <code>ExtractContributionFromTransaction</code>, which:</p>
                 <ol>
-                    <li>Scans all transactions in the block</li>
-                    <li>Identifies <code>OP_RETURN</code> outputs with the contribution marker</li>
+                    <li>Scans all transaction outputs in the block</li>
+                    <li>Identifies <code>OP_RETURN</code> outputs</li>
+                    <li><strong>Parses length prefix:</strong> CScript automatically adds a length prefix (1-5 bytes) when pushing data - the extraction function correctly handles this</li>
+                    <li>Checks for contribution marker <code>0xFC 0x01</code> after the length prefix</li>
                     <li>Deserializes <code>CContributionTransaction</code> data</li>
                     <li>Returns a vector of all contributions in the block</li>
                 </ol>
                 
+                <div class="info-box">
+                    <strong>Technical Note:</strong> The extraction function properly handles CScript's length prefix format. When data is &lt; 76 bytes, a single byte length prefix is used. For larger data, OP_PUSHDATA1 (0x4c), OP_PUSHDATA2 (0x4d), or OP_PUSHDATA4 (0x4e) prefixes are used with additional length bytes.
+                </div>
+                
                 <p>The highest bonus level in the block determines the block reward multiplier using <code>GetFleetCreditsBlockSubsidyWithContributions</code>.</p>
+                
+                <h3>Transaction Fees</h3>
+                <p>When you submit a contribution, you see a deduction from your wallet balance. This is a <strong>transaction fee</strong>, not part of a reward:</p>
+                <ul>
+                    <li><strong>Fee Purpose:</strong> Required to include the transaction in a block (standard blockchain behavior)</li>
+                    <li><strong>Fee Amount:</strong> Typically 0.01-0.05 FC depending on network conditions</li>
+                    <li><strong>Contribution Value:</strong> The contribution data itself has 0 value - it's stored in an <code>OP_RETURN</code> output</li>
+                    <li><strong>Rewards:</strong> Issued separately by the oracle system after verification as incoming transactions</li>
+                </ul>
+                
+                <h3>Qt Client Integration</h3>
+                <p>The Qt GUI client now fully supports contribution submission:</p>
+                <ul>
+                    <li><strong>Contributions Page:</strong> Submit contributions via the GUI with type, proof, and metadata fields</li>
+                    <li><strong>RPC Integration:</strong> GUI calls <code>submitcontribution</code> RPC command directly</li>
+                    <li><strong>Status Display:</strong> Shows transaction ID, status, and success/error messages</li>
+                    <li><strong>Form Validation:</strong> Validates proof data and optional JSON metadata before submission</li>
+                </ul>
             </section>
 
             <section class="content-section">

@@ -43,6 +43,10 @@
                         <span class="nav-icon">🔨</span>
                         <span>Building & Setup</span>
                     </a>
+                    <a href="server-installation.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>Server Installation</span>
+                    </a>
                 </div>
 
                 <div class="nav-section">
@@ -217,27 +221,124 @@
                 <h2>Building Fleet Credits Core</h2>
                 
                 <h3>Prerequisites</h3>
+                <div class="info-box">
+                    <strong>📋 System Requirements:</strong> Ubuntu 20.04+, Debian 10+, or similar Linux distribution. macOS 10.14+ or Windows with WSL.
+                </div>
+                
+                <p>Required packages and libraries:</p>
                 <ul>
                     <li><strong>Compiler:</strong> GCC 7+ or Clang 5+</li>
-                    <li><strong>Build Tools:</strong> Autotools (autoconf, automake, libtool)</li>
+                    <li><strong>Build Tools:</strong> Autotools (autoconf, automake, libtool, <strong>autoconf-archive</strong>)</li>
                     <li><strong>pkg-config:</strong> For dependency detection</li>
-                    <li><strong>Boost:</strong> 1.64+ (system, filesystem, thread, chrono, program_options)</li>
+                    <li><strong>Boost:</strong> 1.64+ (system, filesystem, thread, chrono, program_options, test)</li>
                     <li><strong>OpenSSL:</strong> For cryptographic functions</li>
                     <li><strong>Qt 5.x:</strong> For GUI (optional, if building fleetcredits-qt)</li>
-                    <li><strong>Berkeley DB:</strong> 4.8+ for wallet storage</li>
+                    <li><strong>Berkeley DB:</strong> 4.8+ for wallet storage (<code>libdb++-dev</code> and <code>libdb-dev</code>)</li>
+                    <li><strong>Other:</strong> libevent-dev, libminiupnpc-dev, libzmq5-dev, python3, bsdmainutils</li>
                 </ul>
+                
+                <div class="note">
+                    <strong>⚠️ Critical:</strong> <code>autoconf-archive</code> is required for configure script generation. Without it, you'll get: <code>./configure: line 16791: syntax error near unexpected token '11,'</code>
+                </div>
+                
+                <div class="note">
+                    <strong>⚠️ Critical:</strong> <code>libdb++-dev</code> is required for wallet functionality. Without it, you'll get: <code>configure: error: libdb_cxx headers missing</code>
+                </div>
 
                 <h3>Linux Build</h3>
-                <pre><code># Install dependencies (Ubuntu/Debian)
-sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils python3 libboost-all-dev libdb-dev libdb++-dev
+                
+                <h4>Step 1: Install Dependencies</h4>
+                <pre><code># Update system packages
+sudo apt-get update
+sudo apt-get upgrade -y
+
+# Install build dependencies
+sudo apt-get install -y \
+  build-essential \
+  libtool \
+  autotools-dev \
+  automake \
+  pkg-config \
+  bsdmainutils \
+  python3 \
+  libssl-dev \
+  libevent-dev \
+  libboost-system-dev \
+  libboost-filesystem-dev \
+  libboost-chrono-dev \
+  libboost-test-dev \
+  libboost-thread-dev \
+  libboost-program-options-dev \
+  libminiupnpc-dev \
+  libzmq5-dev \
+  libdb++-dev \
+  libdb-dev \
+  autoconf-archive \
+  git \
+  curl
 
 # Install Qt dependencies (if building GUI)
-sudo apt-get install qt5-default qttools5-dev-tools
+sudo apt-get install -y \
+  libqt5gui5 \
+  libqt5core5a \
+  libqt5dbus5 \
+  qttools5-dev \
+  qttools5-dev-tools \
+  libprotobuf-dev \
+  protobuf-compiler \
+  libqrencode-dev</code></pre>
+                
+                <h4>Step 2: Clone Repository</h4>
+                <pre><code>git clone https://github.com/JeremyGits/FleetCredits.git
+cd FleetCredits</code></pre>
+                
+                <h4>Step 3: Fix Permissions</h4>
+                <pre><code># Make scripts executable (Git may not preserve permissions)
+chmod +x autogen.sh genbuild.sh
+chmod +x *.sh 2>/dev/null || true</code></pre>
+                
+                <h4>Step 4: Generate Configure Script</h4>
+                <pre><code>./autogen.sh</code></pre>
+                
+                <div class="info-box">
+                    <strong>Note:</strong> This may take 30-60 seconds. If you see "Permission denied", run <code>chmod +x autogen.sh</code> first.
+                </div>
+                
+                <h4>Step 5: Configure Build</h4>
+                <p>For a headless server (no GUI):</p>
+                <pre><code>./configure \
+  --with-gui=no \
+  --enable-debug \
+  --enable-tests \
+  --enable-wallet \
+  --with-miniupnpc \
+  --enable-experimental-mweb \
+  --enable-experimental-contributions</code></pre>
+                
+                <p>For full build with Qt GUI:</p>
+                <pre><code>./configure \
+  --enable-debug \
+  --enable-tests \
+  --enable-wallet \
+  --with-miniupnpc \
+  --enable-experimental-mweb \
+  --enable-experimental-contributions</code></pre>
+                
+                <h4>Step 6: Compile</h4>
+                <pre><code># Build using all CPU cores
+make -j$(nproc)
 
-# Build
-./autogen.sh
-./configure
-make -j$(nproc)</code></pre>
+# Or build Qt client specifically
+make qt/fleetcredits-qt</code></pre>
+                
+                <div class="info-box">
+                    <strong>⏱️ Build Time:</strong> 
+                    <ul>
+                        <li>4GB RAM, 2 CPU cores: ~20-30 minutes</li>
+                        <li>8GB RAM, 4 CPU cores: ~10-15 minutes</li>
+                        <li>16GB RAM, 8 CPU cores: ~5-10 minutes</li>
+                    </ul>
+                </div>
 
                 <h3>macOS Build</h3>
                 <pre><code># Install dependencies via Homebrew
@@ -315,26 +416,149 @@ make -j$(nproc)
                     <li><code>src/fleetcredits-tx</code> (Linux) or <code>src/fleetcredits-tx.exe</code> (Windows) - Transaction utility</li>
                 </ul>
                 
+                <h4>Verify Build Success</h4>
+                <pre><code># Check binaries exist and have executable permissions
+ls -lh src/fleetcreditsd
+ls -lh src/fleetcredits-cli
+
+# Check version
+./src/fleetcreditsd -version</code></pre>
+                
+                <h3>Troubleshooting</h3>
+                
+                <h4>Build Issues</h4>
+                
+                <div class="note">
+                    <strong>❌ Error: "Permission denied" when running autogen.sh</strong>
+                    <pre><code>chmod +x autogen.sh genbuild.sh
+./autogen.sh</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>❌ Error: "./configure: line 16791: syntax error near unexpected token '11,'"</strong>
+                    <p>Solution: Install autoconf-archive package:</p>
+                    <pre><code>sudo apt-get install -y autoconf-archive
+# Then re-run autogen and configure
+./autogen.sh
+./configure --with-gui=no --enable-debug --enable-tests --enable-wallet</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>❌ Error: "libdb_cxx headers missing"</strong>
+                    <p>Solution: Install Berkeley DB development package:</p>
+                    <pre><code>sudo apt-get install libdb++-dev libdb-dev</code></pre>
+                    <p>Then re-run configure:</p>
+                    <pre><code>./configure --with-gui=no --enable-debug --enable-tests --enable-wallet</code></pre>
+                    <p><strong>Alternative:</strong> If you don't need wallet functionality, disable it:</p>
+                    <pre><code>./configure --with-gui=no --disable-wallet</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>❌ Error: "No rule to make target 'libunivalue.la'"</strong>
+                    <p>Solution: The univalue library needs to be built first. Run:</p>
+                    <pre><code># First, make sure autoconf-archive is installed
+sudo apt-get install -y autoconf-archive
+
+# Build univalue library first
+cd src/univalue
+chmod +x autogen.sh
+./autogen.sh
+./configure
+make
+cd ../..
+
+# Then build the main project
+make -j$(nproc)</code></pre>
+                    <p><strong>Alternative:</strong> Clean and rebuild everything from scratch:</p>
+                    <pre><code>make distclean
+./autogen.sh
+./configure --with-gui=no --enable-debug --enable-tests --enable-wallet
+make -j$(nproc)</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>❌ Error: "No targets specified and no makefile found"</strong>
+                    <p>Solution: <code>./configure</code> failed. Check for missing dependencies:</p>
+                    <pre><code>./configure --with-gui=no 2>&1 | grep -i "missing\|error"</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>❌ Error: "Could not link against boost_filesystem !"</strong>
+                    <p>Solution: Install Boost Filesystem development package:</p>
+                    <pre><code>sudo apt-get install libboost-filesystem-dev libboost-system-dev libboost-program-options-dev
+sudo apt-get install libboost-all-dev  # Or install all Boost packages</code></pre>
+                    <p>If error persists, try:</p>
+                    <pre><code># Clean previous configure attempts
+make distclean 2>/dev/null || true
+rm -f config.cache
+
+# Re-run configure
+./configure --with-gui=no --enable-debug --enable-tests --enable-wallet</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>❌ Error: "No rule to make target 'qt/fleetcredits-qt'"</strong>
+                    <p>Solution: Make sure you're building from the project root directory, not the <code>src</code> directory. The correct command is:</p>
+                    <pre><code># From project root
+make qt/fleetcredits-qt
+
+# Or build everything
+make -j$(nproc)</code></pre>
+                </div>
+                
                 <h3>Running Fleet Credits</h3>
-                <h4>Linux</h4>
-                <pre><code># Run daemon
+                
+                <h4>Initial Test Run</h4>
+                <p>Test the daemon in regtest mode (local testing):</p>
+                <pre><code># Run daemon (Linux)
 ./src/fleetcreditsd -regtest -printtoconsole
 
-# Run GUI client
+# Run daemon (Windows)
+fleetcreditsd.exe -regtest -printtoconsole</code></pre>
+                
+                <p>You should see initialization messages. Press <code>Ctrl+C</code> to stop.</p>
+                
+                <h4>Test RPC Commands</h4>
+                <pre><code># Start daemon in background (Linux)
+./src/fleetcreditsd -regtest -daemon
+
+# Start daemon in background (Windows)
+fleetcreditsd.exe -regtest -daemon
+
+# Wait a few seconds, then test (Linux)
+./src/fleetcredits-cli -regtest getblockchaininfo
+./src/fleetcredits-cli -regtest getnetworkinfo
+
+# Test (Windows)
+fleetcredits-cli.exe -regtest getblockchaininfo
+fleetcredits-cli.exe -regtest getnetworkinfo</code></pre>
+                
+                <h4>Run GUI Client</h4>
+                <pre><code># Linux
 ./src/qt/fleetcredits-qt -regtest
 
-# Run CLI
-./src/fleetcredits-cli -regtest getblockcount</code></pre>
+# Windows
+fleetcredits-qt.exe -regtest</code></pre>
                 
-                <h4>Windows</h4>
-                <pre><code># Run daemon
-fleetcreditsd.exe -regtest -printtoconsole
-
-# Run GUI client
-fleetcredits-qt.exe -regtest
-
-# Run CLI
-fleetcredits-cli.exe -regtest getblockcount</code></pre>
+                <h4>Network Modes</h4>
+                <ul>
+                    <li><strong>Regtest:</strong> <code>-regtest</code> - Local testing, instant blocks, isolated network</li>
+                    <li><strong>Testnet:</strong> <code>-testnet</code> - Public test network (port 44556)</li>
+                    <li><strong>Mainnet:</strong> Default - Public production network (port 22556)</li>
+                </ul>
+                
+                <div class="info-box">
+                    <strong>Network Configuration:</strong> See <a href="network-params.html">Network Parameters</a> for port numbers and configuration details. The public seed node is 96.126.123.195 (mainnet:22556, testnet:44556).
+                </div>
+            </section>
+            
+            <section class="content-section">
+                <h2>See Also</h2>
+                <ul>
+                    <li><a href="server-installation.html">Server Installation Guide</a> - Detailed server deployment instructions</li>
+                    <li><a href="network-params.html">Network Parameters</a> - Network configuration and ports</li>
+                    <li><a href="qt-overview.html">Qt GUI Overview</a> - GUI client features and usage</li>
+                </ul>
             </section>
         </main>
     </div>

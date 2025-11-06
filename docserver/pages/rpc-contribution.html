@@ -324,18 +324,48 @@ fleetcredits-cli listcontributions "FleetCreditsAddress" "AI_VALIDATION"</code><
             </section>
 
             <section class="content-section">
-                <h2>Implementation Status</h2>
-                <div class="note">
-                    <strong>Note:</strong> The contribution RPC commands are currently implemented with placeholder functionality. Full implementation includes:
-                    <ul>
-                        <li>Transaction signing with wallet keys</li>
-                        <li>Proof data hash calculation</li>
-                        <li>Mempool submission</li>
-                        <li>Network broadcast</li>
-                        <li>Blockchain query for status</li>
-                        <li>Verification record lookup</li>
-                    </ul>
+                <h2>Implementation Details</h2>
+                
+                <h3>Transaction Creation</h3>
+                <p>The <code>submitcontribution</code> command:</p>
+                <ol>
+                    <li>Creates a <code>CContributionTransaction</code> with the provided type, proof data, and metadata</li>
+                    <li>Serializes the contribution data</li>
+                    <li>Creates an <code>OP_RETURN</code> script with marker <code>0xFC 0x01</code> followed by the serialized data</li>
+                    <li>Signs and broadcasts the transaction to the network</li>
+                    <li>Returns the transaction ID and status</li>
+                </ol>
+                
+                <h3>Contribution Extraction</h3>
+                <p>Contributions are extracted from blocks using <code>ExtractContributionFromTransaction</code>:</p>
+                <ul>
+                    <li><strong>OP_RETURN Detection:</strong> Scans all transaction outputs for <code>OP_RETURN</code> scripts</li>
+                    <li><strong>Marker Validation:</strong> Checks for contribution marker <code>0xFC 0x01</code></li>
+                    <li><strong>Length Prefix Handling:</strong> Properly handles CScript length prefixes (1-5 bytes depending on data size)</li>
+                    <li><strong>Data Deserialization:</strong> Extracts and deserializes <code>CContributionTransaction</code> data</li>
+                </ul>
+                
+                <div class="info-box">
+                    <strong>Important:</strong> The extraction function correctly handles CScript's automatic length prefix insertion. When creating an <code>OP_RETURN</code> script with <code>CScript() << OP_RETURN << data</code>, CScript adds a length prefix before the data. The extraction logic accounts for this by parsing the length prefix (which can be 1 byte for data &lt; 76 bytes, or OP_PUSHDATA1/2/4 for larger data) before checking for the contribution marker.
                 </div>
+                
+                <h3>Transaction Fees</h3>
+                <p>When submitting a contribution:</p>
+                <ul>
+                    <li>A <strong>transaction fee</strong> is deducted from your wallet balance (typically 0.01-0.05 FC)</li>
+                    <li>This fee is <strong>NOT</strong> part of the reward - it's the cost of submitting the transaction to the blockchain</li>
+                    <li>The contribution data itself has <strong>0 value</strong> - it's stored in an <code>OP_RETURN</code> output</li>
+                    <li>Rewards are issued <strong>separately</strong> by the oracle system after verification</li>
+                </ul>
+                
+                <h3>Status Tracking</h3>
+                <p>The <code>listcontributions</code> command:</p>
+                <ul>
+                    <li>Scans recent blocks (up to 1000 blocks back) for contribution transactions</li>
+                    <li>Extracts contributions from both main chain transactions and MWEB extension blocks</li>
+                    <li>Determines status: "pending" (0 confirmations), "confirmed" (1-11 confirmations), or "verified" (12+ confirmations)</li>
+                    <li>Calculates rewards based on contribution type and bonus level</li>
+                </ul>
             </section>
         </main>
     </div>
