@@ -2681,7 +2681,7 @@ void FleetCreditsGUI::message(const QString &title, const QString &message, unsi
         if (ret != NULL)
             *ret = r == QMessageBox::Ok;
     }
-    else
+    else if (notificator)
         notificator->notify((Notificator::Class)nNotifyIcon, strTitle, message);
 }
 
