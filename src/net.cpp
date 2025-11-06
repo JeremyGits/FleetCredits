@@ -2509,9 +2509,37 @@ bool CConnman::AddNode(const std::string& strNode)
       return false;
     }
 
+    // Extract IP address from strNode (everything before the last colon)
+    std::string newNodeIP;
+    size_t lastColon = strNode.find_last_of(':');
+    if (lastColon != std::string::npos) {
+        newNodeIP = strNode.substr(0, lastColon);
+    } else {
+        newNodeIP = strNode; // No port specified, use whole string
+    }
+
+    // Check for exact match first
     for(std::vector<std::string>::const_iterator it = vAddedNodes.begin(); it != vAddedNodes.end(); ++it) {
         if (strNode == *it)
-            return false;
+            return false; // Exact match found
+    }
+
+    // Check for same IP with different port (prevent duplicates)
+    for(std::vector<std::string>::const_iterator it = vAddedNodes.begin(); it != vAddedNodes.end(); ++it) {
+        std::string existingNode = *it;
+        size_t existingColon = existingNode.find_last_of(':');
+        if (existingColon != std::string::npos) {
+            std::string existingIP = existingNode.substr(0, existingColon);
+            if (newNodeIP == existingIP && newNodeIP != "") {
+                // Same IP already exists, remove old entry and add new one (update port)
+                vAddedNodes.erase(it);
+                break;
+            }
+        } else if (existingNode == newNodeIP) {
+            // Existing entry has no port, new one does - update it
+            vAddedNodes.erase(it);
+            break;
+        }
     }
 
     vAddedNodes.push_back(strNode);
@@ -2521,12 +2549,44 @@ bool CConnman::AddNode(const std::string& strNode)
 bool CConnman::RemoveAddedNode(const std::string& strNode)
 {
     LOCK(cs_vAddedNodes);
+    
+    // Extract IP address from strNode (everything before the last colon)
+    std::string targetIP;
+    size_t lastColon = strNode.find_last_of(':');
+    if (lastColon != std::string::npos) {
+        targetIP = strNode.substr(0, lastColon);
+    } else {
+        targetIP = strNode; // No port specified, use whole string
+    }
+    
+    // First try exact match
     for(std::vector<std::string>::iterator it = vAddedNodes.begin(); it != vAddedNodes.end(); ++it) {
         if (strNode == *it) {
             vAddedNodes.erase(it);
             return true;
         }
     }
+    
+    // If exact match failed and we have an IP, try matching by IP address
+    if (!targetIP.empty() && lastColon != std::string::npos) {
+        for(std::vector<std::string>::iterator it = vAddedNodes.begin(); it != vAddedNodes.end(); ++it) {
+            std::string existingNode = *it;
+            size_t existingColon = existingNode.find_last_of(':');
+            if (existingColon != std::string::npos) {
+                std::string existingIP = existingNode.substr(0, existingColon);
+                if (targetIP == existingIP) {
+                    // Found matching IP, remove it
+                    vAddedNodes.erase(it);
+                    return true;
+                }
+            } else if (existingNode == targetIP) {
+                // Existing entry has no port but matches IP
+                vAddedNodes.erase(it);
+                return true;
+            }
+        }
+    }
+    
     return false;
 }
 
