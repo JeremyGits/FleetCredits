@@ -36,6 +36,9 @@
 #include <QUrl>
 #include <QVBoxLayout>
 
+// Maximum number of transactions to display in history view
+#define MAX_TRANSACTION_HISTORY_ITEMS 100
+
 TransactionView::TransactionView(const PlatformStyle *platformStyle, QWidget *parent) :
     QWidget(parent), model(0), transactionProxyModel(0),
     transactionView(0), abandonAction(0), columnResizingFixer(0)
@@ -194,6 +197,9 @@ void TransactionView::setModel(WalletModel *_model)
         transactionProxyModel->setFilterCaseSensitivity(Qt::CaseInsensitive);
 
         transactionProxyModel->setSortRole(Qt::EditRole);
+        
+        // Limit transaction history to most recent items for performance
+        transactionProxyModel->setLimit(MAX_TRANSACTION_HISTORY_ITEMS);
 
         transactionView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         transactionView->setModel(transactionProxyModel);
