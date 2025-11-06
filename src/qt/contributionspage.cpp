@@ -9,10 +9,13 @@
 #include "walletmodel.h"
 #include "clientmodel.h"
 #include "fleetcreditsunits.h"
+#include "rpc/server.h"
+#include "rpc/protocol.h"
 
 #include <QMessageBox>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QApplication>
 
 ContributionsPage::ContributionsPage(QWidget *parent) :
     QWidget(parent),
@@ -100,10 +103,59 @@ void ContributionsPage::onSubmitClicked()
     }
 
     // Call RPC: submitcontribution
-    // This will be implemented via RPC calls
-    QMessageBox::information(this, tr("Submit Contribution"),
-        tr("Contribution submission will be connected to RPC.\n\nType: %1\nProof: %2")
-        .arg(contribType).arg(proofData));
+    try {
+        JSONRPCRequest req;
+        req.strMethod = "submitcontribution";
+        req.params = UniValue(UniValue::VARR);
+        req.params.push_back(contribType.toStdString());
+        req.params.push_back(proofData.toStdString());
+        if (!metadata.isEmpty()) {
+            req.params.push_back(metadata.toStdString());
+        }
+        req.fHelp = false;
+        
+        // Execute RPC call
+        UniValue result = tableRPC.execute(req);
+        
+        // Parse result
+        if (result.isObject()) {
+            std::string txid = "";
+            std::string status = "";
+            
+            if (result.exists("txid")) {
+                txid = result["txid"].get_str();
+            }
+            if (result.exists("status")) {
+                status = result["status"].get_str();
+            }
+            
+            QString message = tr("Contribution submitted successfully!\n\n");
+            message += tr("Type: %1\n").arg(contribType);
+            message += tr("Proof: %1\n").arg(proofData);
+            if (!txid.empty()) {
+                message += tr("\nTransaction ID: %1").arg(QString::fromStdString(txid));
+            }
+            if (!status.empty()) {
+                message += tr("\nStatus: %1").arg(QString::fromStdString(status));
+            }
+            
+            QMessageBox::information(this, tr("Submit Contribution"), message);
+            
+            // Clear form
+            ui->proofDataInput->clear();
+            ui->metadataInput->clear();
+            
+            // Refresh contributions list
+            refreshContributions();
+        } else {
+            QMessageBox::information(this, tr("Submit Contribution"),
+                tr("Contribution submitted. Result: %1").arg(QString::fromStdString(result.write())));
+        }
+    } catch (const std::exception& e) {
+        QString errorMsg = QString::fromStdString(e.what());
+        QMessageBox::critical(this, tr("Submit Contribution Error"),
+            tr("Failed to submit contribution:\n\n%1").arg(errorMsg));
+    }
 }
 
 void ContributionsPage::onContributionClicked(const QModelIndex &index)

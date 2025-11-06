@@ -930,7 +930,10 @@ void RPCConsole::on_openDebugLogfileButton_clicked()
 
 void RPCConsole::on_addPeerClicked() 
 {
-    AddPeerDialog *win = new AddPeerDialog(this);
+    AddPeerDialog *win = new AddPeerDialog(0);  // Use 0 as parent like TestPeerDialog
+    
+    // Set window flags to ensure it shows as a proper window
+    win->setWindowFlags(Qt::Dialog | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
     
     // Connect peer added signal to refresh peer list
     connect(win, &AddPeerDialog::peerAdded, [this]() {
@@ -955,14 +958,15 @@ void RPCConsole::on_addPeerClicked()
         }
     });
 
+    // Center window
+    const QPoint global = ui->tabWidget->mapToGlobal(ui->tabWidget->rect().center());
+    win->move(global.x() - win->width() / 2, global.y() - win->height() / 2);
+    
+    // Show the dialog
     win->showNormal();
     win->show();
     win->raise();
     win->activateWindow();
-
-    /** Center window */
-    const QPoint global = ui->tabWidget->mapToGlobal(ui->tabWidget->rect().center());
-    win->move(global.x() - win->width() / 2, global.y() - win->height() / 2);
 }
 
 void RPCConsole::on_removePeerClicked() 

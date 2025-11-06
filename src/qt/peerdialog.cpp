@@ -185,6 +185,9 @@ AddPeerDialog::AddPeerDialog(QWidget *parent) :
     ui(new Ui::AddPeerDialog)
 {
     ui->setupUi(this);
+    
+    // Set window title
+    setWindowTitle(tr("Add Peer"));
 
     ui->peerPort->setValidator( new QIntValidator(1, 65535, this) );
 
@@ -237,6 +240,9 @@ TestPeerDialog::TestPeerDialog(QWidget *parent) :
     ui(new Ui::TestPeerDialog)
 {
     ui->setupUi(this);
+    
+    // Set window title
+    setWindowTitle(tr("Test Peer Connection"));
 
     ui->peerPort->setValidator( new QIntValidator(1, 65535, this) );
 
