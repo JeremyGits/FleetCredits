@@ -214,10 +214,10 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0xfa)(0xca)(0xfd).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0xfa)(0xc3)(0x98).convert_to_container<std::vector<unsigned char> >();
 
-        // Fleet Credits: NO fixed seeds - this is a fresh blockchain network
-        // Old blockchain seeds removed to prevent connecting to wrong network
-        // Nodes must be manually connected via -addnode or -connect
-        vFixedSeeds.clear();  // Empty - no seed nodes until we deploy our own
+        // Fleet Credits: Add public server as default seed node
+        // Public server: 96.126.123.195 (IPv6: ::ffff:607e:7bc3)
+        vFixedSeeds.clear();
+        vFixedSeeds.push_back(SeedSpec6{{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xff,0xff,0x60,0x7e,0x7b,0xc3}, 22556});
 
         fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
@@ -388,10 +388,10 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xcf).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
 
-        // Fleet Credits Testnet: NO fixed seeds - this is a fresh blockchain network
-        // Old blockchain seeds removed to prevent connecting to wrong network
-        // Nodes must be manually connected via -addnode or -connect
-        vFixedSeeds.clear();  // Empty - no seed nodes until we deploy our own
+        // Fleet Credits Testnet: Add public server as default seed node
+        // Public server: 96.126.123.195 (IPv6: ::ffff:607e:7bc3)
+        vFixedSeeds.clear();
+        vFixedSeeds.push_back(SeedSpec6{{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xff,0xff,0x60,0x7e,0x7b,0xc3}, 44556});
 
         fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
