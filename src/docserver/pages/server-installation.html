@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Installation Guide - Fleet Credits Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="network-architecture.html" class="nav-item">
+                        <span class="nav-icon">🌐</span>
+                        <span>Network Architecture</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                    <a href="server-installation.html" class="nav-item active">
+                        <span class="nav-icon">🖥️</span>
+                        <span>Server Installation</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Server Installation Guide</h1>
+                <p class="subtitle">Complete step-by-step guide for deploying Fleet Credits on a fresh Ubuntu server</p>
+            </div>
+
+            <section class="content-section">
+                <div class="info-box">
+            <strong>📋 Prerequisites:</strong> Fresh Ubuntu 20.04+ or 22.04+ server with root or sudo access. This guide assumes Ubuntu 24.04 but works on earlier versions.
+        </div>
+
+                <h2>Step 1: System Preparation</h2>
+                
+                <div class="step-box">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+            <strong>Update System Packages</strong>
+            <pre><code>sudo apt-get update
+sudo apt-get upgrade -y</code></pre>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Install Build Dependencies</strong>
+            <p>Fleet Credits requires these packages for compilation:</p>
+            <pre><code>sudo apt-get install -y \
+  build-essential \
+  libtool \
+  autotools-dev \
+  automake \
+  pkg-config \
+  bsdmainutils \
+  python3 \
+  libssl-dev \
+  libevent-dev \
+  libboost-system-dev \
+  libboost-filesystem-dev \
+  libboost-chrono-dev \
+  libboost-test-dev \
+  libboost-thread-dev \
+  libminiupnpc-dev \
+  libzmq5-dev \
+  libqt5gui5 \
+  libqt5core5a \
+  libqt5dbus5 \
+  qttools5-dev \
+  qttools5-dev-tools \
+  libprotobuf-dev \
+  protobuf-compiler \
+  libqrencode-dev \
+  libdb++-dev \
+  libdb-dev \
+  git \
+  curl</code></pre>
+            
+            <div class="warning">
+                <strong>⚠️ Critical:</strong> <code>libdb++-dev</code> is required for wallet functionality. Without it, you'll get: <code>configure: error: libdb_cxx headers missing</code>
+            </div>
+            
+            <div class="info">
+                <strong>Note:</strong> For a headless server (no GUI), you can skip Qt5 packages. However, including them won't hurt and allows GUI builds later if needed.
+            </div>
+        </div>
+
+        <h2>📥 Step 2: Clone Repository</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Navigate to Home Directory</strong>
+            <pre><code>cd ~</code></pre>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Clone Fleet Credits Repository</strong>
+            <pre><code>git clone https://github.com/JeremyGits/FleetCredits.git</code></pre>
+            
+            <div class="success">
+                <strong>✅ Expected Output:</strong>
+                <pre>Cloning into 'FleetCredits'...
+remote: Enumerating objects: 1959, done.
+remote: Counting objects: 100% (1959/1959), done.
+remote: Compressing objects: 100% (1637/1637), done.
+remote: Total 1959 (delta 253), reused 1891 (delta 209)
+Receiving objects: 100% (1959/1959), 32.09 MiB | XX.XX MiB/s, done.
+Resolving deltas: 100% (253/253), done.</pre>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>Navigate to Project Directory</strong>
+            <pre><code>cd ~/FleetCredits</code></pre>
+            
+            <div class="warning">
+                <strong>⚠️ Important:</strong> The source code is at the root of the cloned repository (<code>~/FleetCredits/</code>), NOT in a <code>fleetcredits/</code> subdirectory.
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">4</span>
+            <strong>Verify Repository Structure</strong>
+            <pre><code>ls -la</code></pre>
+            
+            <p>You should see:</p>
+            <ul>
+                <li><code>autogen.sh</code> - Build configuration script</li>
+                <li><code>configure.ac</code> - Autoconf configuration</li>
+                <li><code>Makefile.am</code> - Automake input</li>
+                <li><code>src/</code> - Source code directory</li>
+                <li><code>build-aux/</code> - Build scripts</li>
+                <li><code>contrib/</code> - Contribution scripts</li>
+                <li>Other directories and files</li>
+            </ul>
+        </div>
+
+        <h2>🔧 Step 3: Fix Permissions</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Make Scripts Executable</strong>
+            <p>Git may not preserve execute permissions. Fix this:</p>
+            <pre><code>chmod +x autogen.sh genbuild.sh
+chmod +x *.sh 2>/dev/null || true</code></pre>
+            
+            <div class="error">
+                <strong>❌ Common Error:</strong> If you see <code>Permission denied</code> when running <code>./autogen.sh</code>, this is why. Always run <code>chmod +x</code> first.
+            </div>
+        </div>
+
+        <h2>🏗️ Step 4: Build Configuration</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Generate Configure Script</strong>
+            <pre><code>./autogen.sh</code></pre>
+            
+            <div class="success">
+                <strong>✅ Expected Output:</strong> Script runs without errors. May take 30-60 seconds.
+            </div>
+            
+            <div class="error">
+                <strong>❌ If you see "Permission denied":</strong>
+                <pre><code>chmod +x autogen.sh
+./autogen.sh</code></pre>
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Configure Build</strong>
+            <p>For a headless server (seed node), use:</p>
+            <pre><code>./configure \
+  --with-gui=no \
+  --enable-debug \
+  --enable-tests \
+  --enable-wallet \
+  --with-miniupnpc \
+  --enable-experimental-mweb \
+  --enable-experimental-contributions</code></pre>
+            
+            <div class="info">
+                <strong>Configuration Options:</strong>
+                <ul>
+                    <li><code>--with-gui=no</code> - Skip Qt GUI (faster build, saves dependencies)</li>
+                    <li><code>--enable-debug</code> - Include debug symbols for troubleshooting</li>
+                    <li><code>--enable-tests</code> - Build test suite</li>
+                    <li><code>--enable-wallet</code> - Enable wallet functionality</li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                <strong>⚠️ Common Error:</strong> If you see <code>configure: No such file or directory</code>, make sure <code>./autogen.sh</code> completed successfully first.
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>Verify Configuration</strong>
+            <p>Check the output for any errors. You should see:</p>
+            <pre>configure: creating ./config.status
+config.status: creating Makefile
+...</pre>
+        </div>
+
+        <h2>⚙️ Step 5: Compile</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Build Using All CPU Cores</strong>
+            <pre><code>make -j$(nproc)</code></pre>
+            
+            <div class="info">
+                <strong>⏱️ Build Time:</strong> 
+                <ul>
+                    <li>4GB RAM, 2 CPU cores: ~20-30 minutes</li>
+                    <li>8GB RAM, 4 CPU cores: ~10-15 minutes</li>
+                    <li>16GB RAM, 8 CPU cores: ~5-10 minutes</li>
+                </ul>
+            </div>
+            
+            <div class="warning">
+                <strong>⚠️ Common Error:</strong> If you see <code>make: *** No targets specified and no makefile found</code>, the <code>./configure</code> step failed. Go back and fix configuration errors.
+            </div>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Verify Build Success</strong>
+            <pre><code>ls -lh src/fleetcreditsd
+ls -lh src/fleetcredits-cli</code></pre>
+            
+            <p>You should see the binaries with executable permissions. Check version:</p>
+            <pre><code>./src/fleetcreditsd -version</code></pre>
+        </div>
+
+        <h2>🔐 Step 6: Firewall Configuration</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Enable Firewall (if not already enabled)</strong>
+            <pre><code>sudo ufw enable</code></pre>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Open P2P Ports</strong>
+            <p>Allow incoming connections for peer-to-peer networking:</p>
+            <pre><code># Mainnet P2P port
+sudo ufw allow 22556/tcp
+
+# Testnet P2P port (optional, for testing)
+sudo ufw allow 44556/tcp</code></pre>
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>Configure RPC Access (Secure)</strong>
+            <p><strong>Option A: Restrict to Your IP (Recommended)</strong></p>
+            <pre><code># Replace YOUR_IP with your actual IP address
+sudo ufw allow from YOUR_IP to any port 22555</code></pre>
+            
+            <p><strong>Option B: Allow from Anywhere (Less Secure, Easier for Testing)</strong></p>
+            <pre><code>sudo ufw allow 22555/tcp</code></pre>
+            
+            <div class="warning">
+                <strong>⚠️ Security Warning:</strong> RPC access without authentication can allow unauthorized access. Always use <code>rpcuser</code> and <code>rpcpassword</code> in configuration.
+            </div>
+        </div>
+
+        <h2>🚀 Step 7: Initial Test Run</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Test Daemon Startup (Regtest Mode)</strong>
+            <pre><code>./src/fleetcreditsd -regtest -printtoconsole</code></pre>
+            
+            <p>You should see initialization messages. Press <code>Ctrl+C</code> to stop.</p>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Test RPC Commands</strong>
+            <pre><code># Start daemon in background
+./src/fleetcreditsd -regtest -daemon
+
+# Wait a few seconds, then test
+./src/fleetcredits-cli -regtest getblockchaininfo
+./src/fleetcredits-cli -regtest getnetworkinfo</code></pre>
+        </div>
+
+        <h2>📁 Step 8: Data Directory Setup</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Create Data Directory</strong>
+            <pre><code>mkdir -p ~/.fleetcredits</code></pre>
+            
+            <div class="info">
+                <strong>Data Directory Locations:</strong>
+                <ul>
+                    <li><strong>Mainnet:</strong> <code>~/.fleetcredits/</code></li>
+                    <li><strong>Testnet:</strong> <code>~/.fleetcredits/testnet3/</code></li>
+                    <li><strong>Regtest:</strong> <code>~/.fleetcredits/regtest/</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>⚙️ Step 9: Configuration File</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Create Configuration File</strong>
+            <pre><code>nano ~/.fleetcredits/fleetcredits.conf</code></pre>
+            
+            <p>Add basic configuration:</p>
+            <pre><code># Fleet Credits Configuration File
+# Mainnet
+server=1
+daemon=1
+listen=1
+bind=0.0.0.0
+port=22556
+rpcport=22555
+rpcuser=YOUR_RPC_USERNAME
+rpcpassword=YOUR_SECURE_PASSWORD
+rpcallowip=127.0.0.1
+rpcallowip=YOUR_IP_ADDRESS
+
+# Logging
+logtimestamps=1
+debug=1
+
+# Network
+maxconnections=125
+addnode=PEER_IP_1:22556
+addnode=PEER_IP_2:22556</code></pre>
+            
+            <div class="warning">
+                <strong>⚠️ Security:</strong> Change <code>YOUR_RPC_USERNAME</code> and <code>YOUR_SECURE_PASSWORD</code> to secure values. Restrict <code>rpcallowip</code> to trusted IPs.
+            </div>
+        </div>
+
+        <h2>🔄 Step 10: Systemd Service (Optional but Recommended)</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Create Service File</strong>
+            <pre><code>sudo nano /etc/systemd/system/fleetcreditsd.service</code></pre>
+            
+            <p>Add the following (replace <code>YOUR_USERNAME</code> with your actual username):</p>
+            <pre><code>[Unit]
+Description=Fleet Credits Daemon
+After=network.target
+
+[Service]
+Type=forking
+User=YOUR_USERNAME
+ExecStart=/home/YOUR_USERNAME/FleetCredits/src/fleetcreditsd -daemon -pid=/home/YOUR_USERNAME/.fleetcredits/fleetcreditsd.pid
+ExecStop=/home/YOUR_USERNAME/FleetCredits/src/fleetcredits-cli stop
+PIDFile=/home/YOUR_USERNAME/.fleetcredits/fleetcreditsd.pid
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Enable and Start Service</strong>
+            <pre><code>sudo systemctl daemon-reload
+sudo systemctl enable fleetcreditsd
+sudo systemctl start fleetcreditsd</code></pre>
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>Check Service Status</strong>
+            <pre><code>sudo systemctl status fleetcreditsd</code></pre>
+        </div>
+
+        <h2>✅ Step 11: Verify Installation</h2>
+
+        <div class="step">
+            <span class="step-number">1</span>
+            <strong>Check Daemon is Running</strong>
+            <pre><code>ps aux | grep fleetcreditsd</code></pre>
+        </div>
+
+        <div class="step">
+            <span class="step-number">2</span>
+            <strong>Test RPC Connection</strong>
+            <pre><code>./src/fleetcredits-cli getblockchaininfo
+./src/fleetcredits-cli getnetworkinfo
+./src/fleetcredits-cli getpeerinfo</code></pre>
+        </div>
+
+        <div class="step">
+            <span class="step-number">3</span>
+            <strong>Check Logs</strong>
+            <pre><code>tail -f ~/.fleetcredits/debug.log</code></pre>
+        </div>
+
+        <h2>🐛 Troubleshooting</h2>
+
+        <h3>Build Issues</h3>
+
+        <div class="error">
+            <strong>❌ Error: "Permission denied" when running autogen.sh</strong>
+            <pre><code>chmod +x autogen.sh genbuild.sh
+./autogen.sh</code></pre>
+        </div>
+
+        <div class="error">
+            <strong>❌ Error: "No such file or directory: configure"</strong>
+            <p>Solution: Make sure <code>./autogen.sh</code> completed successfully first.</p>
+        </div>
+
+        <div class="error">
+            <strong>❌ Error: "No targets specified and no makefile found"</strong>
+            <p>Solution: <code>./configure</code> failed. Check for missing dependencies:</p>
+            <pre><code>./configure --with-gui=no 2>&1 | grep -i "missing\|error"</code></pre>
+        </div>
+
+        <div class="error">
+            <strong>❌ Error: "libdb_cxx headers missing"</strong>
+            <p>Solution: Install Berkeley DB development package:</p>
+            <pre><code>sudo apt-get install libdb++-dev libdb-dev</code></pre>
+            <p>Then re-run configure:</p>
+            <pre><code>./configure --with-gui=no --enable-debug --enable-tests --enable-wallet</code></pre>
+            <p><strong>Alternative:</strong> If you don't need wallet functionality, disable it:</p>
+            <pre><code>./configure --with-gui=no --disable-wallet</code></pre>
+        </div>
+
+        <div class="error">
+            <strong>❌ Error: Missing dependencies during configure</strong>
+            <p>Solution: Install the missing package. Common ones:</p>
+            <pre><code>sudo apt-get install libdb++-dev libdb-dev  # Berkeley DB (required for wallet)
+sudo apt-get install libboost-all-dev  # If you see Boost errors</code></pre>
+        </div>
+
+        <h3>Runtime Issues</h3>
+
+        <div class="error">
+            <strong>❌ Error: "Address already in use"</strong>
+            <p>Solution: Port is already in use. Find and kill the process:</p>
+            <pre><code>sudo netstat -tulpn | grep 22556
+sudo kill <PID></code></pre>
+        </div>
+
+        <div class="error">
+            <strong>❌ Error: "RPC_IN_WARMUP"</strong>
+            <p>Solution: Daemon is still initializing. Wait 30-60 seconds and try again.</p>
+        </div>
+
+        <div class="error">
+            <strong>❌ Error: "Cannot connect to fleetcreditsd"</strong>
+            <p>Solution: Check if daemon is running and RPC is configured:</p>
+            <pre><code>ps aux | grep fleetcreditsd
+tail -50 ~/.fleetcredits/debug.log</code></pre>
+        </div>
+
+        <h3>Network Issues</h3>
+
+        <div class="error">
+            <strong>❌ Error: "No connections" or "0 peers"</strong>
+            <p>Solution: Fleet Credits is a new network with no seed nodes yet. You need to:</p>
+            <ul>
+                <li>Manually connect peers using <code>-addnode</code> flag</li>
+                <li>Or wait for other nodes to come online</li>
+                <li>For testnet, connect to other test nodes manually</li>
+            </ul>
+        </div>
+
+        <h2>📊 Server Requirements</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Resource</th>
+                    <th>Minimum</th>
+                    <th>Recommended</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>RAM</td>
+                    <td>4GB</td>
+                    <td>8GB</td>
+                    <td>Fresh blockchain uses ~500MB, grows to ~2GB after 1 year</td>
+                </tr>
+                <tr>
+                    <td>CPU</td>
+                    <td>2 cores</td>
+                    <td>4 cores</td>
+                    <td>Any modern CPU works</td>
+                </tr>
+                <tr>
+                    <td>Disk</td>
+                    <td>20GB</td>
+                    <td>50GB+</td>
+                    <td>SSD recommended. Blockchain grows ~1GB/year initially</td>
+                </tr>
+                <tr>
+                    <td>Network</td>
+                    <td>1TB/month</td>
+                    <td>2TB/month</td>
+                    <td>Seed nodes use more bandwidth</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🎯 Next Steps</h2>
+
+        <ol>
+            <li><strong>Configure as Seed Node:</strong> Add your server IP to <code>chainparams.cpp</code> (if you're a maintainer)</li>
+            <li><strong>Connect to Network:</strong> Use <code>-addnode</code> to connect to other nodes</li>
+            <li><strong>Monitor:</strong> Set up log rotation and monitoring</li>
+            <li><strong>Backup:</strong> Regularly backup <code>wallet.dat</code> if using wallet</li>
+        </ol>
+
+        <h2>📚 Additional Resources</h2>
+
+        <ul>
+            <li><a href="network-architecture.html">Network Architecture</a> - Understanding the P2P network</li>
+            <li><a href="connecting-to-network.html">Connecting to Network</a> - How to connect peers</li>
+            <li><a href="../README.md">README</a> - Project overview</li>
+        </ul>
+
+        <div class="success">
+            <strong>✅ Installation Complete!</strong> Your Fleet Credits node should now be running. Check the logs and verify connectivity with <code>getpeerinfo</code>.
+        </div>
+
+        <a href="../index.html" class="back-link">← Back to Documentation Index</a>
+    </div>
+</body>
+</html>
+
+

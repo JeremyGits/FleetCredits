@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet Overview - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+<aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item active">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Wallet Overview</h1>
+            </div>
+
+            <section class="content-section">
+                <h2>Wallet System</h2>
+                <p>Fleet Credits wallet manages addresses, transactions, keys, and UTXO tracking.</p>
+                <p><strong>Files:</strong> <code>src/wallet/wallet.h</code>, <code>src/wallet/wallet.cpp</code>, <code>src/wallet/walletdb.h</code>, <code>src/wallet/walletdb.cpp</code></p>
+                
+                <h3>Core Wallet Classes</h3>
+                
+                <h4>CWallet</h4>
+                <p>The main wallet class that manages all wallet operations:</p>
+                <ul>
+                    <li><strong>Transaction Management:</strong> Creates, signs, and broadcasts transactions</li>
+                    <li><strong>UTXO Tracking:</strong> Tracks unspent transaction outputs</li>
+                    <li><strong>Key Management:</strong> Generates and manages cryptographic keys</li>
+                    <li><strong>Address Management:</strong> Creates and manages addresses</li>
+                    <li><strong>Balance Tracking:</strong> Calculates available, pending, and immature balances</li>
+                    <li><strong>Fee Calculation:</strong> Implements Fleet Credits fee structure (zero fees for &lt;1000 FC)</li>
+                </ul>
+                
+                <h4>CWalletTx</h4>
+                <p>Extends <code>CMerkleTx</code> with wallet-specific transaction data:</p>
+                <ul>
+                    <li>Transaction metadata (confirmations, block height)</li>
+                    <li>Input/output mapping</li>
+                    <li>Change tracking</li>
+                    <li>Spent/unspent status</li>
+                </ul>
+                
+                <h4>CKeyPool</h4>
+                <p>Manages pool of pre-generated keys for faster address generation:</p>
+                <ul>
+                    <li>HD (Hierarchical Deterministic) key generation</li>
+                    <li>Key pool size management</li>
+                    <li>Key reservation system</li>
+                </ul>
+                
+                <h4>CWalletDB</h4>
+                <p>Berkeley DB interface for wallet persistence:</p>
+                <ul>
+                    <li>Wallet file storage (<code>wallet.dat</code>)</li>
+                    <li>Key storage and encryption</li>
+                    <li>Transaction history persistence</li>
+                    <li>Address book storage</li>
+                </ul>
+                
+                <h3>Key Management</h3>
+                <ul>
+                    <li><strong>HD Key Generation:</strong> BIP32/BIP44 compliant hierarchical deterministic keys</li>
+                    <li><strong>Extended Keys:</strong> Support for BIP32 extended public/private keys</li>
+                    <li><strong>Key Encryption:</strong> Wallet encryption with AES-256-CBC</li>
+                    <li><strong>Master Key:</strong> CMasterKey for wallet encryption</li>
+                    <li><strong>Key Pool:</strong> Pre-generated keys for quick address creation</li>
+                </ul>
+                
+                <h3>Address System</h3>
+                <p>Fleet Credits uses Base58 encoding for addresses:</p>
+                <ul>
+                    <li><strong>Public Key Addresses:</strong> P2PKH (Pay-to-Public-Key-Hash)</li>
+                    <li><strong>Script Addresses:</strong> P2SH (Pay-to-Script-Hash)</li>
+                    <li><strong>Address Prefixes:</strong> Mainnet (0x23/0x16), Testnet (0x71/0xc4)</li>
+                    <li><strong>Address Validation:</strong> CFleetCreditsAddress validation</li>
+                </ul>
+                
+                <h3>Transaction Management</h3>
+                <ul>
+                    <li><strong>CreateTransaction:</strong> Creates new transactions from UTXOs</li>
+                    <li><strong>CommitTransaction:</strong> Broadcasts transactions to network</li>
+                    <li><strong>AbandonTransaction:</strong> Marks transactions as abandoned</li>
+                    <li><strong>SignTransaction:</strong> Signs transactions with wallet keys</li>
+                    <li><strong>Fee Calculation:</strong> Zero fees for transactions &lt;1000 FC, standard fees otherwise</li>
+                </ul>
+                
+                <h3>Balance Calculation</h3>
+                <p>The wallet calculates several balance types:</p>
+                <ul>
+                    <li><strong>Available Balance:</strong> Confirmed UTXOs ready to spend</li>
+                    <li><strong>Pending Balance:</strong> Unconfirmed incoming transactions</li>
+                    <li><strong>Immature Balance:</strong> Coinbase outputs awaiting maturity (30 blocks)</li>
+                    <li><strong>Watch-Only Balance:</strong> Balance from imported watch-only addresses</li>
+                </ul>
+                
+                <h3>MWEB Integration</h3>
+                <p>The wallet system supports MWEB privacy transactions:</p>
+                <ul>
+                    <li>Peg-in transactions (main chain → MWEB)</li>
+                    <li>Peg-out transactions (MWEB → main chain)</li>
+                    <li>MWEB address generation</li>
+                    <li>View key management for MWEB transactions</li>
+                </ul>
+                
+                <h3>Wallet Encryption</h3>
+                <p>Fleet Credits supports wallet encryption:</p>
+                <ul>
+                    <li><strong>AES-256-CBC:</strong> Encryption algorithm</li>
+                    <li><strong>Scrypt:</strong> Key derivation function</li>
+                    <li><strong>Unlock Duration:</strong> Configurable unlock timeout</li>
+                    <li><strong>Auto-Lock:</strong> Automatic locking after inactivity</li>
+                </ul>
+                
+                <h3>Database Storage</h3>
+                <p>Wallet data is stored in Berkeley DB format:</p>
+                <ul>
+                    <li><strong>wallet.dat:</strong> Main wallet file</li>
+                    <li><strong>Key Storage:</strong> Encrypted private keys</li>
+                    <li><strong>Transaction History:</strong> Complete transaction log</li>
+                    <li><strong>Address Book:</strong> Labeled addresses</li>
+                    <li><strong>Key Metadata:</strong> Key pool and HD key information</li>
+                </ul>
+
+                <h3>Fleet Credits Wallet Extensions</h3>
+                <p>The Fleet Credits wallet extends the standard Bitcoin/Dogecoin wallet format to support advanced features:</p>
+                
+                <h4>MWEB Support</h4>
+                <ul>
+                    <li><strong>MWEB View Keys:</strong> Store encrypted view keys for MWEB transaction decryption</li>
+                    <li><strong>MWEB UTXO Tracking:</strong> Track MWEB commitments and outputs</li>
+                    <li><strong>MWEB Transaction Cache:</strong> Cache MWEB transactions with decrypted amounts</li>
+                    <li><strong>Peg Transactions:</strong> Track peg-in and peg-out transactions</li>
+                </ul>
+                <p><strong>Database Records:</strong> <code>"mwebviewkey"</code>, <code>"mwebutxo"</code>, <code>"mwebtx"</code>, <code>"peg"</code></p>
+                
+                <h4>Contribution Tracking</h4>
+                <ul>
+                    <li><strong>Contribution Metadata:</strong> Link transactions to contribution data</li>
+                    <li><strong>Status Tracking:</strong> Track contribution status (PENDING, APPROVED, REJECTED, REWARDED)</li>
+                    <li><strong>Confirmation Count:</strong> Track number of confirmations</li>
+                    <li><strong>Reward Linking:</strong> Link contributions to reward payouts</li>
+                </ul>
+                <p><strong>Database Records:</strong> <code>"contrib"</code></p>
+                
+                <h4>Reward History</h4>
+                <ul>
+                    <li><strong>Reward Entries:</strong> Track all contributor rewards received</li>
+                    <li><strong>Block Association:</strong> Link rewards to block heights</li>
+                    <li><strong>Contribution Type:</strong> Track contribution type and bonus level</li>
+                    <li><strong>Reward Amount:</strong> Record reward amounts received</li>
+                </ul>
+                <p><strong>Database Records:</strong> <code>"reward"</code></p>
+                
+                <h4>Oracle Staking</h4>
+                <ul>
+                    <li><strong>Stake Tracking:</strong> Track staked amounts for oracle participation</li>
+                    <li><strong>Reputation System:</strong> Store reputation scores</li>
+                    <li><strong>Active Votes:</strong> Track active verification votes</li>
+                    <li><strong>Oracle Status:</strong> Track active/inactive status</li>
+                </ul>
+                <p><strong>Database Records:</strong> <code>"oracle"</code></p>
+
+                <h4>Wallet Extension Classes</h4>
+                <p><strong>File:</strong> <code>src/wallet/walletextensions.h</code></p>
+                <ul>
+                    <li><code>CMWEBUTXOEntry</code> - MWEB UTXO tracking</li>
+                    <li><code>CContributionWalletEntry</code> - Contribution transaction metadata</li>
+                    <li><code>CRewardEntry</code> - Contributor reward history</li>
+                    <li><code>COracleStakeEntry</code> - Oracle staking information</li>
+                    <li><code>CMWEBWalletTx</code> - MWEB transaction cache</li>
+                    <li><code>CPegWalletEntry</code> - Peg transaction tracking</li>
+                </ul>
+
+                <h4>Database Methods</h4>
+                <p><strong>File:</strong> <code>src/wallet/walletdb.h</code>, <code>src/wallet/walletdb.cpp</code></p>
+                <ul>
+                    <li><code>WriteMWEBViewKey()</code> / <code>ReadMWEBViewKey()</code></li>
+                    <li><code>WriteMWEBUTXO()</code> / <code>ReadMWEBUTXO()</code></li>
+                    <li><code>WriteMWEBTx()</code> / <code>ReadMWEBTx()</code></li>
+                    <li><code>WriteContribution()</code> / <code>ReadContribution()</code></li>
+                    <li><code>WriteReward()</code> / <code>ReadReward()</code> / <code>ListRewards()</code></li>
+                    <li><code>WriteOracleStake()</code> / <code>ReadOracleStake()</code></li>
+                    <li><code>WritePeg()</code> / <code>ReadPeg()</code> / <code>ListPegs()</code></li>
+                </ul>
+
+                <div class="info-box">
+                    <strong>Backward Compatibility:</strong> Old wallets without Fleet Credits extensions continue to work. New records are only added when features are used.
+                </div>
+                
+                <h3>See Also</h3>
+                <ul>
+                    <li><a href="wallet-classes.html">Wallet Classes</a> - Detailed class documentation</li>
+                    <li><a href="address-system.html">Address System</a> - Address format and validation</li>
+                    <li><a href="rpc-wallet.html">Wallet RPC</a> - RPC commands for wallet operations</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

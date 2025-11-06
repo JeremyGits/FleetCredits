@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building & Setup - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+<aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="building.html" class="nav-item active">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                    <a href="server-installation.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>Server Installation</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Building & Setup</h1>
+            </div>
+
+            <section class="content-section">
+                <h2>Building Fleet Credits Core</h2>
+                
+                <h3>Prerequisites</h3>
+                <div class="info-box">
+                    <strong>📋 System Requirements:</strong> Ubuntu 20.04+, Debian 10+, or similar Linux distribution. macOS 10.14+ or Windows with WSL.
+                </div>
+                
+                <p>Required packages and libraries:</p>
+                <ul>
+                    <li><strong>Compiler:</strong> GCC 7+ or Clang 5+</li>
+                    <li><strong>Build Tools:</strong> Autotools (autoconf, automake, libtool, <strong>autoconf-archive</strong>)</li>
+                    <li><strong>pkg-config:</strong> For dependency detection</li>
+                    <li><strong>Boost:</strong> 1.64+ (system, filesystem, thread, chrono, program_options, test)</li>
+                    <li><strong>OpenSSL:</strong> For cryptographic functions</li>
+                    <li><strong>Qt 5.x:</strong> For GUI (optional, if building fleetcredits-qt)</li>
+                    <li><strong>Berkeley DB:</strong> 4.8+ for wallet storage (<code>libdb++-dev</code> and <code>libdb-dev</code>)</li>
+                    <li><strong>Other:</strong> libevent-dev, libminiupnpc-dev, libzmq5-dev, python3, bsdmainutils</li>
+                </ul>
+                
+                <div class="note">
+                    <strong>⚠️ Critical:</strong> <code>autoconf-archive</code> is required for configure script generation. Without it, you'll get: <code>./configure: line 16791: syntax error near unexpected token '11,'</code>
+                </div>
+                
+                <div class="note">
+                    <strong>⚠️ Critical:</strong> <code>libdb++-dev</code> is required for wallet functionality. Without it, you'll get: <code>configure: error: libdb_cxx headers missing</code>
+                </div>
+
+                <h3>Linux Build</h3>
+                
+                <h4>Step 1: Install Dependencies</h4>
+                <pre><code># Update system packages
+sudo apt-get update
+sudo apt-get upgrade -y
+
+# Install build dependencies
+sudo apt-get install -y \
+  build-essential \
+  libtool \
+  autotools-dev \
+  automake \
+  pkg-config \
+  bsdmainutils \
+  python3 \
+  libssl-dev \
+  libevent-dev \
+  libboost-system-dev \
+  libboost-filesystem-dev \
+  libboost-chrono-dev \
+  libboost-test-dev \
+  libboost-thread-dev \
+  libboost-program-options-dev \
+  libminiupnpc-dev \
+  libzmq5-dev \
+  libdb++-dev \
+  libdb-dev \
+  autoconf-archive \
+  git \
+  curl
+
+# Install Qt dependencies (if building GUI)
+sudo apt-get install -y \
+  libqt5gui5 \
+  libqt5core5a \
+  libqt5dbus5 \
+  qttools5-dev \
+  qttools5-dev-tools \
+  libprotobuf-dev \
+  protobuf-compiler \
+  libqrencode-dev</code></pre>
+                
+                <h4>Step 2: Clone Repository</h4>
+                <pre><code>git clone https://github.com/JeremyGits/FleetCredits.git
+cd FleetCredits</code></pre>
+                
+                <h4>Step 3: Fix Permissions</h4>
+                <pre><code># Make scripts executable (Git may not preserve permissions)
+chmod +x autogen.sh genbuild.sh
+chmod +x *.sh 2>/dev/null || true</code></pre>
+                
+                <h4>Step 4: Generate Configure Script</h4>
+                <pre><code>./autogen.sh</code></pre>
+                
+                <div class="info-box">
+                    <strong>Note:</strong> This may take 30-60 seconds. If you see "Permission denied", run <code>chmod +x autogen.sh</code> first.
+                </div>
+                
+                <h4>Step 5: Configure Build</h4>
+                <p>For a headless server (no GUI):</p>
+                <pre><code>./configure \
+  --with-gui=no \
+  --enable-debug \
+  --enable-tests \
+  --enable-wallet \
+  --with-miniupnpc \
+  --enable-experimental-mweb \
+  --enable-experimental-contributions</code></pre>
+                
+                <p>For full build with Qt GUI:</p>
+                <pre><code>./configure \
+  --enable-debug \
+  --enable-tests \
+  --enable-wallet \
+  --with-miniupnpc \
+  --enable-experimental-mweb \
+  --enable-experimental-contributions</code></pre>
+                
+                <h4>Step 6: Compile</h4>
+                <pre><code># Build using all CPU cores
+make -j$(nproc)
+
+# Or build Qt client specifically
+make qt/fleetcredits-qt</code></pre>
+                
+                <div class="info-box">
+                    <strong>⏱️ Build Time:</strong> 
+                    <ul>
+                        <li>4GB RAM, 2 CPU cores: ~20-30 minutes</li>
+                        <li>8GB RAM, 4 CPU cores: ~10-15 minutes</li>
+                        <li>16GB RAM, 8 CPU cores: ~5-10 minutes</li>
+                    </ul>
+                </div>
+
+                <h3>macOS Build</h3>
+                <pre><code># Install dependencies via Homebrew
+brew install autoconf automake libtool pkg-config boost openssl berkeley-db4 qt5
+
+# Build
+./autogen.sh
+./configure
+make -j$(sysctl -n hw.ncpu)</code></pre>
+
+                <h3>Windows Build (Cross-Compilation)</h3>
+                <p>Fleet Credits can be cross-compiled for Windows from Linux using WSL (Windows Subsystem for Linux) or a native Linux environment.</p>
+                
+                <h4>Prerequisites for Windows Cross-Compilation</h4>
+                <ul>
+                    <li><strong>WSL (Ubuntu/Debian):</strong> Recommended approach for Windows users</li>
+                    <li><strong>MinGW-w64:</strong> Cross-compilation toolchain</li>
+                    <li><strong>Autotools:</strong> Autoconf, automake, libtool</li>
+                    <li><strong>Dependencies:</strong> Same as Linux build, but cross-compiled</li>
+                </ul>
+                
+                <h4>Automated Windows Build Script</h4>
+                <p>Use the provided <code>build_windows.sh</code> script for automated cross-compilation:</p>
+                <pre><code># From WSL or Linux environment
+cd fleetcredits
+chmod +x build_windows.sh
+./build_windows.sh</code></pre>
+                
+                <h4>Manual Windows Build Steps</h4>
+                <p>If building manually:</p>
+                <pre><code># Install MinGW-w64 toolchain
+sudo apt-get install g++-mingw-w64-x86-64
+
+# Build dependencies for Windows
+cd depends
+make HOST=x86_64-w64-mingw32
+
+# Configure for Windows cross-compilation
+cd ..
+./autogen.sh
+./configure --prefix=$(pwd)/depends/x86_64-w64-mingw32 \
+            --host=x86_64-w64-mingw32 \
+            --disable-tests \
+            --disable-bench
+
+# Build
+make -j$(nproc)
+
+# Binaries will be in src/ and src/qt/</code></pre>
+                
+                <h4>Windows Build Output</h4>
+                <p>After successful cross-compilation, binaries will be located in:</p>
+                <ul>
+                    <li><code>src/fleetcreditsd.exe</code> - Core daemon</li>
+                    <li><code>src/qt/fleetcredits-qt.exe</code> - Qt GUI client</li>
+                    <li><code>src/fleetcredits-cli.exe</code> - Command-line interface</li>
+                    <li><code>src/fleetcredits-tx.exe</code> - Transaction utility</li>
+                </ul>
+                <p>Required DLLs will also be built and should be copied alongside executables.</p>
+                
+                <h4>Common Build Issues</h4>
+                <ul>
+                    <li><strong>secp256k1 build-aux missing:</strong> Script automatically copies build-aux files</li>
+                    <li><strong>Missing dependencies:</strong> Ensure all depends are built before configuring</li>
+                    <li><strong>Permission errors:</strong> Some steps may require sudo for directory creation</li>
+                    <li><strong>Long build time:</strong> Cross-compilation can take 30+ minutes</li>
+                </ul>
+                
+                <h3>Build Output Locations</h3>
+                <p>After successful build, binaries are located in:</p>
+                <ul>
+                    <li><code>src/fleetcreditsd</code> (Linux) or <code>src/fleetcreditsd.exe</code> (Windows) - Core daemon</li>
+                    <li><code>src/qt/fleetcredits-qt</code> (Linux) or <code>src/qt/fleetcredits-qt.exe</code> (Windows) - Qt GUI client</li>
+                    <li><code>src/fleetcredits-cli</code> (Linux) or <code>src/fleetcredits-cli.exe</code> (Windows) - Command-line interface</li>
+                    <li><code>src/fleetcredits-tx</code> (Linux) or <code>src/fleetcredits-tx.exe</code> (Windows) - Transaction utility</li>
+                </ul>
+                
+                <h4>Verify Build Success</h4>
+                <pre><code># Check binaries exist and have executable permissions
+ls -lh src/fleetcreditsd
+ls -lh src/fleetcredits-cli
+
+# Check version
+./src/fleetcreditsd -version</code></pre>
+                
+                <h3>Troubleshooting</h3>
+                
+                <h4>Build Issues</h4>
+                
+                <div class="note">
+                    <strong>❌ Error: "Permission denied" when running autogen.sh</strong>
+                    <pre><code>chmod +x autogen.sh genbuild.sh
+./autogen.sh</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>❌ Error: "./configure: line 16791: syntax error near unexpected token '11,'"</strong>
+                    <p>Solution: Install autoconf-archive package:</p>
+                    <pre><code>sudo apt-get install -y autoconf-archive
+# Then re-run autogen and configure
+./autogen.sh
+./configure --with-gui=no --enable-debug --enable-tests --enable-wallet</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>❌ Error: "libdb_cxx headers missing"</strong>
+                    <p>Solution: Install Berkeley DB development package:</p>
+                    <pre><code>sudo apt-get install libdb++-dev libdb-dev</code></pre>
+                    <p>Then re-run configure:</p>
+                    <pre><code>./configure --with-gui=no --enable-debug --enable-tests --enable-wallet</code></pre>
+                    <p><strong>Alternative:</strong> If you don't need wallet functionality, disable it:</p>
+                    <pre><code>./configure --with-gui=no --disable-wallet</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>❌ Error: "No rule to make target 'libunivalue.la'"</strong>
+                    <p>Solution: The univalue library needs to be built first. Run:</p>
+                    <pre><code># First, make sure autoconf-archive is installed
+sudo apt-get install -y autoconf-archive
+
+# Build univalue library first
+cd src/univalue
+chmod +x autogen.sh
+./autogen.sh
+./configure
+make
+cd ../..
+
+# Then build the main project
+make -j$(nproc)</code></pre>
+                    <p><strong>Alternative:</strong> Clean and rebuild everything from scratch:</p>
+                    <pre><code>make distclean
+./autogen.sh
+./configure --with-gui=no --enable-debug --enable-tests --enable-wallet
+make -j$(nproc)</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>❌ Error: "No targets specified and no makefile found"</strong>
+                    <p>Solution: <code>./configure</code> failed. Check for missing dependencies:</p>
+                    <pre><code>./configure --with-gui=no 2>&1 | grep -i "missing\|error"</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>❌ Error: "Could not link against boost_filesystem !"</strong>
+                    <p>Solution: Install Boost Filesystem development package:</p>
+                    <pre><code>sudo apt-get install libboost-filesystem-dev libboost-system-dev libboost-program-options-dev
+sudo apt-get install libboost-all-dev  # Or install all Boost packages</code></pre>
+                    <p>If error persists, try:</p>
+                    <pre><code># Clean previous configure attempts
+make distclean 2>/dev/null || true
+rm -f config.cache
+
+# Re-run configure
+./configure --with-gui=no --enable-debug --enable-tests --enable-wallet</code></pre>
+                </div>
+                
+                <div class="note">
+                    <strong>❌ Error: "No rule to make target 'qt/fleetcredits-qt'"</strong>
+                    <p>Solution: Make sure you're building from the project root directory, not the <code>src</code> directory. The correct command is:</p>
+                    <pre><code># From project root
+make qt/fleetcredits-qt
+
+# Or build everything
+make -j$(nproc)</code></pre>
+                </div>
+                
+                <h3>Running Fleet Credits</h3>
+                
+                <h4>Initial Test Run</h4>
+                <p>Test the daemon in regtest mode (local testing):</p>
+                <pre><code># Run daemon (Linux)
+./src/fleetcreditsd -regtest -printtoconsole
+
+# Run daemon (Windows)
+fleetcreditsd.exe -regtest -printtoconsole</code></pre>
+                
+                <p>You should see initialization messages. Press <code>Ctrl+C</code> to stop.</p>
+                
+                <h4>Test RPC Commands</h4>
+                <pre><code># Start daemon in background (Linux)
+./src/fleetcreditsd -regtest -daemon
+
+# Start daemon in background (Windows)
+fleetcreditsd.exe -regtest -daemon
+
+# Wait a few seconds, then test (Linux)
+./src/fleetcredits-cli -regtest getblockchaininfo
+./src/fleetcredits-cli -regtest getnetworkinfo
+
+# Test (Windows)
+fleetcredits-cli.exe -regtest getblockchaininfo
+fleetcredits-cli.exe -regtest getnetworkinfo</code></pre>
+                
+                <h4>Run GUI Client</h4>
+                <pre><code># Linux
+./src/qt/fleetcredits-qt -regtest
+
+# Windows
+fleetcredits-qt.exe -regtest</code></pre>
+                
+                <h4>Network Modes</h4>
+                <ul>
+                    <li><strong>Regtest:</strong> <code>-regtest</code> - Local testing, instant blocks, isolated network</li>
+                    <li><strong>Testnet:</strong> <code>-testnet</code> - Public test network (port 44556)</li>
+                    <li><strong>Mainnet:</strong> Default - Public production network (port 22556)</li>
+                </ul>
+                
+                <div class="info-box">
+                    <strong>Network Configuration:</strong> See <a href="network-params.html">Network Parameters</a> for port numbers and configuration details. The public seed node is 96.126.123.195 (mainnet:22556, testnet:44556).
+                </div>
+            </section>
+            
+            <section class="content-section">
+                <h2>See Also</h2>
+                <ul>
+                    <li><a href="server-installation.html">Server Installation Guide</a> - Detailed server deployment instructions</li>
+                    <li><a href="network-params.html">Network Parameters</a> - Network configuration and ports</li>
+                    <li><a href="qt-overview.html">Qt GUI Overview</a> - GUI client features and usage</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

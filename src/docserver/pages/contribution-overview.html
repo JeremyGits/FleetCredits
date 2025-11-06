@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contribution Overview - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+<aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item active">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                    <a href="contribution-ethics.html" class="nav-item">
+                        <span class="nav-icon">⚖️</span>
+                        <span>Ethics & Value Judgment</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Contribution Overview</h1>
+            </div>
+
+            <section class="content-section">
+                <h2>Contribution Reward System</h2>
+                <p>Fleet Credits rewards contributors for verified community contributions that create value. In an era of AI-driven automation displacing traditional jobs, FC creates economic opportunities for human validation, verification, and input processing—essential for training, refining, and ethically guiding AI systems.</p>
+                
+                <div class="info-box">
+                    <strong>Philosophy:</strong> This fosters a symbiotic human-AI economy where humans earn FC for irreplaceable oversight, ensuring AI benefits society equitably. Contributions are not just rewarded—they're the foundation of a post-scarcity economy where value derives from utility and impact, not speculation.
+                </div>
+                
+                <p><strong>Files:</strong> <code>src/primitives/contribution.h</code>, <code>src/primitives/contribution.cpp</code>, <code>src/rpc/contribution.cpp</code>, <code>src/fleetcredits.cpp</code></p>
+                
+                <h3>How It Works</h3>
+                <ol>
+                    <li><strong>Submit:</strong> Contributor submits their work via <code>submitcontribution</code> RPC command</li>
+                    <li><strong>Embed:</strong> Contribution data is embedded in transaction via <code>OP_RETURN</code> output with marker <code>0xFC 0x01</code></li>
+                    <li><strong>Verify:</strong> Automated verification or oracle consensus validates the contribution</li>
+                    <li><strong>Reward:</strong> Block reward includes bonus based on contribution level and verification status</li>
+                </ol>
+                
+                <h3>Contribution Transaction Structure</h3>
+                <p>Contributions are embedded in standard transactions using <code>OP_RETURN</code> outputs:</p>
+                <pre><code>OP_RETURN [0xFC 0x01] [serialized CContributionTransaction]</code></pre>
+                
+                <p>The <code>CContributionTransaction</code> structure contains:</p>
+                <ul>
+                    <li><code>contrib_type</code>: One of 8 contribution types (CODE_CONTRIBUTION, CHARITABLE_ACT, etc.)</li>
+                    <li><code>proof_data</code>: Hash and evidence of the contribution</li>
+                    <li><code>timestamp</code>: Unix timestamp of contribution</li>
+                    <li><code>bonus_level</code>: Reward multiplier level (BONUS_NONE to BONUS_CRITICAL)</li>
+                    <li><code>requires_mweb</code>: Whether this contribution requires MWEB privacy</li>
+                    <li><code>tx_id</code>: Transaction ID containing the contribution</li>
+                </ul>
+                
+                <h3>RPC Endpoints</h3>
+                <ul>
+                    <li><code>submitcontribution</code>: Submit a new contribution for verification</li>
+                    <li><code>getcontributionstatus</code>: Check the status and reward of a contribution</li>
+                    <li><code>listcontributions</code>: List contributions filtered by address or type</li>
+                </ul>
+                
+                <h3>Bonus Levels</h3>
+                <p>Contributions are rewarded with bonus multipliers based on their verified impact:</p>
+                <table>
+                    <tr><th>Bonus Level</th><th>Multiplier</th><th>Notes</th></tr>
+                    <tr><td>BONUS_NONE</td><td>1.0x</td><td>Base reward (no contribution bonus)</td></tr>
+                    <tr><td>BONUS_LOW</td><td>1.05x</td><td>Minor contributions</td></tr>
+                    <tr><td>BONUS_MEDIUM</td><td>1.10x</td><td>Moderate impact contributions</td></tr>
+                    <tr><td>BONUS_HIGH</td><td>1.15x</td><td>High-value contributions</td></tr>
+                    <tr><td>BONUS_CRITICAL</td><td>1.20x</td><td>Critical contributions (1.25x for AI_VALIDATION)</td></tr>
+                </table>
+                
+                <h3>Extraction and Processing</h3>
+                <p>When a block is validated, contributions are extracted using <code>ExtractContributionFromTransaction</code>, which:</p>
+                <ol>
+                    <li>Scans all transaction outputs in the block</li>
+                    <li>Identifies <code>OP_RETURN</code> outputs</li>
+                    <li><strong>Parses length prefix:</strong> CScript automatically adds a length prefix (1-5 bytes) when pushing data - the extraction function correctly handles this</li>
+                    <li>Checks for contribution marker <code>0xFC 0x01</code> after the length prefix</li>
+                    <li>Deserializes <code>CContributionTransaction</code> data</li>
+                    <li>Returns a vector of all contributions in the block</li>
+                </ol>
+                
+                <div class="info-box">
+                    <strong>Technical Note:</strong> The extraction function properly handles CScript's length prefix format. When data is &lt; 76 bytes, a single byte length prefix is used. For larger data, OP_PUSHDATA1 (0x4c), OP_PUSHDATA2 (0x4d), or OP_PUSHDATA4 (0x4e) prefixes are used with additional length bytes.
+                </div>
+                
+                <p>The highest bonus level in the block determines the block reward multiplier using <code>GetFleetCreditsBlockSubsidyWithContributions</code>.</p>
+                
+                <h3>Transaction Fees</h3>
+                <p>When you submit a contribution, you see a deduction from your wallet balance. This is a <strong>transaction fee</strong>, not part of a reward:</p>
+                <ul>
+                    <li><strong>Fee Purpose:</strong> Required to include the transaction in a block (standard blockchain behavior)</li>
+                    <li><strong>Fee Amount:</strong> Typically 0.01-0.05 FC depending on network conditions</li>
+                    <li><strong>Contribution Value:</strong> The contribution data itself has 0 value - it's stored in an <code>OP_RETURN</code> output</li>
+                    <li><strong>Rewards:</strong> Issued separately by the oracle system after verification as incoming transactions</li>
+                </ul>
+                
+                <h3>Qt Client Integration</h3>
+                <p>The Qt GUI client now fully supports contribution submission:</p>
+                <ul>
+                    <li><strong>Contributions Page:</strong> Submit contributions via the GUI with type, proof, and metadata fields</li>
+                    <li><strong>RPC Integration:</strong> GUI calls <code>submitcontribution</code> RPC command directly</li>
+                    <li><strong>Status Display:</strong> Shows transaction ID, status, and success/error messages</li>
+                    <li><strong>Form Validation:</strong> Validates proof data and optional JSON metadata before submission</li>
+                </ul>
+            </section>
+
+            <section class="content-section">
+                <h2>MWEB Integration</h2>
+                <p>Privacy-sensitive contributions are automatically routed through <strong>Mimblewimble Extension Blocks (MWEB)</strong> to protect contributor identities and reward amounts.</p>
+                
+                <h3>Automatic MWEB Routing</h3>
+                <p>When <code>submitcontribution</code> is called with a contribution that has <code>requires_mweb = true</code>:</p>
+                <ol>
+                    <li>The contribution is automatically routed to MWEB via <code>MWEB::RouteToMWEB()</code></li>
+                    <li>An MWEB transaction is created with the contribution metadata embedded in the <code>view_key</code> field</li>
+                    <li>The MWEB transaction is added to the MWEB mempool for inclusion in the next extension block</li>
+                    <li>The contribution is stored in the MWEB extension block instead of the main chain</li>
+                </ol>
+                
+                <h3>Mandatory MWEB Types</h3>
+                <p>The following contribution types <strong>require</strong> MWEB routing:</p>
+                <ul>
+                    <li><strong>ETHICAL_REVIEW</strong>: Protects reviewers from retaliation by hiding reward amounts and identities</li>
+                </ul>
+                
+                <h3>Optional MWEB Types</h3>
+                <p>Other contribution types can optionally use MWEB for privacy:</p>
+                <ul>
+                    <li><strong>CHARITABLE_ACT</strong>: Hide donation amounts to protect donors</li>
+                    <li><strong>CODE_MENTORSHIP</strong>: Protect mentor-mentee relationships</li>
+                    <li><strong>AI_VALIDATION</strong>: Hide validation work for sensitive AI systems</li>
+                </ul>
+                
+                <h3>Extraction from MWEB</h3>
+                <p>MWEB contributions are extracted using <code>ExtractContributionsFromMWEB()</code>:</p>
+                <ol>
+                    <li>Scans MWEB extension block transactions</li>
+                    <li>Extracts contribution data from <code>view_key</code> fields</li>
+                    <li>Deserializes contribution metadata</li>
+                    <li>Includes them in reward calculations</li>
+                </ol>
+                
+                <p>The <code>listcontributions</code> RPC command extracts contributions from both main chain transactions and MWEB extension blocks, as well as checking the MWEB mempool for pending contributions.</p>
+                
+                <div class="note">
+                    <strong>Privacy Protection:</strong> MWEB contributions maintain full privacy while still allowing oracle verification through view keys. This enables ethical reviews and other sensitive contributions without exposing contributors to risk.
+                </div>
+                
+                <p>See <a href="mweb-overview.html">MWEB Overview</a> for complete details on MWEB privacy features.</p>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

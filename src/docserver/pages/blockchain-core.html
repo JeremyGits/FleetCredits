@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Block & Transaction - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+<aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item active">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Block & Transaction</h1>
+            </div>
+
+            <section class="content-section">
+                <h2>Block Structure</h2>
+                <p>Fleet Credits uses a standard blockchain structure with blocks containing transactions.</p>
+                <p><strong>Files:</strong> <code>src/primitives/block.h</code>, <code>src/primitives/transaction.h</code>, <code>src/chainparams.cpp</code></p>
+                
+                <h3>CBlock Structure</h3>
+                <pre><code>class CBlock : public CBlockHeader {
+    std::vector<CTransactionRef> vtx;              // Transactions in block
+    std::shared_ptr<CMWEBExtensionBlock> mweb_extension;  // Optional MWEB extension
+    mutable bool fChecked;                         // Caching flag
+};</code></pre>
+                
+                <h3>CBlockHeader Structure</h3>
+                <pre><code>class CBlockHeader {
+    int32_t nVersion;                              // Block version
+    uint256 hashPrevBlock;                         // Previous block hash
+    uint256 hashMerkleRoot;                        // Merkle root of transactions
+    uint32_t nTime;                                // Block timestamp
+    uint32_t nBits;                               // Difficulty target
+    uint32_t nNonce;                              // Nonce for PoW
+    std::shared_ptr<CAuxPow> auxpow;               // Optional AuxPow for merge-mining
+};</code></pre>
+                
+                <h3>CTransaction Structure</h3>
+                <pre><code>class CTransaction {
+    std::vector<CTxIn> vin;                        // Transaction inputs
+    std::vector<CTxOut> vout;                      // Transaction outputs
+    int32_t nVersion;                              // Transaction version
+    uint32_t nLockTime;                           // Lock time
+};</code></pre>
+                
+                <h3>Genesis Block</h3>
+                <p>The genesis block (block 0) is the first block in the blockchain and has special properties:</p>
+                
+                <h4>Genesis Block Creation</h4>
+                <p>The genesis block is created using <code>CreateGenesisBlock()</code> in <code>chainparams.cpp</code>:</p>
+                <pre><code>static CBlock CreateGenesisBlock(
+    uint32_t nTime,        // Timestamp: 1704067200 (Jan 1, 2026)
+    uint32_t nNonce,       // Initial nonce: 0
+    uint32_t nBits,        // Difficulty: network-specific
+    int32_t nVersion,      // Version: 1
+    const CAmount& genesisReward  // Reward: 10000 * COIN
+) {
+    // Creates coinbase transaction with:
+    // - Timestamp: "Nintondo"
+    // - Genesis output script (public key)
+    // - 10,000 FC reward
+    // Returns CBlock with hashPrevBlock = 0
+}</code></pre>
+                
+                <h4>Genesis Block Properties</h4>
+                <ul>
+                    <li><strong>Previous Hash:</strong> <code>hashPrevBlock.SetNull()</code> (all zeros)</li>
+                    <li><strong>Merkle Root:</strong> Computed from single coinbase transaction</li>
+                    <li><strong>PoW:</strong> Explicitly mined during initialization to ensure validity</li>
+                    <li><strong>No AuxPow:</strong> Genesis blocks don't have AuxPow (merge-mining not applicable)</li>
+                    <li><strong>Checkpoint:</strong> Genesis hash stored in checkpoint data at height 0</li>
+                </ul>
+                
+                <h4>Genesis Block Mining</h4>
+                <p>During chain parameter initialization, the genesis block is explicitly mined:</p>
+                <ol>
+                    <li>Create genesis block with initial parameters</li>
+                    <li>Increment nonce until <code>CheckProofOfWork()</code> passes</li>
+                    <li>Handle nonce wraparound by incrementing timestamp</li>
+                    <li>Verify mined block passes PoW validation</li>
+                    <li>Store genesis hash in consensus parameters</li>
+                </ol>
+                
+                <h4>Genesis Block Validation</h4>
+                <p>When validating the genesis block:</p>
+                <ul>
+                    <li><code>CheckAuxPowProofOfWork()</code> is called but falls back to <code>CheckProofOfWork()</code></li>
+                    <li>Since genesis was mined with <code>CheckProofOfWork()</code>, validation always passes</li>
+                    <li>Checkpoint verification ensures genesis hash matches expected value</li>
+                </ul>
+                
+                <h3>Block Validation Flow</h3>
+                <p>All blocks, including genesis, follow this validation flow:</p>
+                <ol>
+                    <li><strong>Read Block:</strong> <code>ReadBlockFromDisk()</code> reads block from disk</li>
+                    <li><strong>PoW Check:</strong> <code>CheckAuxPowProofOfWork()</code> validates PoW</li>
+                    <li><strong>Genesis Handling:</strong> Falls back to <code>CheckProofOfWork()</code> for genesis</li>
+                    <li><strong>Merkle Validation:</strong> Verifies merkle root matches transactions</li>
+                    <li><strong>Transaction Validation:</strong> Validates each transaction in block</li>
+                    <li><strong>Accept Block:</strong> <code>AcceptBlock()</code> adds block to chain</li>
+                </ol>
+                
+                <div class="note">
+                    <strong>Important:</strong> The genesis block is the foundation of the blockchain. It must have valid PoW, which is guaranteed through explicit mining during initialization. This ensures blockchain integrity from block 0.
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

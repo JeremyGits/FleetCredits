@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MWEB Structures - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+<aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item active">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                    <a href="mweb-mempool.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>MWEB Mempool</span>
+                    </a>
+                    <a href="mweb-implementation-status.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Implementation Status</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>MWEB Structures</h1>
+            </div>
+
+            <section class="content-section">
+                <h2>MWEB Data Structures</h2>
+                <p>MWEB uses several core data structures to enable privacy and scalability. Each structure serves a specific purpose in the Mimblewimble protocol.</p>
+                <p><strong>File:</strong> <code>src/primitives/mweb.h</code></p>
+                
+                <div class="api-endpoint">
+                    <h3>1. CPedersenCommitment</h3>
+                    <p><strong>Purpose:</strong> Hides transaction amounts cryptographically</p>
+                    
+                    <h4>Structure</h4>
+                    <pre><code>class CPedersenCommitment {
+    CPubKey commitment;              // 33-byte compressed public key
+    uint256 blinding_factor_hash;    // Hash of blinding factor
+};</code></pre>
+                    
+                    <h4>How It Works</h4>
+                    <p>A Pedersen commitment is computed as:</p>
+                    <pre><code>C = vG + rH</code></pre>
+                    <p>Where:</p>
+                    <ul>
+                        <li><code>v</code> = value (amount in FC)</li>
+                        <li><code>r</code> = blinding factor (secret random 256-bit number)</li>
+                        <li><code>G</code> = generator point for value (secp256k1)</li>
+                        <li><code>H</code> = generator point for blinding factor (secp256k1)</li>
+                    </ul>
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Hiding:</strong> Commitment reveals nothing about the value</li>
+                        <li><strong>Binding:</strong> Cannot change value after commitment is created</li>
+                        <li><strong>Homomorphic:</strong> Commitments can be added: C(v1) + C(v2) = C(v1 + v2)</li>
+                    </ul>
+                    
+                    <h4>Use Case</h4>
+                    <p>Every MWEB output contains a Pedersen commitment hiding its value. The commitment is a public key that can be verified without revealing the amount.</p>
+                    
+                    <h4>Code Example</h4>
+                    <pre><code>CPedersenCommitment commitment = MWEB::CreateCommitment(amount, blinding_factor);
+bool is_valid = MWEB::VerifyCommitment(commitment);</code></pre>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>2. CRangeProof</h3>
+                    <p><strong>Purpose:</strong> Proves that a commitment represents a non-negative value without revealing the amount</p>
+                    
+                    <h4>Structure</h4>
+                    <pre><code>class CRangeProof {
+    std::vector<unsigned char> proof_data;  // Bulletproof (typically ~672 bytes)
+    uint32_t value_range_min;                // Minimum value (typically 0)
+    uint32_t value_range_max;                // Maximum value (MAX_MONEY)
+};</code></pre>
+                    
+                    <h4>How It Works</h4>
+                    <p>Range proofs use Bulletproofs (or similar zero-knowledge proofs) to prove:</p>
+                    <pre><code>0 ≤ value < MAX_MONEY</code></pre>
+                    <p>Without revealing the actual value. The proof is compact (~672 bytes) regardless of the range size.</p>
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Zero-Knowledge:</strong> Reveals nothing about the value</li>
+                        <li><strong>Compact:</strong> Small proof size regardless of range</li>
+                        <li><strong>Verifiable:</strong> Anyone can verify the proof</li>
+                    </ul>
+                    
+                    <h4>Why Needed</h4>
+                    <p>Without range proofs, an attacker could create commitments to negative values, breaking the system by creating money from nothing.</p>
+                    
+                    <h4>Code Example</h4>
+                    <pre><code>CRangeProof proof = MWEB::GenerateRangeProof(commitment, amount);
+bool is_valid = MWEB::VerifyRangeProof(proof, commitment);</code></pre>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>3. CMWEBInput</h3>
+                    <p><strong>Purpose:</strong> References a previous MWEB output that is being spent</p>
+                    
+                    <h4>Structure</h4>
+                    <pre><code>class CMWEBInput {
+    CPedersenCommitment output_commitment;  // Commitment being spent
+    std::vector<unsigned char> witness;     // Witness data proving ownership
+};</code></pre>
+                    
+                    <h4>How It Works</h4>
+                    <p>An MWEB input references a previous output via its commitment. The witness contains cryptographic proof that the spender owns the output (typically a signature or zero-knowledge proof).</p>
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Commitment Reference:</strong> Points to output commitment (not address)</li>
+                        <li><strong>Witness Proof:</strong> Proves ownership without revealing identity</li>
+                        <li><strong>Spent Output:</strong> Output is consumed when input is used</li>
+                    </ul>
+                    
+                    <h4>Use Case</h4>
+                    <p>When creating an MWEB transaction, you reference previous MWEB outputs you own via their commitments. The witness proves you own them without revealing your identity.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>4. CMWEBOutput</h3>
+                    <p><strong>Purpose:</strong> Creates a new MWEB UTXO with hidden amount</p>
+                    
+                    <h4>Structure</h4>
+                    <pre><code>class CMWEBOutput {
+    CPedersenCommitment commitment;         // Pedersen commitment to value
+    CRangeProof range_proof;                // Proof that value is non-negative
+    std::vector<unsigned char> view_key;    // Optional: for selective disclosure
+};</code></pre>
+                    
+                    <h4>How It Works</h4>
+                    <p>An MWEB output contains:</p>
+                    <ol>
+                        <li><strong>Commitment:</strong> Hides the actual value</li>
+                        <li><strong>Range Proof:</strong> Proves the value is valid</li>
+                        <li><strong>View Key:</strong> Optional key for selective disclosure (auditing)</li>
+                    </ol>
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Confidential:</strong> Amount is hidden</li>
+                        <li><strong>Verifiable:</strong> Range proof can be verified</li>
+                        <li><strong>Auditable:</strong> View key allows selective disclosure</li>
+                    </ul>
+                    
+                    <h4>Use Case</h4>
+                    <p>When sending FC via MWEB, you create outputs with commitments. The recipient can spend these outputs later using their private keys, but the amount remains hidden.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>5. CMWEBKernel</h3>
+                    <p><strong>Purpose:</strong> Contains excess value (change) and signature proving transaction balance</p>
+                    
+                    <h4>Structure</h4>
+                    <pre><code>class CMWEBKernel {
+    CPubKey excess_value;              // Public key representing excess (change)
+    std::vector<unsigned char> signature;  // Signature proving excess is valid
+    uint64_t fee;                     // Fee in FC (may be hidden or visible)
+    uint256 kernel_id;                // Unique identifier
+};</code></pre>
+                    
+                    <h4>How It Works</h4>
+                    <p>In a transaction:</p>
+                    <pre><code>sum(inputs) = sum(outputs) + fees + excess</code></pre>
+                    <p>The excess (change) is stored in the kernel with a signature proving the transaction balances correctly. The signature is computed over the excess value and ensures no money is created or destroyed.</p>
+                    
+                    <h4>Balance Verification</h4>
+                    <p>The kernel signature proves:</p>
+                    <pre><code>sum(input_commitments) - sum(output_commitments) - fee_commitment = excess</code></pre>
+                    <p>Without revealing any amounts.</p>
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Balance Proof:</strong> Proves transaction balances</li>
+                        <li><strong>Fee Handling:</strong> Contains transaction fee</li>
+                        <li><strong>Unique ID:</strong> Kernel ID prevents double-spending</li>
+                    </ul>
+                    
+                    <h4>Use Case</h4>
+                    <p>Every MWEB transaction must have at least one kernel. If you send 100 FC but only spend 80 FC, the kernel contains the 20 FC excess (change) with a signature proving it's valid.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>6. CMWEBTransaction</h3>
+                    <p><strong>Purpose:</strong> Complete MWEB transaction structure</p>
+                    
+                    <h4>Structure</h4>
+                    <pre><code>class CMWEBTransaction {
+    std::vector<CMWEBInput> inputs;      // Previous MWEB outputs being spent
+    std::vector<CMWEBOutput> outputs;    // New MWEB UTXOs being created
+    std::vector<CMWEBKernel> kernels;    // Balance proofs and fees
+    uint64_t lock_height;                // Minimum block height
+    uint256 tx_hash;                     // Transaction hash
+};</code></pre>
+                    
+                    <h4>How It Works</h4>
+                    <p>An MWEB transaction:</p>
+                    <ol>
+                        <li>Takes inputs (previous MWEB outputs)</li>
+                        <li>Creates outputs (new MWEB UTXOs)</li>
+                        <li>Creates kernels (balance proofs)</li>
+                        <li>Is verified: sum(inputs) = sum(outputs) + fees</li>
+                    </ol>
+                    
+                    <h4>Verification Methods</h4>
+                    <ul>
+                        <li><strong>VerifyBalance():</strong> Checks sum(inputs) = sum(outputs) + fees</li>
+                        <li><strong>VerifyRangeProofs():</strong> Verifies all range proofs are valid</li>
+                    </ul>
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Confidential:</strong> Amounts are hidden</li>
+                        <li><strong>Verifiable:</strong> Balance can be verified</li>
+                        <li><strong>Compact:</strong> Cut-through reduces size</li>
+                    </ul>
+                    
+                    <h4>Code Example</h4>
+                    <pre><code>CMWEBTransaction tx;
+tx.inputs.push_back(input);
+tx.outputs.push_back(output);
+tx.kernels.push_back(kernel);
+
+bool is_valid = tx.VerifyBalance() && tx.VerifyRangeProofs();</code></pre>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>7. CMWEBExtensionBlock</h3>
+                    <p><strong>Purpose:</strong> MWEB block attached to main chain block</p>
+                    
+                    <h4>Structure</h4>
+                    <pre><code>class CMWEBExtensionBlock {
+    uint256 prev_mweb_hash;                    // Hash of previous MWEB extension block
+    std::vector<CMWEBTransaction> mweb_txs;   // MWEB transactions
+    std::vector<CPegInTransaction> peg_ins;    // Peg-in transactions
+    std::vector<CPegOutTransaction> peg_outs;   // Peg-out transactions
+    uint256 mweb_root;                        // Merkle root of MWEB UTXO set
+    uint256 extension_block_hash;             // Hash of this extension block
+};</code></pre>
+                    
+                    <h4>How It Works</h4>
+                    <p>Extension blocks:</p>
+                    <ol>
+                        <li>Attach to main chain blocks (optional)</li>
+                        <li>Chain together via <code>prev_mweb_hash</code></li>
+                        <li>Contain MWEB transactions and peg-in/peg-out operations</li>
+                        <li>Maintain UTXO set root for verification</li>
+                    </ol>
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Separate Chain:</strong> MWEB blocks form their own chain</li>
+                        <li><strong>Linked to Main:</strong> Each extension block attaches to a main block</li>
+                        <li><strong>Cut-Through:</strong> Intermediate outputs removed</li>
+                        <li><strong>Verifiable:</strong> All transactions verified before inclusion</li>
+                    </ul>
+                    
+                    <h4>Verification</h4>
+                    <p><code>VerifyAll()</code> checks:</p>
+                    <ul>
+                        <li>All MWEB transactions balance correctly</li>
+                        <li>All range proofs are valid</li>
+                        <li>Peg-in/peg-out transactions are valid</li>
+                    </ul>
+                    
+                    <h4>Integration</h4>
+                    <p>Main chain blocks can optionally include an MWEB extension block:</p>
+                    <pre><code>class CBlock {
+    // ... standard fields ...
+    std::shared_ptr<CMWEBExtensionBlock> mweb_extension;
+};</code></pre>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>8. CPegInTransaction</h3>
+                    <p><strong>Purpose:</strong> Moves FC from main chain to MWEB</p>
+                    
+                    <h4>Structure</h4>
+                    <pre><code>class CPegInTransaction {
+    uint256 main_chain_tx_id;    // Transaction ID on main chain
+    CPubKey recipient_address;   // MWEB address receiving funds
+    uint64_t amount;             // Amount in FC (visible for peg-in)
+    uint256 peg_tx_id;          // Unique identifier
+};</code></pre>
+                    
+                    <h4>How It Works</h4>
+                    <ol>
+                        <li>User creates main chain transaction locking funds</li>
+                        <li>Transaction is included in main chain block</li>
+                        <li>Peg-in transaction created in MWEB extension block</li>
+                        <li>MWEB output created with hidden amount</li>
+                    </ol>
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Atomic:</strong> Either both succeed or both fail</li>
+                        <li><strong>One-Way:</strong> Moves FC from main chain to MWEB</li>
+                        <li><strong>Visible Amount:</strong> Peg-in amount is visible (for verification)</li>
+                    </ul>
+                    
+                    <h4>Use Case</h4>
+                    <p>To use MWEB privacy, you first peg-in FC from the main chain. This creates an MWEB output you can spend privately.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>9. CPegOutTransaction</h3>
+                    <p><strong>Purpose:</strong> Moves FC from MWEB back to main chain</p>
+                    
+                    <h4>Structure</h4>
+                    <pre><code>class CPegOutTransaction {
+    CPedersenCommitment mweb_input_commitment;  // MWEB output being spent
+    CPubKey main_chain_address;                // Address receiving funds
+    uint64_t amount;                           // Amount in FC (visible for peg-out)
+    std::vector<unsigned char> view_key;        // For proving the amount
+    uint256 peg_tx_id;                         // Unique identifier
+};</code></pre>
+                    
+                    <h4>How It Works</h4>
+                    <ol>
+                        <li>User spends MWEB output (commitment)</li>
+                        <li>Peg-out transaction created in MWEB extension block</li>
+                        <li>View key proof generated to prove amount</li>
+                        <li>Main chain output created with revealed amount</li>
+                    </ol>
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Requires Proof:</strong> View key proves amount without revealing other transactions</li>
+                        <li><strong>Visible Amount:</strong> Peg-out amount is visible (for main chain)</li>
+                        <li><strong>One-Way:</strong> Moves FC from MWEB to main chain</li>
+                    </ul>
+                    
+                    <h4>Use Case</h4>
+                    <p>To return FC to the main chain (e.g., for exchange), you peg-out from MWEB. The view key proves the amount without revealing other MWEB transactions.</p>
+                </div>
+
+                <div class="api-endpoint">
+                    <h3>10. CViewKey</h3>
+                    <p><strong>Purpose:</strong> Allows selective disclosure of MWEB transaction details for auditing</p>
+                    
+                    <h4>Structure</h4>
+                    <pre><code>class CViewKey {
+    CPubKey view_public_key;           // Public key for viewing
+    std::vector<unsigned char> view_private_key;  // Private key (encrypted)
+    uint256 view_key_hash;             // Hash of view key pair
+};</code></pre>
+                    
+                    <h4>How It Works</h4>
+                    <p>View keys are generated from a seed and allow decrypting transaction details:</p>
+                    <pre><code>CViewKey view_key = CViewKey::GenerateFromSeed(seed);
+bool can_view = view_key.DecryptTransaction(mweb_tx);</code></pre>
+                    
+                    <h4>Properties</h4>
+                    <ul>
+                        <li><strong>Selective:</strong> Only holders of view key can see details</li>
+                        <li><strong>Auditable:</strong> Allows auditing without public exposure</li>
+                        <li><strong>Deterministic:</strong> Generated from seed for consistency</li>
+                    </ul>
+                    
+                    <h4>Use Cases</h4>
+                    <ul>
+                        <li><strong>Oracle Audits:</strong> Oracles verify ethical reviews privately</li>
+                        <li><strong>Regulatory Compliance:</strong> Share with auditors for compliance</li>
+                        <li><strong>Contribution Verification:</strong> Verify amounts without public exposure</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="content-section">
+                <h2>How Structures Work Together</h2>
+                
+                <h3>Transaction Creation Flow</h3>
+                <ol>
+                    <li><strong>Create Commitments:</strong> For each output, create Pedersen commitment</li>
+                    <li><strong>Generate Range Proofs:</strong> Prove each commitment is non-negative</li>
+                    <li><strong>Create Outputs:</strong> Combine commitments and range proofs</li>
+                    <li><strong>Create Inputs:</strong> Reference previous output commitments</li>
+                    <li><strong>Calculate Kernel:</strong> Compute excess value and sign</li>
+                    <li><strong>Verify Balance:</strong> Check sum(inputs) = sum(outputs) + fees</li>
+                    <li><strong>Include in Extension Block:</strong> Add to MWEB extension block</li>
+                </ol>
+                
+                <h3>Cut-Through Process</h3>
+                <p>When a block is created:</p>
+                <ol>
+                    <li>Collect all inputs and outputs</li>
+                    <li>Match inputs to outputs in same block</li>
+                    <li>Remove matching pairs</li>
+                    <li>Keep only net inputs and outputs</li>
+                    <li>Update UTXO set root</li>
+                </ol>
+                
+                <h3>Example Transaction</h3>
+                <pre><code>// Alice sends 100 FC to Bob via MWEB
+CMWEBTransaction tx;
+
+// Input: Alice's previous MWEB output
+CMWEBInput input;
+input.output_commitment = alice_previous_output.commitment;
+input.witness = alice_signature;
+tx.inputs.push_back(input);
+
+// Output: Bob receives 100 FC (hidden)
+CMWEBOutput output;
+output.commitment = MWEB::CreateCommitment(100, blinding_factor);
+output.range_proof = MWEB::GenerateRangeProof(output.commitment, 100);
+tx.outputs.push_back(output);
+
+// Kernel: Contains excess (change) if Alice had more than 100 FC
+CMWEBKernel kernel;
+kernel.excess_value = CalculateExcess(inputs, outputs, fees);
+kernel.signature = SignExcess(kernel.excess_value);
+tx.kernels.push_back(kernel);
+
+// Verify transaction
+bool valid = tx.VerifyBalance() && tx.VerifyRangeProofs();</code></pre>
+            </section>
+
+            <section class="content-section">
+                <h2>Related Documentation</h2>
+                <ul>
+                    <li><a href="mweb-overview.html">MWEB Overview</a> - High-level concepts</li>
+                    <li><a href="mweb-operations.html">Peg-in/Peg-out</a> - Moving FC between chains</li>
+                    <li><a href="rpc-mweb.html">MWEB RPC</a> - API for MWEB operations</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
