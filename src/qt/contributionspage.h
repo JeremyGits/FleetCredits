@@ -18,6 +18,7 @@ class QTextEdit;
 class QTableView;
 class QPushButton;
 class QLabel;
+class QStandardItemModel;
 QT_END_NAMESPACE
 
 namespace Ui {
@@ -57,6 +58,9 @@ private:
     Ui::ContributionsPage *ui;
     ClientModel *clientModel;
     WalletModel *walletModel;
+    QStandardItemModel *contributionsModel;
+    
+    void setupContributionsTable();
 };
 
 #endif // FLEETCREDITS_QT_CONTRIBUTIONSPAGE_H
