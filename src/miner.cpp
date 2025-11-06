@@ -325,45 +325,11 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         has_mweb_data = true;
     }
     
-    // Check for peg-in transactions in main chain transactions (OP_RETURN with 0xFC 0x02 marker)
-    // These are peg-ins created via RPC that are already in the mempool and will be included in block
-    // We extract them here to ensure they're in the MWEB extension block
-    // Note: We skip duplicates - if already added from pending_peg_ins, don't add again
-    for (const auto& tx : pblock->vtx) {
-        for (const auto& txout : tx->vout) {
-            const CScript& script = txout.scriptPubKey;
-            if (script.size() > 2 && script[0] == OP_RETURN && 
-                script[1] == 0xFC && script[2] == 0x02) {
-                // This is a peg-in transaction
-                // Extract peg-in data
-                CPegInTransaction peg_in;
-                try {
-                    std::vector<unsigned char> peg_data(script.begin() + 3, script.end());
-                    CDataStream ss(peg_data, SER_NETWORK, PROTOCOL_VERSION);
-                    ss >> peg_in.peg_tx_id;
-                    CAmount peg_amount;
-                    ss >> peg_amount;
-                    peg_in.amount = static_cast<uint64_t>(peg_amount);
-                    peg_in.main_chain_tx_id = tx->GetHash();
-                    // recipient_address already set in pending_peg_ins from mempool
-                    // If this is a duplicate, skip it
-                    bool is_duplicate = false;
-                    for (const auto& existing : mweb_block.peg_ins) {
-                        if (existing.main_chain_tx_id == peg_in.main_chain_tx_id) {
-                            is_duplicate = true;
-                            break;
-                        }
-                    }
-                    if (!is_duplicate) {
-                        mweb_block.peg_ins.push_back(peg_in);
-                    }
-                    has_mweb_data = true;
-                } catch (...) {
-                    // Invalid peg-in data, skip
-                }
-            }
-        }
-    }
+    // Note: Peg-in transactions with OP_RETURN markers are already in pending_peg_ins
+    // from the mempool (they were added via RPC with proper recipient_address set).
+    // We don't need to extract them again from the block transactions here, as that
+    // would create peg-ins without recipient_address, causing validation failures.
+    // The pending_peg_ins already contain all valid peg-ins with proper addresses.
     
     // Create MWEB transactions for contributions that require MWEB
     // Also check contributions in the current block that need MWEB routing
@@ -379,7 +345,8 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     }
     
     // If we have MWEB data, create extension block
-    if (has_mweb_data) {
+    // Only create if we actually have transactions, peg-ins, or peg-outs
+    if (has_mweb_data && (!mweb_block.mweb_txs.empty() || !mweb_block.peg_ins.empty() || !mweb_block.peg_outs.empty())) {
         // Set previous MWEB hash
         if (pindexPrev) {
             // Get previous MWEB hash from previous block
@@ -390,27 +357,38 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
                 } else {
                     mweb_block.prev_mweb_hash.SetNull();
                 }
+            } else {
+                // If we can't read previous block, set to null
+                mweb_block.prev_mweb_hash.SetNull();
             }
+        } else {
+            // Genesis block - no previous MWEB hash
+            mweb_block.prev_mweb_hash.SetNull();
         }
         
         // Apply cut-through optimization
         mweb_block = MWEB::CutThrough(mweb_block);
         
-        // Calculate MWEB root (simplified - would be Merkle root of UTXO set in production)
-        CHashWriter root_ss(SER_GETHASH, 0);
-        root_ss << mweb_block.mweb_txs;
-        root_ss << mweb_block.peg_ins;
-        root_ss << mweb_block.peg_outs;
-        mweb_block.mweb_root = root_ss.GetHash();
-        
-        // Calculate extension block hash
-        mweb_block.extension_block_hash = mweb_block.GetHash();
-        
-        // Attach to main block
-        pblock->mweb_extension.reset(new CMWEBExtensionBlock(mweb_block));
-        
-        LogPrintf("CreateNewBlock(): Created MWEB extension block with %d transactions, %d peg-ins, %d peg-outs\n",
-                  mweb_block.mweb_txs.size(), mweb_block.peg_ins.size(), mweb_block.peg_outs.size());
+        // Re-check after cut-through (shouldn't be empty, but be safe)
+        if (mweb_block.mweb_txs.empty() && mweb_block.peg_ins.empty() && mweb_block.peg_outs.empty()) {
+            LogPrintf("CreateNewBlock(): MWEB block became empty after cut-through, skipping\n");
+        } else {
+            // Calculate MWEB root (simplified - would be Merkle root of UTXO set in production)
+            CHashWriter root_ss(SER_GETHASH, 0);
+            root_ss << mweb_block.mweb_txs;
+            root_ss << mweb_block.peg_ins;
+            root_ss << mweb_block.peg_outs;
+            mweb_block.mweb_root = root_ss.GetHash();
+            
+            // Calculate extension block hash
+            mweb_block.extension_block_hash = mweb_block.GetHash();
+            
+            // Attach to main block
+            pblock->mweb_extension.reset(new CMWEBExtensionBlock(mweb_block));
+            
+            LogPrintf("CreateNewBlock(): Created MWEB extension block with %d transactions, %d peg-ins, %d peg-outs\n",
+                      mweb_block.mweb_txs.size(), mweb_block.peg_ins.size(), mweb_block.peg_outs.size());
+        }
     }
 
     CValidationState state;
