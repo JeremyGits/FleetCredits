@@ -21,6 +21,7 @@
 
 #include "chainparams.h"
 #include "netbase.h"
+#include "net.h"
 #include "rpc/server.h"
 #include "rpc/client.h"
 #include "util.h"
@@ -997,8 +998,34 @@ void RPCConsole::on_removePeerClicked()
                 }
             }
             
-            // Remove from persistent list
-            removedFromList = g_connman->RemoveAddedNode(address.toStdString());
+            // Remove from persistent list - try multiple address formats
+            // The stored address might be different from the connected address
+            std::string addressStr = address.toStdString();
+            removedFromList = g_connman->RemoveAddedNode(addressStr);
+            
+            // If exact match failed, try to find by IP address (extract IP from address:port)
+            if (!removedFromList) {
+                // Extract IP address (everything before the last colon)
+                size_t lastColon = addressStr.find_last_of(':');
+                if (lastColon != std::string::npos) {
+                    std::string ipOnly = addressStr.substr(0, lastColon);
+                    
+                    // Get all added nodes and try to match by IP
+                    std::vector<AddedNodeInfo> addedNodes = g_connman->GetAddedNodeInfo();
+                    for (const AddedNodeInfo& info : addedNodes) {
+                        std::string storedAddr = info.strAddedNode;
+                        size_t storedColon = storedAddr.find_last_of(':');
+                        if (storedColon != std::string::npos) {
+                            std::string storedIP = storedAddr.substr(0, storedColon);
+                            if (storedIP == ipOnly) {
+                                // Found matching IP, remove using the stored format
+                                removedFromList = g_connman->RemoveAddedNode(storedAddr);
+                                if (removedFromList) break;
+                            }
+                        }
+                    }
+                }
+            }
             
             QString result;
             if (disconnected && removedFromList) {

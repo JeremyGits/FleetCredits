@@ -91,12 +91,45 @@ QString PeerTools::ManagePeer(QString type, QString peer)
         }
         
         // Add to persistent list (this also triggers connection attempts)
+        // AddNode now handles same IP with different ports (updates the port automatically)
         if(!g_connman->AddNode(peerAddress)) {
-            // Try to trigger immediate connection anyway (peer may already be in list)
+            // Check if it's already in the list with same IP (AddNode should have updated it, but check anyway)
+            std::vector<AddedNodeInfo> addedNodes = g_connman->GetAddedNodeInfo();
+            bool found = false;
+            std::string existingFormat;
+            
+            // Extract IP from peerAddress
+            size_t lastColon = peerAddress.find_last_of(':');
+            std::string peerIP = (lastColon != std::string::npos) ? peerAddress.substr(0, lastColon) : peerAddress;
+            
+            for (const AddedNodeInfo& info : addedNodes) {
+                std::string storedAddr = info.strAddedNode;
+                size_t storedColon = storedAddr.find_last_of(':');
+                std::string storedIP = (storedColon != std::string::npos) ? storedAddr.substr(0, storedColon) : storedAddr;
+                if (storedIP == peerIP && !peerIP.empty()) {
+                    found = true;
+                    existingFormat = storedAddr;
+                    break;
+                }
+            }
+            
+            if (found && existingFormat != peerAddress) {
+                // Same IP exists with different port - update it
+                g_connman->RemoveAddedNode(existingFormat);
+                if (g_connman->AddNode(peerAddress)) {
+                    // Successfully updated
+                    CAddress addrObj(addr, NODE_NONE);
+                    g_connman->OpenNetworkConnection(addrObj, false, NULL, NULL, false, false, true);
+                    return tr("Updated existing node port: ") + QString::fromStdString(existingFormat) + 
+                           tr(" -> ") + peer + tr("\n\nConnection attempt initiated.");
+                }
+            }
+            
+            // Try to trigger immediate connection anyway (peer may already be in list with exact same format)
             CAddress addrObj(addr, NODE_NONE);
             g_connman->OpenNetworkConnection(addrObj, false, NULL, NULL, false, false, true);
             
-            return tr("Node may already be in list, but connection attempt made: ") + peer + 
+            return tr("Node already in list (exact match), but connection attempt made: ") + peer + 
                    tr("\n\nIf peer is already connected, it will appear in the list. Otherwise, check back in a few seconds.");
         }
         
