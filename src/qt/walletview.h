@@ -23,6 +23,7 @@ class AddressBookPage;
 class ImportKeysDialog;
 class MWEBSuitePage;
 class ContributionsPage;
+class GovernancePage;
 
 QT_BEGIN_NAMESPACE
 class QModelIndex;
@@ -71,6 +72,7 @@ private:
     ImportKeysDialog *importKeysDialog;
     MWEBSuitePage *mwebSuitePage;
     ContributionsPage *contributionsPage;
+    GovernancePage *governancePage;
 
     TransactionView *transactionView;
 
@@ -92,6 +94,8 @@ public Q_SLOTS:
     void gotoMWEBSuitePage();
     /** Switch to Contributions page */
     void gotoContributionsPage();
+    /** Switch to Governance page */
+    void gotoGovernancePage();
 
     /** Show Sign/Verify Message dialog and switch to sign message tab */
     void gotoSignMessageTab(QString addr = "");

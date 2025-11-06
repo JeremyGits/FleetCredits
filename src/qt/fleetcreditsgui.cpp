@@ -211,6 +211,7 @@ FleetCreditsGUI::FleetCreditsGUI(const PlatformStyle *_platformStyle, const Netw
         QPushButton* historyBtn = new QPushButton("📊 History");
         QPushButton* mwebBtn = new QPushButton("🔒 MWEB");
         QPushButton* contributionsBtn = new QPushButton("📝 Contributions");
+        QPushButton* governanceBtn = new QPushButton("🗳️ Governance");
         QPushButton* consoleBtn = new QPushButton("⚙️ Console");
         
         // Store buttons for later connection
@@ -221,6 +222,7 @@ FleetCreditsGUI::FleetCreditsGUI(const PlatformStyle *_platformStyle, const Netw
         m_navButtons["history"] = historyBtn;
         m_navButtons["mweb"] = mwebBtn;
         m_navButtons["contributions"] = contributionsBtn;
+        m_navButtons["governance"] = governanceBtn;
         m_navButtons["console"] = consoleBtn;
         
         navLayout->addWidget(overviewBtn);
@@ -229,6 +231,7 @@ FleetCreditsGUI::FleetCreditsGUI(const PlatformStyle *_platformStyle, const Netw
         navLayout->addWidget(historyBtn);
         navLayout->addWidget(mwebBtn);
         navLayout->addWidget(contributionsBtn);
+        navLayout->addWidget(governanceBtn);
         navLayout->addWidget(consoleBtn);
         navLayout->addStretch();
         
@@ -261,6 +264,11 @@ FleetCreditsGUI::FleetCreditsGUI(const PlatformStyle *_platformStyle, const Netw
         connect(contributionsBtn, &QPushButton::clicked, [this]() { 
             if (walletFrame) {
                 gotoContributionsPage(); 
+            }
+        });
+        connect(governanceBtn, &QPushButton::clicked, [this]() { 
+            if (walletFrame) {
+                gotoGovernancePage(); 
             }
         });
         connect(consoleBtn, &QPushButton::clicked, [this]() { 
@@ -2318,6 +2326,11 @@ void FleetCreditsGUI::gotoMWEBSuitePage()
 void FleetCreditsGUI::gotoContributionsPage()
 {
     if (walletFrame) walletFrame->gotoContributionsPage();
+}
+
+void FleetCreditsGUI::gotoGovernancePage()
+{
+    if (walletFrame) walletFrame->gotoGovernancePage();
 }
 
 void FleetCreditsGUI::gotoSignMessageTab(QString addr)

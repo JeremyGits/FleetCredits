@@ -152,6 +152,13 @@ void WalletFrame::gotoContributionsPage()
         walletView->gotoContributionsPage();
 }
 
+void WalletFrame::gotoGovernancePage()
+{
+    WalletView *walletView = currentWalletView();
+    if (walletView)
+        walletView->gotoGovernancePage();
+}
+
 void WalletFrame::gotoSignMessageTab(QString addr)
 {
     WalletView *walletView = currentWalletView();

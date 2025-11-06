@@ -23,6 +23,7 @@
 #include "utilitydialog.h"
 #include "mwebsuitepage.h"
 #include "contributionspage.h"
+#include "governancepage.h"
 
 #include "ui_interface.h"
 
@@ -61,9 +62,10 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     receiveCoinsPage = new ReceiveCoinsDialog(platformStyle);
     sendCoinsPage = new SendCoinsDialog(platformStyle);
     
-    // NEW: MWEB Suite and Contributions pages
+    // NEW: MWEB Suite, Contributions, and Governance pages
     mwebSuitePage = new MWEBSuitePage(this);
     contributionsPage = new ContributionsPage(this);
+    governancePage = new GovernancePage(this);
 
     usedSendingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::SendingTab, this);
     usedReceivingAddressesPage = new AddressBookPage(platformStyle, AddressBookPage::ForEditing, AddressBookPage::ReceivingTab, this);
@@ -74,6 +76,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(sendCoinsPage);
     addWidget(mwebSuitePage);         // NEW
     addWidget(contributionsPage);     // NEW
+    addWidget(governancePage);        // NEW
 
     importKeysDialog = new ImportKeysDialog(platformStyle);
 
@@ -129,6 +132,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
     sendCoinsPage->setClientModel(_clientModel);
     mwebSuitePage->setClientModel(_clientModel);       // NEW
     contributionsPage->setClientModel(_clientModel);   // NEW
+    governancePage->setClientModel(_clientModel);      // NEW
 }
 
 void WalletView::setWalletModel(WalletModel *_walletModel)
@@ -144,6 +148,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     usedSendingAddressesPage->setModel(_walletModel->getAddressTableModel());
     mwebSuitePage->setWalletModel(_walletModel);       // NEW
     contributionsPage->setWalletModel(_walletModel);    // NEW
+    governancePage->setWalletModel(_walletModel);      // NEW
 
     if (_walletModel)
     {
@@ -249,6 +254,11 @@ void WalletView::gotoMWEBSuitePage()
 void WalletView::gotoContributionsPage()
 {
     setCurrentWidget(contributionsPage);
+}
+
+void WalletView::gotoGovernancePage()
+{
+    setCurrentWidget(governancePage);
 }
 
 bool WalletView::handlePaymentRequest(const SendCoinsRecipient& recipient)
