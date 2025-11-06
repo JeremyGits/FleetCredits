@@ -177,9 +177,75 @@ CAmount GetFleetCreditsBlockSubsidyWithContributions(int nHeight, const Consensu
     ContributionType maxContribType = CODE_CONTRIBUTION;
     
     for (const auto& contrib : contrib_txs) {
-        // Note: In full implementation, we would verify contributions here
-        // For now, we assume they are pre-verified
-        if (contrib.bonus_level > maxBonusLevel) {
+        // Verify contribution before considering it for bonus
+        bool is_verified = false;
+        
+        // First, basic validation must pass
+        if (!ValidateContributionTransaction(contrib)) {
+            continue;  // Skip invalid contributions
+        }
+        
+        // Create verification record to check status
+        CVerificationRecord record = CContributionVerifier::CreateVerificationRecord(contrib);
+        
+        // Verify based on contribution type
+        // Note: The verification functions use placeholders for now (GitHub API, etc.)
+        // but they perform type-specific validation checks
+        switch (contrib.contrib_type) {
+            case CODE_CONTRIBUTION: {
+                // Verify code contribution (checks lines_changed, account_age, etc.)
+                // In full implementation, would also verify GitHub commit via API
+                CCodeContributionTransaction code_tx;
+                // Copy base contribution fields
+                static_cast<CContributionTransaction&>(code_tx) = contrib;
+                // Note: Extended fields (repo_url, commit_hash, etc.) would need to be
+                // extracted from proof_data.evidence in full implementation
+                is_verified = CContributionVerifier::VerifyCodeContribution(code_tx);
+                break;
+            }
+            case AI_VALIDATION: {
+                CAIValidationTransaction ai_tx;
+                static_cast<CContributionTransaction&>(ai_tx) = contrib;
+                is_verified = CContributionVerifier::VerifyAIValidation(ai_tx);
+                break;
+            }
+            case DATA_LABELING: {
+                CDataLabelingTransaction label_tx;
+                static_cast<CContributionTransaction&>(label_tx) = contrib;
+                is_verified = CContributionVerifier::VerifyDataLabeling(label_tx);
+                break;
+            }
+            case ETHICAL_REVIEW: {
+                CEthicalReviewTransaction review_tx;
+                static_cast<CContributionTransaction&>(review_tx) = contrib;
+                is_verified = CContributionVerifier::VerifyEthicalReview(review_tx);
+                // Ethical reviews require oracle consensus - check if we have it
+                if (is_verified && record.verification_status == VERIFICATION_PENDING) {
+                    // Still pending oracle votes - don't count for bonus yet
+                    is_verified = false;
+                }
+                break;
+            }
+            case CHARITABLE_ACT: {
+                // Charitable acts require oracle consensus
+                // For now, if it passed basic validation, we'll accept it
+                // In full implementation, oracle votes would be processed here
+                is_verified = true;  // Basic validation already passed
+                if (record.verification_status == VERIFICATION_PENDING) {
+                    // Still pending oracle votes - don't count for bonus yet
+                    is_verified = false;
+                }
+                break;
+            }
+            default: {
+                // Other types: basic validation is sufficient
+                is_verified = true;  // Already validated above
+                break;
+            }
+        }
+        
+        // Only count verified contributions for bonus calculation
+        if (is_verified && contrib.bonus_level > maxBonusLevel) {
             maxBonusLevel = contrib.bonus_level;
             maxContribType = contrib.contrib_type;
         }

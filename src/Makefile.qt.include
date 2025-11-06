@@ -153,7 +153,8 @@ QT_MOC_CPP = \
   qt/moc_walletmodel.cpp \
   qt/moc_walletview.cpp \
   qt/moc_mwebsuitepage.cpp \
-  qt/moc_contributionspage.cpp
+  qt/moc_contributionspage.cpp \
+  qt/moc_governancepage.cpp
 
 FLEETCREDITS_MM = \
   qt/macdockiconhandler.mm \
@@ -232,7 +233,8 @@ FLEETCREDITS_QT_H = \
   qt/walletview.h \
   qt/winshutdownmonitor.h \
   qt/mwebsuitepage.h \
-  qt/contributionspage.h
+  qt/contributionspage.h \
+  qt/governancepage.h
 
 RES_ICONS = \
   qt/res/icons/add.png \
@@ -358,7 +360,8 @@ FLEETCREDITS_QT_WALLET_CPP = \
   qt/walletmodeltransaction.cpp \
   qt/walletview.cpp \
   qt/mwebsuitepage.cpp \
-  qt/contributionspage.cpp
+  qt/contributionspage.cpp \
+  qt/governancepage.cpp
 
 FLEETCREDITS_QT_CPP = $(FLEETCREDITS_QT_BASE_CPP)
 if TARGET_WINDOWS

@@ -128,6 +128,7 @@ FLEETCREDITS_CORE_H = \
   primitives/pureheader.h \
   primitives/transaction.h \
   primitives/contribution.h \
+  primitives/governance.h \
   primitives/mweb.h \
   primitives/verification.h \
   mweb_mempool.h \
@@ -219,6 +220,7 @@ libfleetcredits_server_a_SOURCES = \
   rpc/auxpow.cpp \
   rpc/blockchain.cpp \
   rpc/contribution.cpp \
+  rpc/governance.cpp \
   rpc/mweb.cpp \
   rpc/mining.cpp \
   rpc/misc.cpp \
@@ -354,6 +356,7 @@ libfleetcredits_common_a_SOURCES = \
   primitives/pureheader.cpp \
   primitives/transaction.cpp \
   primitives/contribution.cpp \
+  primitives/governance.cpp \
   primitives/mweb.cpp \
   primitives/verification.cpp \
   mweb_contributions.cpp \
