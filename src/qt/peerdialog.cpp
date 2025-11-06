@@ -186,8 +186,10 @@ AddPeerDialog::AddPeerDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     
-    // Set window title
+    // Set window properties to ensure it displays properly
     setWindowTitle(tr("Add Peer"));
+    setWindowFlags(Qt::Dialog | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+    setAttribute(Qt::WA_DeleteOnClose, true);  // Auto-delete when closed
 
     ui->peerPort->setValidator( new QIntValidator(1, 65535, this) );
 
@@ -241,8 +243,10 @@ TestPeerDialog::TestPeerDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     
-    // Set window title
+    // Set window properties for consistency
     setWindowTitle(tr("Test Peer Connection"));
+    setWindowFlags(Qt::Dialog | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+    setAttribute(Qt::WA_DeleteOnClose, true);  // Auto-delete when closed
 
     ui->peerPort->setValidator( new QIntValidator(1, 65535, this) );
 
