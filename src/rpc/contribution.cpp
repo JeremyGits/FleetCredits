@@ -53,12 +53,45 @@ bool ExtractContributionFromTransaction(const CTransaction& tx, CContributionTra
         
         // Check if this is an OP_RETURN output
         if (script.size() > 0 && script[0] == OP_RETURN) {
-            // Check if it starts with our contribution marker
-            if (script.size() >= MARKER_SIZE + 1) {
-                // Skip OP_RETURN byte (index 0), check marker
+            // CScript adds a length prefix when pushing a vector
+            // Format: OP_RETURN <length_byte> <0xFC> <0x01> <data...>
+            // Or if length >= 76: OP_RETURN OP_PUSHDATA1 <length_byte> <0xFC> <0x01> <data...>
+            
+            size_t dataStart = 1; // Skip OP_RETURN
+            size_t lengthBytes = 0;
+            
+            // Check for length prefix
+            if (script.size() > dataStart) {
+                unsigned char lengthByte = script[dataStart];
+                
+                // If length < 76, it's a single byte length prefix
+                if (lengthByte < OP_PUSHDATA1) {
+                    lengthBytes = 1;
+                    dataStart += 1;
+                }
+                // If length == OP_PUSHDATA1 (0x4c), next byte is the length
+                else if (lengthByte == OP_PUSHDATA1 && script.size() > dataStart + 1) {
+                    lengthBytes = 2; // OP_PUSHDATA1 + length byte
+                    dataStart += 2;
+                }
+                // If length == OP_PUSHDATA2 (0x4d), next 2 bytes are the length
+                else if (lengthByte == OP_PUSHDATA2 && script.size() > dataStart + 2) {
+                    lengthBytes = 3; // OP_PUSHDATA2 + 2 length bytes
+                    dataStart += 3;
+                }
+                // If length == OP_PUSHDATA4 (0x4e), next 4 bytes are the length
+                else if (lengthByte == OP_PUSHDATA4 && script.size() > dataStart + 4) {
+                    lengthBytes = 5; // OP_PUSHDATA4 + 4 length bytes
+                    dataStart += 5;
+                }
+            }
+            
+            // Check if we have enough bytes for the marker
+            if (script.size() >= dataStart + MARKER_SIZE) {
+                // Check marker (after length prefix)
                 bool matches_marker = true;
                 for (size_t j = 0; j < MARKER_SIZE; j++) {
-                    if (script[j + 1] != CONTRIB_MARKER[j]) {
+                    if (script[dataStart + j] != CONTRIB_MARKER[j]) {
                         matches_marker = false;
                         break;
                     }
@@ -67,7 +100,7 @@ bool ExtractContributionFromTransaction(const CTransaction& tx, CContributionTra
                 if (matches_marker) {
                     // Extract contribution data (everything after marker)
                     std::vector<unsigned char> contrib_data(
-                        script.begin() + 1 + MARKER_SIZE,
+                        script.begin() + dataStart + MARKER_SIZE,
                         script.end()
                     );
                     
