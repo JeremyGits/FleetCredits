@@ -159,7 +159,7 @@ public:
         pchMessageStart[1] = 0x43;   // 'C' for Credits
         pchMessageStart[2] = 0x52;   // 'R' for Credits
         pchMessageStart[3] = 0x45;   // 'E' for Credits
-        nDefaultPort = 22556;
+        nDefaultPort = 42069;
         nPruneAfterHeight = 100000;
 
         // Fleet Credits Genesis Block - Fresh start with current timestamp
@@ -217,7 +217,7 @@ public:
         // Fleet Credits: Add public server as default seed node
         // Public server: 96.126.123.195 (IPv6: ::ffff:607e:7bc3)
         vFixedSeeds.clear();
-        vFixedSeeds.push_back(SeedSpec6{{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xff,0xff,0x60,0x7e,0x7b,0xc3}, 22556});
+        vFixedSeeds.push_back(SeedSpec6{{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xff,0xff,0x60,0x7e,0x7b,0xc3}, 42069});
 
         fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
