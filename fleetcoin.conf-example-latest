@@ -23,16 +23,16 @@ rpcallowip=127.0.0.1
 maxconnections=125
 
 # RPC port for regtest (default 44555, but we can change)
-rpcport=69429
+rpcport=42068
 
 # Auto-connect to public server
-#addnode=96.126.123.195:69420
+#addnode=96.126.123.195:42069
 
 # mainnet
-#addnode=96.126.123.195:69420
+#addnode=96.126.123.195:42069
 
 # Or use connect= for persistent connection (only connects to this node)
-connect=96.126.123.195:69420
+connect=96.126.123.195:42069
 
 
 
