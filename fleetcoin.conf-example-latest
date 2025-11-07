@@ -1,0 +1,43 @@
+# Fleet Credits Core configuration file
+
+# RPC credentials
+rpcuser=someUniqueUsername
+rpcpassword=AtLeastTryBro!
+
+# Regtest mode (for local development/testing)
+#regtest=1
+
+# Disable checkpoints for fresh blockchain
+checkpoints=0
+
+#listen, no serve
+listen=1
+
+# Server mode (allow RPC calls)
+server=1
+
+# Allow RPC from localhost
+rpcallowip=127.0.0.1
+
+# max connections
+maxconnections=125
+
+# RPC port for regtest (default 44555, but we can change)
+rpcport=22555
+
+# Auto-connect to public server
+#addnode=96.126.123.195:18332
+
+# mainnet
+#addnode=96.126.123.195:22556
+
+# Or use connect= for persistent connection (only connects to this node)
+connect=96.126.123.195:22556
+
+
+
+# debug
+debug=net
+
+# timestamps
+logtimestamps=1
