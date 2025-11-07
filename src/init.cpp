@@ -1571,6 +1571,13 @@ bool AppInitMain(boost::thread_group& threadGroup, CScheduler& scheduler)
                         strLoadError = _("Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain");
                         break;
                     }
+                    // Update CConnman's best height immediately after rewinding
+                    // This ensures GetBestHeight() returns correct value when nodes are created
+                    {
+                        LOCK(cs_main);
+                        connman.SetBestHeight(chainActive.Height());
+                        LogPrintf("Updated CConnman best height to %d after rewinding blocks\n", chainActive.Height());
+                    }
                 }
 
                 uiInterface.SafeInitMessage(_("Verifying blocks..."));
@@ -1634,6 +1641,15 @@ bool AppInitMain(boost::thread_group& threadGroup, CScheduler& scheduler)
         return false;
     }
     LogPrintf(" block index %15dms\n", GetTimeMillis() - nStart);
+
+    // Update CConnman's best height immediately after loading block index
+    // This ensures GetBestHeight() returns correct value when nodes are created
+    // This is critical to prevent clients from advertising incorrect block heights to peers
+    {
+        LOCK(cs_main);
+        connman.SetBestHeight(chainActive.Height());
+        LogPrintf("Updated CConnman best height to %d after loading block index\n", chainActive.Height());
+    }
 
     fs::path est_path = GetDataDir() / FEE_ESTIMATES_FILENAME;
     CAutoFile est_filein(fsbridge::fopen(est_path, "rb"), SER_DISK, CLIENT_VERSION);
