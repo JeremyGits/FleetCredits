@@ -162,44 +162,13 @@ public:
         nDefaultPort = 42069;
         nPruneAfterHeight = 100000;
 
-        // Fleet Credits Genesis Block - Fresh start with current timestamp
-        // Timestamp: November 4, 2025 00:00:00 UTC (1730688000) - Current date for launch
-        // This creates a NEW blockchain starting from scratch
-        genesis = CreateGenesisBlock(1730688000, 0, 0x1e0ffff0, 1, 10000 * COIN);
-
-        // Mine the genesis block to ensure it has valid PoW
-        // CRITICAL: Genesis block MUST have valid PoW for blockchain integrity
-        const Consensus::Params& mainConsensusParams = consensus;
-        uint32_t maxNonceAttempts = 0xFFFFFFFF; // Max uint32_t
-        uint32_t nonceAttempts = 0;
-        
-        while (!CheckProofOfWork(genesis.GetPoWHash(), genesis.nBits, mainConsensusParams)) {
-            ++genesis.nNonce;
-            ++nonceAttempts;
-            
-            // Prevent infinite loop - if we can't find a solution, try different timestamp
-            if (genesis.nNonce == 0) {
-                genesis.nTime++;
-                genesis.nNonce = 0;
-                nonceAttempts = 0;
-                
-                // Safety: if we've tried too many timestamps, something is wrong
-                if (genesis.nTime > 1730688100) { // 100 seconds later
-                    assert(false && "CRITICAL: Failed to mine mainnet genesis block with valid PoW");
-                }
-            }
-            
-            // Safety check
-            if (nonceAttempts >= maxNonceAttempts) {
-                assert(false && "CRITICAL: Exceeded max nonce attempts mining mainnet genesis block");
-            }
-        }
-        
-        // Verify the mined genesis block has valid PoW (double-check)
-        assert(CheckProofOfWork(genesis.GetPoWHash(), genesis.nBits, mainConsensusParams) && 
-               "CRITICAL: Mined mainnet genesis block failed PoW validation");
+        // Fleet Credits Genesis Block - mined once and hardcoded for fast startup
+        // Timestamp: November 4, 2025 00:00:00 UTC (1730688000)
+        genesis = CreateGenesisBlock(1730688000, 905381, 0x1e0ffff0, 1, 10000 * COIN);
 
         consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x829a84f34599ea8e4ac00eb998ff13cdb6fcc20585017c4890e8fe001b8aa95f"));
+        assert(genesis.hashMerkleRoot == uint256S("0x41644a825cd68f53c164e9eeddbbe82c408a61191f19e7954bf56291ee81d912"));
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
 
