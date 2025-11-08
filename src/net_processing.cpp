@@ -149,6 +149,21 @@ namespace {
     std::deque<std::pair<int64_t, MapRelay::iterator>> vRelayExpiration;
 } // anon namespace
 
+static void PushHeadersMessage(CConnman& connman, CNode* pto, const std::vector<CBlockHeader>& vHeaders)
+{
+    CSerializedNetMsg msg;
+    msg.command = NetMsgType::HEADERS;
+
+    CVectorWriter writer(SER_NETWORK, pto->GetSendVersion(), msg.data, 0);
+    WriteCompactSize(writer, vHeaders.size());
+    for (const CBlockHeader& header : vHeaders) {
+        writer << header;
+        WriteCompactSize(writer, static_cast<uint64_t>(0));
+    }
+
+    connman.PushMessage(pto, std::move(msg));
+}
+
 //////////////////////////////////////////////////////////////////////////////
 //
 // Registration of network node signals.
@@ -1951,8 +1966,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
                 pindex = chainActive.Next(pindex);
         }
 
-        // we must use CBlocks, as CBlockHeaders won't include the 0x00 nTx count at the end
-        std::vector<CBlock> vHeaders;
+        std::vector<CBlockHeader> vHeaders;
         int nLimit = MAX_HEADERS_RESULTS;
         LogPrint("net", "getheaders %d to %s from peer=%d\n", (pindex ? pindex->nHeight : -1), hashStop.IsNull() ? "end" : hashStop.ToString(), pfrom->id);
         for (; pindex; pindex = chainActive.Next(pindex))
@@ -1974,7 +1988,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
         // will re-announce the new block via headers (or compact blocks again)
         // in the SendMessages logic.
         nodestate->pindexBestHeaderSent = pindex ? pindex : chainActive.Tip();
-        connman.PushMessage(pfrom, msgMaker.Make(NetMsgType::HEADERS, vHeaders));
+        PushHeadersMessage(connman, pfrom, vHeaders);
     }
 
 
@@ -3107,7 +3121,7 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
             // blocks, or if the peer doesn't want headers, just
             // add all to the inv queue.
             LOCK(pto->cs_inventory);
-            std::vector<CBlock> vHeaders;
+            std::vector<CBlockHeader> vHeaders;
             bool fRevertToInv = ((!state.fPreferHeaders &&
                                  (!state.fPreferHeaderAndIDs || pto->vBlockHashesToAnnounce.size() > 1)) ||
                                 pto->vBlockHashesToAnnounce.size() > MAX_BLOCKS_TO_ANNOUNCE);
@@ -3202,7 +3216,7 @@ bool SendMessages(CNode* pto, CConnman& connman, const std::atomic<bool>& interr
                         LogPrint("net", "%s: sending header %s to peer=%d\n", __func__,
                                 vHeaders.front().GetHash().ToString(), pto->id);
                     }
-                    connman.PushMessage(pto, msgMaker.Make(NetMsgType::HEADERS, vHeaders));
+                    PushHeadersMessage(connman, pto, vHeaders);
                     state.pindexBestHeaderSent = pBestIndex;
                 } else
                     fRevertToInv = true;
