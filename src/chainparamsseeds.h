@@ -10,7 +10,10 @@
  * NOTE: These seed arrays are currently NOT USED - Fleet Credits is a fresh network
  * with no seed nodes. They are kept for future use when seed nodes are deployed.
  */
- static SeedSpec6 pnSeed6_main[] = {};
+ static SeedSpec6 pnSeed6_main[] = {
+     // Primary public node: 96.126.123.195:42069
+     {{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xff,0xff,0x60,0x7e,0x7b,0xc3}, 42069},
+ };
  static SeedSpec6 pnSeed6_test[] = {};
  
 #endif // FLEETCREDITS_CHAINPARAMSSEEDS_H
