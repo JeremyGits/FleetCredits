@@ -56,7 +56,7 @@ AC_DEFUN([DOGECOIN_FIND_BDB53],[
   done
   if test "x$bdbpath" = "xX"; then
     AC_MSG_RESULT([no])
-    AC_MSG_ERROR([libdb_cxx headers missing, Dogecoin Core requires this library for wallet functionality (--disable-wallet to disable wallet functionality)])
+    AC_MSG_ERROR([libdb_cxx headers missing, Fleet Credits Core requires this library for wallet functionality (--disable-wallet to disable wallet functionality)])
   elif test "x$bdb53path" = "xX"; then
     DOGECOIN_SUBDIR_TO_INCLUDE(BDB_CPPFLAGS,[${bdbpath}],db_cxx)
     AC_ARG_WITH([incompatible-bdb],[AS_HELP_STRING([--with-incompatible-bdb], [allow using a bdb version other than 5.3])],[
@@ -86,13 +86,13 @@ AC_DEFUN([DOGECOIN_FIND_BDB53],[
       ])
     done
     if test "x$BDB_LIBS" = "x"; then
-        AC_MSG_ERROR([libdb_cxx missing, Dogecoin Core requires this library for wallet functionality (--disable-wallet to disable wallet functionality)])
+        AC_MSG_ERROR([libdb_cxx missing, Fleet Credits Core requires this library for wallet functionality (--disable-wallet to disable wallet functionality)])
     fi
   else
     TLIBS="${LIBS}"
     LIBS="${LIBS} ${BDB_LIBS}"
     AC_SEARCH_LIBS([main],[],[],[
-        AC_MSG_ERROR([libdb_cxx missing, Dogecoin Core requires this library for wallet functionality (--disable-wallet to disable wallet functionality)])
+        AC_MSG_ERROR([libdb_cxx missing, Fleet Credits Core requires this library for wallet functionality (--disable-wallet to disable wallet functionality)])
     ])
     LIBS="${TLIBS}"
   fi
