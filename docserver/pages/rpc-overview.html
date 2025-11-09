@@ -295,7 +295,7 @@
                 <p>RPC calls require authentication via <code>rpcuser</code> and <code>rpcpassword</code> set in <code>fleetcredits.conf</code>:</p>
                 <pre><code>rpcuser=your_username
 rpcpassword=your_password
-rpcport=22555
+rpcport=42068
 rpcallowip=127.0.0.1</code></pre>
             </section>
 
@@ -329,7 +329,7 @@ fleetcredits-cli submitcontribution "CODE_CONTRIBUTION" "abc123def456..."</code>
                 <pre><code>curl --user rpcuser:rpcpassword \
   --data-binary '{"jsonrpc": "1.0", "id":"curltest", "method": "getblockcount", "params": []}' \
   -H 'content-type: text/plain;' \
-  http://127.0.0.1:22555/</code></pre>
+  http://127.0.0.1:42068/</code></pre>
             </section>
         </main>
     </div>

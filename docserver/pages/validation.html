@@ -242,22 +242,15 @@
                 <p>The genesis block (block 0) is treated specially during validation:</p>
                 
                 <h4>Genesis Block Mining</h4>
-                <p>During chain parameter initialization (<code>CRegTestParams</code> constructor), the genesis block is explicitly mined with valid Proof of Work:</p>
-                <pre><code>// From chainparams.cpp (regtest)
-genesis = CreateGenesisBlock(1704067200, 0, 0x207fffff, 1, 10000 * COIN);
-
-// Mine genesis block with valid PoW
-while (!CheckProofOfWork(genesis.GetPoWHash(), genesis.nBits, consensusParams)) {
-    ++genesis.nNonce;
-    if (genesis.nNonce == 0) {
-        genesis.nTime++;
-        genesis.nNonce = 0;
-    }
-}
-
-// Verify mined genesis block
-assert(CheckProofOfWork(genesis.GetPoWHash(), genesis.nBits, consensusParams));
-consensus.hashGenesisBlock = genesis.GetHash();</code></pre>
+                <p>Mainnet now ships with a pre-mined genesis block. The constructor simply plugs in the nonce/timestamp pair and asserts the resulting hash:</p>
+                <pre><code>// chainparams.cpp (mainnet)
+genesis = CreateGenesisBlock(1730688000, 905381, 0x1e0ffff0, 1, 10000 * COIN);
+consensus.hashGenesisBlock = genesis.GetHash();
+assert(consensus.hashGenesisBlock == uint256S("0x829a84f34599ea8e4ac00eb998ff13cdb6fcc20585017c4890e8fe001b8aa95f"));
+assert(genesis.hashMerkleRoot == uint256S("0x41644a825cd68f53c164e9eeddbbe82c408a61191f19e7954bf56291ee81d912"));</code></pre>
+                <p>This replaces the previous startup mining loop, reducing startup time without sacrificing PoW validation.</p>
+                
+                <p>Testnet and regtest still execute a nonce-search loop on startup so developers can tweak parameters without recomputing hashes; see the corresponding sections of <code>chainparams.cpp</code> for those implementations.</p>
                 
                 <h4>Genesis Block Validation Flow</h4>
                 <p>When reading blocks from disk (<code>ReadBlockFromDisk</code> in <code>validation.cpp</code>):</p>
@@ -265,7 +258,7 @@ consensus.hashGenesisBlock = genesis.GetHash();</code></pre>
                     <li><strong>Always Validate PoW:</strong> All blocks, including genesis, must pass PoW validation</li>
                     <li><strong>AuxPow Handling:</strong> <code>CheckAuxPowProofOfWork()</code> is called for all blocks</li>
                     <li><strong>Genesis Fallback:</strong> Since genesis blocks don't have AuxPow, the function falls back to <code>CheckProofOfWork()</code></li>
-                    <li><strong>Guaranteed Validity:</strong> Because genesis block is mined during initialization, it always passes PoW validation</li>
+                    <li><strong>Guaranteed Validity:</strong> The consensus constructors assert the expected hash, so <code>CheckProofOfWork()</code> can never silently accept an invalid genesis</li>
                     <li><strong>Checkpoint Verification:</strong> Genesis block hash is stored in checkpoint data at height 0</li>
                 </ol>
                 
@@ -285,7 +278,7 @@ if (fCheckPOW && !CheckAuxPowProofOfWork(block, consensusParams))
     return error("ReadBlockFromDisk: Errors in block header");</code></pre>
                 
                 <div class="note">
-                    <strong>Critical:</strong> The genesis block is explicitly mined with valid PoW during <code>chainparams.cpp</code> initialization. This guarantees that <code>CheckProofOfWork()</code> will always pass for the genesis block, ensuring blockchain integrity from block 0.
+                    <strong>Critical:</strong> The asserted genesis hash and runtime <code>CheckProofOfWork()</code> call work together—one at compile time, one at runtime—to ensure the chain always anchors to a valid, known genesis block.
                 </div>
             </section>
         </main>

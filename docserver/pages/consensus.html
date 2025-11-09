@@ -225,71 +225,40 @@
                 <p>Digishield algorithm adjusts difficulty every block to maintain 60-second block time.</p>
                 
                 <h3>Genesis Block Mining</h3>
-                <p>The genesis block (block 0) is the foundation of the blockchain and must have valid Proof of Work.</p>
+                <p>The genesis block (block 0) is the foundation of the blockchain and must have valid Proof of Work. Fleet Credits now ships with pre-mined genesis data to keep startup snappy while still validating the same PoW.</p>
                 
-                <h4>Genesis Block Creation</h4>
-                <p>During chain parameter initialization, the genesis block is created with:</p>
+                <h4>Genesis Parameters (Mainnet)</h4>
                 <ul>
-                    <li><strong>Timestamp:</strong> January 1, 2026 00:00:00 UTC (1704067200)</li>
-                    <li><strong>Initial Nonce:</strong> 0</li>
-                    <li><strong>Difficulty:</strong> Network-specific (0x207fffff for regtest)</li>
-                    <li><strong>Block Reward:</strong> 10,000 FC</li>
-                    <li><strong>Coinbase Script:</strong> Contains genesis message "Nintondo"</li>
+                    <li><strong>Timestamp:</strong> November 4, 2025 00:00:00 UTC (<code>1730688000</code>)</li>
+                    <li><strong>Nonce:</strong> <code>905381</code></li>
+                    <li><strong>Difficulty:</strong> <code>0x1e0ffff0</code></li>
+                    <li><strong>Reward:</strong> 10,000 FC</li>
+                    <li><strong>Coinbase Message:</strong> <code>"Nintondo"</code></li>
+                    <li><strong>Genesis Hash:</strong> <code>829a84f34599ea8e4ac00eb998ff13cdb6fcc20585017c4890e8fe001b8aa95f</code></li>
+                    <li><strong>Merkle Root:</strong> <code>41644a825cd68f53c164e9eeddbbe82c408a61191f19e7954bf56291ee81d912</code></li>
                 </ul>
                 
-                <h4>Explicit PoW Mining</h4>
-                <p>In <code>chainparams.cpp</code>, the genesis block is explicitly mined during initialization:</p>
-                <pre><code>// Create genesis block
-genesis = CreateGenesisBlock(1704067200, 0, 0x207fffff, 1, 10000 * COIN);
-
-// Mine genesis block with valid PoW - CRITICAL for blockchain integrity
-const Consensus::Params& consensusParams = consensus;
-uint32_t maxNonceAttempts = 0xFFFFFFFF;
-uint32_t nonceAttempts = 0;
-
-while (!CheckProofOfWork(genesis.GetPoWHash(), genesis.nBits, consensusParams)) {
-    ++genesis.nNonce;
-    ++nonceAttempts;
-    
-    // Handle nonce wraparound
-    if (genesis.nNonce == 0) {
-        genesis.nTime++;
-        genesis.nNonce = 0;
-        nonceAttempts = 0;
-        
-        // Safety check: abort if mining fails
-        if (genesis.nTime > 1704067300) {
-            assert(false && "CRITICAL: Failed to mine genesis block");
-        }
-    }
-    
-    // Safety check: prevent infinite loops
-    if (nonceAttempts >= maxNonceAttempts) {
-        assert(false && "CRITICAL: Exceeded max nonce attempts");
-    }
-}
-
-// Verify mined genesis block
-assert(CheckProofOfWork(genesis.GetPoWHash(), genesis.nBits, consensusParams) &&
-       "CRITICAL: Mined genesis block failed PoW validation");
-
-// Store genesis hash
-consensus.hashGenesisBlock = genesis.GetHash();</code></pre>
+                <pre><code>// src/chainparams.cpp (mainnet)
+genesis = CreateGenesisBlock(1730688000, 905381, 0x1e0ffff0, 1, 10000 * COIN);
+consensus.hashGenesisBlock = genesis.GetHash();
+assert(consensus.hashGenesisBlock == uint256S("0x829a84f34599ea8e4ac00eb998ff13cdb6fcc20585017c4890e8fe001b8aa95f"));
+assert(genesis.hashMerkleRoot == uint256S("0x41644a825cd68f53c164e9eeddbbe82c408a61191f19e7954bf56291ee81d912"));
+</code></pre>
                 
-                <h4>Why Explicit Mining?</h4>
-                <p>The genesis block is mined during initialization to ensure:</p>
-                <ul>
-                    <li><strong>Guaranteed Validity:</strong> Genesis block always passes PoW validation</li>
-                    <li><strong>Consistency:</strong> Same validation function used for mining and validation</li>
-                    <li><strong>Integrity:</strong> Blockchain integrity is guaranteed from block 0</li>
-                    <li><strong>No AuxPow Confusion:</strong> Genesis blocks don't have AuxPow, so validation falls back to standard PoW</li>
-                </ul>
+                <div class="info-box">
+                    Hardcoding the mined values removes the expensive “mine-on-startup” loop that previously delayed daemon launch by several minutes. Startup now validates the genesis block instantly while still enforcing PoW via the assertions above.
+                </div>
+
+                <h4>Testnet / Regtest</h4>
+                <p>Testnet and regtest retain the runtime mining loop so developers can tweak consensus parameters without recomputing hashes. Their genesis blocks reuse the November 2025 timestamp but mine a nonce at startup (see the loop in the testnet/regtest sections of <code>chainparams.cpp</code>).</p>
                 
-                <h4>Network-Specific Genesis Blocks</h4>
+                <h4>Why Explicit Validation?</h4>
+                <p>Even with pre-mined values, the code still demonstrates the validation path:</p>
                 <ul>
-                    <li><strong>Mainnet:</strong> Pre-mined genesis block with specific hash</li>
-                    <li><strong>Testnet:</strong> Pre-mined genesis block with specific hash</li>
-                    <li><strong>Regtest:</strong> Genesis block mined dynamically during initialization with difficulty 0x207fffff (instant mining)</li>
+                    <li><strong>Guaranteed Validity:</strong> The asserted hash enforces the expected PoW result.</li>
+                    <li><strong>Consistency:</strong> <code>CheckProofOfWork()</code> is still used at runtime; the hardcoded hash simply short-circuits mining.</li>
+                    <li><strong>Integrity:</strong> Checkpoints store the same genesis hash at height 0.</li>
+                    <li><strong>No AuxPow Confusion:</strong> Genesis blocks omit AuxPow so validation automatically falls back to standard PoW.</li>
                 </ul>
                 
                 <h4>Genesis Block Validation</h4>
@@ -302,7 +271,7 @@ consensus.hashGenesisBlock = genesis.GetHash();</code></pre>
                 </ol>
                 
                 <div class="note">
-                    <strong>Critical:</strong> The genesis block MUST have valid PoW. This is enforced during initialization, guaranteeing blockchain integrity from the very first block. The same <code>CheckProofOfWork()</code> function is used for both mining and validation, ensuring perfect consistency.
+                    <strong>Critical:</strong> The genesis block MUST have valid PoW. The hardcoded values (and associated assertions) guarantee this at compile time while <code>CheckProofOfWork()</code> enforces it at runtime.
                 </div>
             </section>
         </main>

@@ -225,15 +225,15 @@
                 <h3>Mainnet</h3>
                 <table>
                     <tr><th>Parameter</th><th>Value</th></tr>
-                    <tr><td>P2P Port</td><td>22556</td></tr>
-                    <tr><td>RPC Port</td><td>22555</td></tr>
+                    <tr><td>P2P Port</td><td>42069</td></tr>
+                    <tr><td>RPC Port</td><td>42068</td></tr>
                     <tr><td>Message Start</td><td><code>0xFC 0x43 0x52 0x45</code> ("FCRE" for Fleet Credits)</td></tr>
-                    <tr><td>Genesis Timestamp</td><td>January 1, 2026 00:00:00 UTC (1704067200)</td></tr>
+                    <tr><td>Genesis Timestamp</td><td>November 4, 2025 00:00:00 UTC (1730688000)</td></tr>
                     <tr><td>Block Time</td><td>60 seconds</td></tr>
                     <tr><td>Block Reward</td><td>10,000 FC (fixed, no halving)</td></tr>
                     <tr><td>Max Block Size</td><td>1 MB</td></tr>
                     <tr><td>Difficulty Algorithm</td><td>Digishield</td></tr>
-                    <tr><td>Seed Nodes</td><td>96.126.123.195:22556 (public server)</td></tr>
+                    <tr><td>Seed Nodes</td><td>96.126.123.195:42069 (public mainnet bootstrap)</td></tr>
                 </table>
 
                 <h3>Testnet</h3>
@@ -242,9 +242,9 @@
                     <tr><td>P2P Port</td><td>44556</td></tr>
                     <tr><td>RPC Port</td><td>44555</td></tr>
                     <tr><td>Message Start</td><td><code>0xFC 0x54 0x45 0x53</code> ("FTES" for Fleet Credits Testnet)</td></tr>
-                    <tr><td>Genesis Timestamp</td><td>January 1, 2026 00:00:00 UTC</td></tr>
+                    <tr><td>Genesis Timestamp</td><td>November 4, 2025 00:00:00 UTC (1730688000)</td></tr>
                     <tr><td>Block Time</td><td>60 seconds</td></tr>
-                    <tr><td>Seed Nodes</td><td>96.126.123.195:44556 (public server)</td></tr>
+                    <tr><td>Seed Nodes</td><td>Manual addnode (no public seed yet)</td></tr>
                 </table>
 
                 <h3>Regtest</h3>
@@ -261,7 +261,7 @@
                 <p>All networks share the same genesis block properties:</p>
                 <table>
                     <tr><th>Property</th><th>Value</th></tr>
-                    <tr><td>Timestamp</td><td>January 1, 2026 00:00:00 UTC (1704067200)</td></tr>
+                    <tr><td>Timestamp</td><td>November 4, 2025 00:00:00 UTC (1730688000)</td></tr>
                     <tr><td>Block Reward</td><td>10,000 FC</td></tr>
                     <tr><td>Coinbase Message</td><td>"Nintondo"</td></tr>
                     <tr><td>Previous Hash</td><td>0000000000000000000000000000000000000000000000000000000000000000</td></tr>
@@ -277,14 +277,14 @@
                     <li>Handle nonce wraparound by incrementing timestamp if needed</li>
                     <li>Verify mined block passes PoW validation</li>
                     <li>Store genesis hash in consensus parameters</li>
-                    <li>Add genesis hash to checkpoint data at height 0</li>
+                    <li>Add genesis hash <code>(829a84f34599...)</code> to checkpoint data at height 0</li>
                 </ol>
-                <p>This ensures the genesis block always has valid PoW, guaranteeing blockchain integrity from block 0.</p>
+                <p>Fleet Credits now hardcodes the mined genesis values in <code>chainparams.cpp</code>, eliminating the expensive "mine on startup" loop and reducing daemon boot time from minutes to seconds.</p>
 
                 <h3>Base58 Address Prefixes</h3>
                 <table>
                     <tr><th>Type</th><th>Mainnet</th><th>Testnet</th></tr>
-                    <tr><td>Pubkey Address</td><td>0x23 (35)</td><td>0x71 (113)</td></tr>
+                    <tr><td>Pubkey Address</td><td>0x1E (30)</td><td>0x71 (113)</td></tr>
                     <tr><td>Script Address</td><td>0x16 (22)</td><td>0xc4 (196)</td></tr>
                     <tr><td>Secret Key</td><td>0x9e (158)</td><td>0xf1 (241)</td></tr>
                     <tr><td>Extended Pubkey</td><td>0x04, 0x88, 0xB2, 0x1E</td><td>0x04, 0x35, 0x87, 0xCF</td></tr>
@@ -295,7 +295,7 @@
                 <table>
                     <tr><th>Parameter</th><th>Value</th></tr>
                     <tr><td>Subsidy</td><td>10,000 FC per block</td></tr>
-                    <td>Target Timespan</td><td>60 seconds</td></tr>
+                    <tr><td>Target Timespan</td><td>60 seconds</td></tr>
                     <tr><td>Target Spacing</td><td>60 seconds</td></tr>
                     <tr><td>Difficulty Adjustment</td><td>Every block</td></tr>
                     <tr><td>Pow Algorithm</td><td>Scrypt</td></tr>
@@ -303,22 +303,31 @@
 
                 <h3>Configuration File</h3>
                 <p>Edit <code>~/.fleetcredits/fleetcredits.conf</code> (Linux/Mac) or <code>%APPDATA%\\FleetCredits\\fleetcredits.conf</code> (Windows):</p>
-                <pre><code># Basic Configuration
-rpcuser=your_username
-rpcpassword=your_password
-rpcport=22555
-rpcallowip=127.0.0.1
+                <pre><code># Mainnet configuration (fleetcredits.conf)
 server=1
+daemon=1
+listen=1
+bind=0.0.0.0
+port=42069
 
-# Network Selection
-# mainnet=1    # Mainnet (default)
-# testnet=1   # Testnet
-# regtest=1   # Regtest
+# RPC (keep credentials secret)
+rpcuser=YOUR_RPC_USERNAME
+rpcpassword=YOUR_SECURE_PASSWORD
+rpcport=42068
+rpcallowip=127.0.0.1
+# rpcallowip=TRUSTED_IP/32   # optional
 
-# Optional Settings
-# checkpoints=0    # Disable checkpoints
-# daemon=1         # Run as daemon
-# listen=1         # Accept connections</code></pre>
+# Recommended tuning
+dbcache=1000
+maxconnections=200
+txindex=1
+whitelist=TRUSTED_IP            # prevents bans for your management host
+logtimestamps=1
+debug=net</code></pre>
+
+                <div class="warning-box">
+                    <strong>Chainstate Safety:</strong> If you previously ran a node pointed at another network (old ports or different genesis), delete <code>blocks/</code> and <code>chainstate/</code> in your data directory before restarting. Mixing data from incompatible chains triggers <code>non-canonical ReadCompactSize()</code> failures and automatic bans.
+                </div>
 
                 <h3>Network Isolation</h3>
                 <p>Fleet Credits is <strong>completely isolated</strong> from Dogecoin and other networks:</p>
@@ -331,8 +340,8 @@ server=1
                         </ul>
                     </li>
                     <li><strong>Genesis Block:</strong> Unique genesis block hash identifies Fleet Credits network</li>
-                    <li><strong>Seed Nodes:</strong> Public seed node at 96.126.123.195 (mainnet:22556, testnet:44556) - additional nodes can be added manually</li>
-                    <li><strong>Port Numbers:</strong> Different ports prevent accidental connections</li>
+                    <li><strong>Seed Nodes:</strong> Initial bootstrapping uses <code>96.126.123.195:42069</code>; additional seed entries can be compiled into <code>chainparamsseeds.h</code> as new public peers come online.</li>
+                    <li><strong>Port Numbers:</strong> Mainnet <code>42069</code> (P2P) / <code>42068</code> (RPC). Testnet/regtest retain legacy Dogecoin-compatible ports for tooling compatibility.</li>
                 </ul>
                 <p>These ensure Fleet Credits nodes only connect to other Fleet Credits nodes and not Dogecoin or Bitcoin nodes.</p>
                 

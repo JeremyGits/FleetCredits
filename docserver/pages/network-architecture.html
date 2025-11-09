@@ -276,8 +276,8 @@ Regtest:  0xFA 0xBF 0xB5 0xDA  (Standard regtest)</code></pre>
                     <tbody>
                         <tr>
                             <td>Mainnet</td>
-                            <td>22556</td>
-                            <td>22555</td>
+                            <td>42069</td>
+                            <td>42068</td>
                         </tr>
                         <tr>
                             <td>Testnet</td>
@@ -293,13 +293,14 @@ Regtest:  0xFA 0xBF 0xB5 0xDA  (Standard regtest)</code></pre>
                 </table>
 
                 <h3>Seed Nodes</h3>
-                <p><strong>Current Status:</strong> Fleet Credits has NO seed nodes (fresh network)</p>
+                <p><strong>Current Status:</strong> Fleet Credits ships with a single fixed seed for bootstrap.</p>
                 <ul>
-                    <li>Old Dogecoin seeds have been removed</li>
-                    <li>Nodes must be manually connected via <code>-addnode</code> or <code>-connect</code></li>
-                    <li>Seed nodes will be deployed when mainnet launches</li>
+                    <li><strong>Mainnet Seed:</strong> <code>96.126.123.195:42069</code> (stored in <code>vFixedSeeds</code>)</li>
+                    <li>Old Dogecoin seeds have been removed to prevent cross-network traffic</li>
+                    <li>Additional public nodes can be compiled into <code>chainparamsseeds.h</code> as the network grows</li>
+                    <li>For private testing, continue to use <code>-addnode</code> / <code>-connect</code></li>
                 </ul>
-                <p><strong>Location:</strong> <code>src/chainparams.cpp</code> - <code>vFixedSeeds.clear()</code></p>
+                <p><strong>Location:</strong> <code>src/chainparams.cpp</code> - <code>vFixedSeeds.push_back(...)</code></p>
             </section>
 
             <section class="content-section">
@@ -355,10 +356,13 @@ Regtest:  0xFA 0xBF 0xB5 0xDA  (Standard regtest)</code></pre>
 # Node 3 (Connect to either)
 ./fleetcreditsd -testnet -daemon -addnode=192.168.1.100:44556 -addnode=192.168.1.101:44556</code></pre>
 
-                <h3>Public Mainnet (Future)</h3>
-                <p>Once seed nodes are deployed:</p>
-                <pre><code># Start node - will automatically discover peers
+                <h3>Public Mainnet</h3>
+                <p>Current bootstrap relies on the hardcoded seed:</p>
+                <pre><code># Start node - connects to 96.126.123.195:42069 automatically
 ./fleetcreditsd -daemon
+
+# Force connection if necessary
+./fleetcreditsd -daemon -connect=96.126.123.195:42069
 
 # Check peer connections
 ./fleetcredits-cli getpeerinfo</code></pre>
@@ -376,6 +380,10 @@ Regtest:  0xFA 0xBF 0xB5 0xDA  (Standard regtest)</code></pre>
                     <li><strong>Block Propagation:</strong> Share new blocks with connected peers</li>
                     <li><strong>Peer Exchange:</strong> Share known peer addresses</li>
                 </ol>
+
+                <div class="info-box">
+                    <strong>Handshake accuracy:</strong> Fleet Credits calls <code>connman.SetBestHeight()</code> immediately after block index load/rewind (see <code>src/init.cpp</code>). This ensures the <code>startingheight</code> field advertised in the <code>version</code> message reflects the node's actual chain tip, preventing premature bans during initial sync.
+                </div>
 
                 <h3>Message Types</h3>
                 <ul>
@@ -414,7 +422,7 @@ Regtest:  0xFA 0xBF 0xB5 0xDA  (Standard regtest)</code></pre>
 
                 <ul>
                     <li><strong>No peers found:</strong> Network is new, no seed nodes yet</li>
-                    <li><strong>Firewall blocking:</strong> Port 22556 not open</li>
+                    <li><strong>Firewall blocking:</strong> Port 42069 not open</li>
                     <li><strong>Wrong network:</strong> Trying to connect to wrong network (fixed now!)</li>
                     <li><strong>Regtest mode:</strong> No network connections (by design)</li>
                 </ul>

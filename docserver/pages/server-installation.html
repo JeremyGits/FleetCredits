@@ -445,7 +445,7 @@ ls -lh src/fleetcredits-cli</code></pre>
             <strong>Open P2P Ports</strong>
             <p>Allow incoming connections for peer-to-peer networking:</p>
             <pre><code># Mainnet P2P port
-sudo ufw allow 22556/tcp
+sudo ufw allow 42069/tcp
 
 # Testnet P2P port (optional, for testing)
 sudo ufw allow 44556/tcp</code></pre>
@@ -456,10 +456,10 @@ sudo ufw allow 44556/tcp</code></pre>
             <strong>Configure RPC Access (Secure)</strong>
             <p><strong>Option A: Restrict to Your IP (Recommended)</strong></p>
             <pre><code># Replace YOUR_IP with your actual IP address
-sudo ufw allow from YOUR_IP to any port 22555</code></pre>
+sudo ufw allow from YOUR_IP to any port 42068 proto tcp</code></pre>
             
             <p><strong>Option B: Allow from Anywhere (Less Secure, Easier for Testing)</strong></p>
-            <pre><code>sudo ufw allow 22555/tcp</code></pre>
+            <pre><code>sudo ufw allow 42068/tcp</code></pre>
             
             <div class="warning">
                 <strong>⚠️ Security Warning:</strong> RPC access without authentication can allow unauthorized access. Always use <code>rpcuser</code> and <code>rpcpassword</code> in configuration.
@@ -512,30 +512,35 @@ sudo ufw allow from YOUR_IP to any port 22555</code></pre>
             <pre><code>nano ~/.fleetcredits/fleetcredits.conf</code></pre>
             
             <p>Add basic configuration:</p>
-            <pre><code># Fleet Credits Configuration File
-# Mainnet
+            <pre><code># Fleet Credits Mainnet (fleetcredits.conf)
 server=1
 daemon=1
 listen=1
 bind=0.0.0.0
-port=22556
-rpcport=22555
-rpcuser=YOUR_RPC_USERNAME
-rpcpassword=YOUR_SECURE_PASSWORD
+port=42069
+
+# RPC (secure this!)
+rpcuser=FleetCreditsBros
+rpcpassword=whatdoyoumeanidontmeetthepasswordrequirements?!
+rpcport=42068
 rpcallowip=127.0.0.1
-rpcallowip=YOUR_IP_ADDRESS
+# rpcallowip=YOUR_IP/32
 
-# Logging
-logtimestamps=1
-debug=1
+# Performance / indexing
+dbcache=1000
+txindex=1          # requires one-time -reindex-chainstate after enabling
+maxconnections=200
+whitelist=YOUR_IP  # prevents accidental bans from your management host
 
-# Network
-maxconnections=125
-addnode=PEER_IP_1:22556
-addnode=PEER_IP_2:22556</code></pre>
+# Optional peers
+addnode=96.126.123.195:42069</code></pre>
             
             <div class="warning">
                 <strong>⚠️ Security:</strong> Change <code>YOUR_RPC_USERNAME</code> and <code>YOUR_SECURE_PASSWORD</code> to secure values. Restrict <code>rpcallowip</code> to trusted IPs.
+            </div>
+            
+            <div class="info">
+                Prefer managing the production file via the repository template <code>fleetcredits/SERVER_MAINNET_CONFIG.conf</code>. Deploy it to <code>/home/USER/FleetCredits/SERVER_MAINNET_CONFIG.conf</code> and point the daemon to it with <code>-conf=...</code> (as shown in the systemd unit below).
             </div>
         </div>
 
@@ -554,8 +559,8 @@ After=network.target
 [Service]
 Type=forking
 User=YOUR_USERNAME
-ExecStart=/home/YOUR_USERNAME/FleetCredits/src/fleetcreditsd -daemon -pid=/home/YOUR_USERNAME/.fleetcredits/fleetcreditsd.pid
-ExecStop=/home/YOUR_USERNAME/FleetCredits/src/fleetcredits-cli stop
+ExecStart=/home/YOUR_USERNAME/FleetCredits/src/fleetcreditsd -daemon -conf=/home/YOUR_USERNAME/FleetCredits/SERVER_MAINNET_CONFIG.conf -pid=/home/YOUR_USERNAME/.fleetcredits/fleetcreditsd.pid
+ExecStop=/home/YOUR_USERNAME/FleetCredits/src/fleetcredits-cli -conf=/home/YOUR_USERNAME/FleetCredits/SERVER_MAINNET_CONFIG.conf stop
 PIDFile=/home/YOUR_USERNAME/.fleetcredits/fleetcreditsd.pid
 Restart=on-failure
 RestartSec=10
@@ -598,6 +603,10 @@ sudo systemctl start fleetcreditsd</code></pre>
             <span class="step-number">3</span>
             <strong>Check Logs</strong>
             <pre><code>tail -f ~/.fleetcredits/debug.log</code></pre>
+        </div>
+
+        <div class="warning-box">
+            <strong>One-Time Index Rebuild:</strong> After enabling <code>txindex=1</code> or changing ports, restart with <code>./src/fleetcreditsd -daemon -reindex-chainstate</code> once. Wait for the reindex to finish, then stop the daemon cleanly and restart normally.
         </div>
 
         <h2>🐛 Troubleshooting</h2>
@@ -643,13 +652,22 @@ sudo apt-get install libboost-all-dev  # If you see Boost errors</code></pre>
         <div class="error">
             <strong>❌ Error: "Address already in use"</strong>
             <p>Solution: Port is already in use. Find and kill the process:</p>
-            <pre><code>sudo netstat -tulpn | grep 22556
+            <pre><code>sudo netstat -tulpn | grep 42069
 sudo kill <PID></code></pre>
         </div>
 
         <div class="error">
             <strong>❌ Error: "RPC_IN_WARMUP"</strong>
             <p>Solution: Daemon is still initializing. Wait 30-60 seconds and try again.</p>
+        </div>
+
+        <div class="error">
+            <strong>❌ Error: "non-canonical ReadCompactSize(): iostream error"</strong>
+            <p>Solution: Your data directory contains blocks from a different network (old ports/genesis). Stop the daemon and clear stale data:</p>
+            <pre><code>./src/fleetcredits-cli stop
+rm -rf ~/.fleetcredits/blocks ~/.fleetcredits/chainstate ~/.fleetcredits/peers.dat ~/.fleetcredits/banlist.dat
+./src/fleetcreditsd -daemon -reindex-chainstate</code></pre>
+            <p>Once the reindex finishes, restart normally. This reset also prevents your server from banning trusted peers.</p>
         </div>
 
         <div class="error">
