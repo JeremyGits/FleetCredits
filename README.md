@@ -67,8 +67,8 @@ Fleet Credits is a **technical software project** built by developers, for devel
 
 | Function | Mainnet | Testnet | Regtest |
 |----------|---------|---------|---------|
-| P2P      | 22556   | 44556   | 18444   |
-| RPC      | 22555   | 44555   | 18332   |
+| P2P      | 42069   | 44556   | 18444   |
+| RPC      | 42068   | 44555   | 18332   |
 
 ### MWEB (Mimblewimble Extension Blocks)
 - **Optional Privacy**: Transactions can be routed through MWEB for privacy
