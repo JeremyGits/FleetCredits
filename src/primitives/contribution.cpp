@@ -11,29 +11,30 @@
 
 #include <algorithm>
 
-/** Calculate bonus multiplier based on bonus level and contribution type */
-double GetBonusMultiplier(uint32_t bonus_level, ContributionType contrib_type) {
-    double multiplier = 1.0;
-    
+/** Return the total block payout for a given bonus level and contribution type */
+CAmount GetContributionTierPayout(uint32_t bonus_level, ContributionType contrib_type) {
     switch (bonus_level) {
         case BONUS_LOW:
-            multiplier = 1.05;
-            break;
+            return FC_FOUNDATIONAL_BLOCK_REWARD;
         case BONUS_MEDIUM:
-            multiplier = 1.10;
-            break;
+            return FC_SUBSTANTIVE_BLOCK_REWARD;
         case BONUS_HIGH:
-            multiplier = 1.15;
-            break;
+            return FC_HIGH_IMPACT_BLOCK_REWARD;
         case BONUS_CRITICAL:
-            // AI validation gets 1.25x, others get 1.20x
-            multiplier = (contrib_type == AI_VALIDATION) ? 1.25 : 1.20;
-            break;
+            // Critical tier reserved for sensitive flows (AI validation / ethical review)
+            if (contrib_type == AI_VALIDATION || contrib_type == ETHICAL_REVIEW) {
+                return FC_CRITICAL_BLOCK_REWARD;
+            }
+            return FC_HIGH_IMPACT_BLOCK_REWARD;
         default:
-            multiplier = 1.0;
+            return FC_BASE_BLOCK_REWARD;
     }
-    
-    return multiplier;
+}
+
+/** Calculate bonus multiplier based on bonus level and contribution type */
+double GetBonusMultiplier(uint32_t bonus_level, ContributionType contrib_type) {
+    CAmount tierReward = GetContributionTierPayout(bonus_level, contrib_type);
+    return static_cast<double>(tierReward) / static_cast<double>(FC_BASE_BLOCK_REWARD);
 }
 
 /** Calculate individual contributor reward
@@ -48,28 +49,20 @@ CAmount CalculateContributorReward(const CContributionTransaction& contrib, CAmo
     // Calculate this contributor's share of the bonus
     // For now, distribute bonus equally among all contributors
     // Future: Could weight by contribution type, bonus level, etc.
-    double multiplier = GetBonusMultiplier(contrib.bonus_level, contrib.contrib_type);
-    double baseMultiplier = 1.0;  // Base multiplier (no bonus)
-    
-    // Calculate this contributor's portion of the bonus
-    // Use a simple formula: contributor gets portion based on their bonus multiplier
-    // Total bonus = totalBonusReward - baseReward
+    CAmount tierReward = GetContributionTierPayout(contrib.bonus_level, contrib.contrib_type);
     CAmount bonusAmount = totalBonusReward - baseReward;
-    
-    if (bonusAmount <= 0) {
+    if (bonusAmount <= 0 || tierReward <= baseReward) {
         return 0;
     }
     
-    // Distribute bonus proportionally based on individual multiplier
-    // Weight = (multiplier - 1.0) / (sum of all (multiplier - 1.0))
-    // For simplicity, each contributor gets a share based on their multiplier
-    double contributorBonusShare = (multiplier - baseMultiplier);
-    
-    // Normalize: if highest bonus is 1.25x, share = (1.25-1.0) = 0.25
-    // This gives higher bonus contributors more of the bonus pool
-    CAmount contributorReward = static_cast<CAmount>(baseReward * contributorBonusShare);
-    
-    return contributorReward;
+    CAmount tierBonusOverBase = tierReward - baseReward;
+
+    // Weight contributor rewards by the amount of bonus they introduce
+    // Normalize by dividing bonusAmount proportionally across contributors
+    // who contributed to bonus-worthy activity.
+    // NOTE: The caller is responsible for scaling these weights relative
+    // to all contributors in the block.
+    return tierBonusOverBase;
 }
 
 /** Get bonus level name as string */

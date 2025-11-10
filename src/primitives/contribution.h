@@ -5,6 +5,7 @@
 #ifndef FLEETCREDITS_PRIMITIVES_CONTRIBUTION_H
 #define FLEETCREDITS_PRIMITIVES_CONTRIBUTION_H
 
+#include "amount.h"
 #include "primitives/transaction.h"
 #include "pubkey.h"
 #include "serialize.h"
@@ -24,6 +25,13 @@ enum ContributionType {
     DATA_LABELING = 0x07,
     ETHICAL_REVIEW = 0x08
 };
+
+/** Fleet Credits reward schedule (denominated in koinu) */
+static constexpr CAmount FC_BASE_BLOCK_REWARD          = 100000069;  // 1.00000069 FC
+static constexpr CAmount FC_FOUNDATIONAL_BLOCK_REWARD  = 125000420;  // 1.25000420 FC
+static constexpr CAmount FC_SUBSTANTIVE_BLOCK_REWARD   = 175000006;  // 1.75000006 FC
+static constexpr CAmount FC_HIGH_IMPACT_BLOCK_REWARD   = 269000009;  // 2.69000009 FC
+static constexpr CAmount FC_CRITICAL_BLOCK_REWARD      = 369428008;  // 3.69428008 FC (AI/Ethical)
 
 /** Bonus levels for contribution rewards */
 enum BonusLevel {
@@ -279,6 +287,7 @@ double GetBonusMultiplier(uint32_t bonus_level, ContributionType contrib_type);
 CAmount CalculateContributorReward(const CContributionTransaction& contrib, CAmount baseReward, CAmount totalBonusReward);
 std::string GetBonusLevelName(uint32_t bonus_level);
 std::string GetContributionTypeName(ContributionType type);
+CAmount GetContributionTierPayout(uint32_t bonus_level, ContributionType contrib_type);
 uint256 CalculateProofDataHash(const CProofData& proof_data);
 bool ValidateContributionTransaction(const CContributionTransaction& contrib_tx);
 bool ValidateCodeContribution(const CCodeContributionTransaction& code_tx);
