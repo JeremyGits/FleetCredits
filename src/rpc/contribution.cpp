@@ -385,7 +385,7 @@ UniValue getcontributionstatus(const JSONRPCRequest& request)
     }
 
     // Calculate reward based on bonus level
-    CAmount baseReward = 10000 * COIN;  // Base block reward
+    CAmount baseReward = FC_BASE_BLOCK_REWARD;  // Base block reward
     double multiplier = GetBonusMultiplier(contrib_tx.bonus_level, contrib_tx.contrib_type);
     CAmount reward = static_cast<CAmount>(baseReward * multiplier);
 
@@ -547,7 +547,7 @@ UniValue listcontributions(const JSONRPCRequest& request)
                 }
                 
                 // Calculate reward
-                CAmount baseReward = 10000 * COIN;
+                CAmount baseReward = FC_BASE_BLOCK_REWARD;
                 double multiplier = GetBonusMultiplier(contrib_tx.bonus_level, contrib_tx.contrib_type);
                 CAmount reward = static_cast<CAmount>(baseReward * multiplier);
                 
@@ -590,7 +590,7 @@ UniValue listcontributions(const JSONRPCRequest& request)
                 }
                 
                 // Calculate reward
-                CAmount baseReward = 10000 * COIN;
+                CAmount baseReward = FC_BASE_BLOCK_REWARD;
                 double multiplier = GetBonusMultiplier(contrib_tx.bonus_level, contrib_tx.contrib_type);
                 CAmount reward = static_cast<CAmount>(baseReward * multiplier);
                 
