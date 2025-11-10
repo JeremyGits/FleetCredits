@@ -18,15 +18,15 @@ class CCoinsViewCache;
 
 /** Fleet Credits: Zero-fee threshold for micro-transactions
  * 
- * Transactions with total output value < MICRO_TX_THRESHOLD (1000 FC)
+ * Transactions with total output value < MICRO_TX_THRESHOLD (0.01 FC)
  * are exempt from fees to encourage micro-transactions and reduce friction.
  */
-static const CAmount MICRO_TX_THRESHOLD = 1000 * COIN; // 1000 FC
+static const CAmount MICRO_TX_THRESHOLD = 1 * CENT; // 0.01 FC
 
 /** Recommended transaction fee by Fleet Credits Core developers
  *
  * All fee defaults used throughout the client derive their
- * value from this base default. For transactions >= 1000 FC,
+ * value from this base default. For transactions >= 0.01 FC,
  * fees scale with transaction size.
  */
 static const CAmount RECOMMENDED_MIN_TX_FEE = COIN / 100;

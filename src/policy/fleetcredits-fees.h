@@ -10,7 +10,7 @@
 class CTransaction;
 
 // Fleet Credits: Zero-fee threshold for micro-transactions
-// Transactions with total output value < MICRO_TX_THRESHOLD (1000 FC)
+// Transactions with total output value < MICRO_TX_THRESHOLD (0.01 FC)
 // are exempt from fees to encourage micro-transactions and reduce friction.
 CAmount GetFleetCreditsMinFee(const CTransaction& tx, unsigned int nBytes, bool fAllowFree);
 
