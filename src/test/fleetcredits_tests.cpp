@@ -5,119 +5,87 @@
 #include "arith_uint256.h"
 #include "chainparams.h"
 #include "fleetcredits.h"
+#include "key.h"
+#include "primitives/contribution.h"
 #include "test/test_fleetcredits.h"
 
 #include <boost/test/unit_test.hpp>
 
 BOOST_FIXTURE_TEST_SUITE(fleetcredits_tests, TestingSetup)
 
-/**
- * the maximum block reward at a given height for a block without fees
- */
-uint64_t expectedMaxSubsidy(int height) {
-    if (height < 100000) {
-        return 1000000 * COIN;
-    } else if (height < 145000) {
-        return 500000 * COIN;
-    } else if (height < 200000) {
-        return 250000 * COIN;
-    } else if (height < 300000) {
-        return 125000 * COIN;
-    } else if (height < 400000) {
-        return  62500 * COIN;
-    } else if (height < 500000) {
-        return  31250 * COIN;
-    } else if (height < 600000) {
-        return  15625 * COIN;
-    } else {
-        return  10000 * COIN;
+static CContributionTransaction MakeStubContribution(CKey& key, ContributionType type, uint32_t bonusLevel)
+{
+    CContributionTransaction contrib;
+    contrib.contrib_type = type;
+    contrib.bonus_level = bonusLevel;
+    contrib.contributor = key.GetPubKey();
+    contrib.timestamp = 1776643200; // deterministic test timestamp
+    contrib.signature = std::vector<unsigned char>(1, 0x01);
+
+    contrib.proof_data.contrib_type = type;
+    contrib.proof_data.timestamp = contrib.timestamp;
+    contrib.proof_data.evidence = {0x01};
+    contrib.proof_data.nonce = {0x02};
+    contrib.proof_data.metadata = {0x03};
+    contrib.proof_data.hash = CalculateProofDataHash(contrib.proof_data);
+
+    if (type == ETHICAL_REVIEW) {
+        contrib.requires_mweb = true;
     }
+
+    return contrib;
 }
 
-/**
- * the minimum possible value for the maximum block reward at a given height
- * for a block without fees
- */
-uint64_t expectedMinSubsidy(int height) {
-    if (height < 100000) {
-        return 0;
-    } else if (height < 145000) {
-        return 0;
-    } else if (height < 200000) {
-        return 250000 * COIN;
-    } else if (height < 300000) {
-        return 125000 * COIN;
-    } else if (height < 400000) {
-        return  62500 * COIN;
-    } else if (height < 500000) {
-        return  31250 * COIN;
-    } else if (height < 600000) {
-        return  15625 * COIN;
-    } else {
-        return  10000 * COIN;
-    }
-}
-
-BOOST_AUTO_TEST_CASE(subsidy_first_100k_test)
+BOOST_AUTO_TEST_CASE(block_subsidy_constant_reward)
 {
     const CChainParams& mainParams = Params(CBaseChainParams::MAIN);
-    CAmount nSum = 0;
-    arith_uint256 prevHash = UintToArith256(uint256S("0"));
+    const uint256 prevHash;
 
-    for (int nHeight = 0; nHeight <= 100000; nHeight++) {
-        const Consensus::Params& params = mainParams.GetConsensus(nHeight);
-        CAmount nSubsidy = GetFleetCreditsBlockSubsidy(nHeight, params, ArithToUint256(prevHash));
-        BOOST_CHECK(MoneyRange(nSubsidy));
-        BOOST_CHECK(nSubsidy <= 1000000 * COIN);
-        nSum += nSubsidy;
-        // Use nSubsidy to give us some variation in previous block hash, without requiring full block templates
-        prevHash += nSubsidy;
+    for (int height : {0, 1, 1000, 100000, 1000000}) {
+        const Consensus::Params& params = mainParams.GetConsensus(height);
+        CAmount subsidy = GetFleetCreditsBlockSubsidy(height, params, prevHash);
+        BOOST_CHECK_EQUAL(subsidy, FC_BASE_BLOCK_REWARD);
     }
-
-    const CAmount expected = 54894174438 * COIN;
-    BOOST_CHECK_EQUAL(expected, nSum);
 }
 
-BOOST_AUTO_TEST_CASE(subsidy_100k_145k_test)
+BOOST_AUTO_TEST_CASE(contribution_tier_payout_mapping)
 {
-    const CChainParams& mainParams = Params(CBaseChainParams::MAIN);
-    CAmount nSum = 0;
-    arith_uint256 prevHash = UintToArith256(uint256S("0"));
-
-    for (int nHeight = 100000; nHeight <= 145000; nHeight++) {
-        const Consensus::Params& params = mainParams.GetConsensus(nHeight);
-        CAmount nSubsidy = GetFleetCreditsBlockSubsidy(nHeight, params, ArithToUint256(prevHash));
-        BOOST_CHECK(MoneyRange(nSubsidy));
-        BOOST_CHECK(nSubsidy <= 500000 * COIN);
-        nSum += nSubsidy;
-        // Use nSubsidy to give us some variation in previous block hash, without requiring full block templates
-        prevHash += nSubsidy;
-    }
-
-    const CAmount expected = 12349960000 * COIN;
-    BOOST_CHECK_EQUAL(expected, nSum);
+    BOOST_CHECK_EQUAL(GetContributionTierPayout(BONUS_NONE, CODE_CONTRIBUTION), FC_BASE_BLOCK_REWARD);
+    BOOST_CHECK_EQUAL(GetContributionTierPayout(BONUS_LOW, CODE_CONTRIBUTION), FC_FOUNDATIONAL_BLOCK_REWARD);
+    BOOST_CHECK_EQUAL(GetContributionTierPayout(BONUS_MEDIUM, CREATIVE_WORK), FC_SUBSTANTIVE_BLOCK_REWARD);
+    BOOST_CHECK_EQUAL(GetContributionTierPayout(BONUS_HIGH, DATA_LABELING), FC_HIGH_IMPACT_BLOCK_REWARD);
+    BOOST_CHECK_EQUAL(GetContributionTierPayout(BONUS_CRITICAL, AI_VALIDATION), FC_CRITICAL_BLOCK_REWARD);
+    // Non-AI/Ethical contributions default to high-impact payout even if marked critical
+    BOOST_CHECK_EQUAL(GetContributionTierPayout(BONUS_CRITICAL, CODE_CONTRIBUTION), FC_HIGH_IMPACT_BLOCK_REWARD);
 }
 
-// Check the simplified rewards after block 145,000
-BOOST_AUTO_TEST_CASE(subsidy_post_145k_test)
+BOOST_AUTO_TEST_CASE(block_subsidy_with_contributions)
 {
     const CChainParams& mainParams = Params(CBaseChainParams::MAIN);
-    const uint256 prevHash = uint256S("0");
+    const Consensus::Params& params = mainParams.GetConsensus(1);
+    const uint256 prevHash;
 
-    for (int nHeight = 145000; nHeight < 600000; nHeight++) {
-        const Consensus::Params& params = mainParams.GetConsensus(nHeight);
-        CAmount nSubsidy = GetFleetCreditsBlockSubsidy(nHeight, params, prevHash);
-        CAmount nExpectedSubsidy = (500000 >> (nHeight / 100000)) * COIN;
-        BOOST_CHECK(MoneyRange(nSubsidy));
-        BOOST_CHECK_EQUAL(nSubsidy, nExpectedSubsidy);
-    }
+    CKey key;
+    key.MakeNewKey(true);
 
-    // Test reward at 600k+ is constant
-    CAmount nConstantSubsidy = GetFleetCreditsBlockSubsidy(600000, mainParams.GetConsensus(600000), prevHash);
-    BOOST_CHECK_EQUAL(nConstantSubsidy, 10000 * COIN);
+    // No contributions -> base reward
+    BOOST_CHECK_EQUAL(
+        GetFleetCreditsBlockSubsidyWithContributions(1, params, prevHash, {}),
+        FC_BASE_BLOCK_REWARD);
 
-    nConstantSubsidy = GetFleetCreditsBlockSubsidy(700000, mainParams.GetConsensus(700000), prevHash);
-    BOOST_CHECK_EQUAL(nConstantSubsidy, 10000 * COIN);
+    // Foundational contribution
+    std::vector<CContributionTransaction> contribs;
+    contribs.push_back(MakeStubContribution(key, CODE_CONTRIBUTION, BONUS_LOW));
+    BOOST_CHECK_EQUAL(
+        GetFleetCreditsBlockSubsidyWithContributions(1, params, prevHash, contribs),
+        FC_FOUNDATIONAL_BLOCK_REWARD);
+
+    // Critical AI validation overrides payout
+    contribs.clear();
+    contribs.push_back(MakeStubContribution(key, AI_VALIDATION, BONUS_CRITICAL));
+    BOOST_CHECK_EQUAL(
+        GetFleetCreditsBlockSubsidyWithContributions(1, params, prevHash, contribs),
+        FC_CRITICAL_BLOCK_REWARD);
 }
 
 BOOST_AUTO_TEST_CASE(get_next_work_difficulty_limit)
