@@ -220,8 +220,8 @@
                 <p><strong>Files:</strong> <code>src/fleetcredits.cpp</code>, <code>src/primitives/contribution.cpp</code>, <code>src/validation.cpp</code></p>
                 
                 <h3>Base Reward</h3>
-                <p><strong>Fixed Reward:</strong> 10,000 FC per block (no halving, unlimited issuance)</p>
-                <p>Unlike Bitcoin-style cryptocurrencies, Fleet Credits maintains a constant block reward to ensure ongoing incentive for miners and contributors.</p>
+                <p><strong>Fixed Reward:</strong> <code>1.00000069&nbsp;FC</code> per block (no halving, unlimited issuance)</p>
+                <p>The fixed subsidy keeps inflation predictable while leaving room for contribution-driven bonuses to scale payouts for high-impact work.</p>
                 
                 <h3>Reward Calculation Function</h3>
                 <p>The main reward calculation function is <code>GetFleetCreditsBlockSubsidyWithContributions</code>:</p>
@@ -233,29 +233,26 @@
 )</code></pre>
                 
                 <h3>Reward Formula</h3>
-                <pre><code>base_reward = 10000 * COIN  // Fixed 10,000 FC per block
+                <pre><code>const CAmount FC_BASE_BLOCK_REWARD         = 100000069;   // 1.00000069 FC
+const CAmount FC_FOUNDATIONAL_BLOCK_REWARD = 125000420;   // 1.25000420 FC
+const CAmount FC_SUBSTANTIVE_BLOCK_REWARD  = 175000006;   // 1.75000006 FC
+const CAmount FC_HIGH_IMPACT_BLOCK_REWARD  = 269000009;   // 2.69000009 FC
+const CAmount FC_CRITICAL_BLOCK_REWARD     = 369428008;   // 3.69428008 FC
 
-// Find highest bonus level in block
-maxBonusLevel = BONUS_NONE
-for each contribution in contrib_txs:
-    if contribution.bonus_level > maxBonusLevel:
-        maxBonusLevel = contribution.bonus_level
-        maxContribType = contribution.contrib_type
+// Determine the highest verified bonus level present in the block.
+ContributionTier tier = EvaluateHighestContributionTier(contrib_txs);
 
-// Calculate multiplier
-bonus_multiplier = GetBonusMultiplier(maxBonusLevel, maxContribType)
-
-// Final reward
-final_reward = base_reward * bonus_multiplier</code></pre>
+// Map the tier to its absolute payout.
+CAmount final_reward = GetContributionTierPayout(tier.level, tier.type);</code></pre>
                 
-                <h3>Bonus Multiplier Function</h3>
-                <p>The <code>GetBonusMultiplier</code> function in <code>src/primitives/contribution.cpp</code> returns:</p>
+                <h3>Tiered Payout Mapping</h3>
+                <p><code>GetContributionTierPayout</code> (see <code>src/primitives/contribution.cpp</code>) returns absolute rewards instead of percentage multipliers:</p>
                 <ul>
-                    <li><code>BONUS_NONE</code>: 1.0x (base reward only)</li>
-                    <li><code>BONUS_LOW</code>: 1.05x (+5%)</li>
-                    <li><code>BONUS_MEDIUM</code>: 1.10x (+10%)</li>
-                    <li><code>BONUS_HIGH</code>: 1.15x (+15%)</li>
-                    <li><code>BONUS_CRITICAL</code>: 1.20x (+20%), or 1.25x (+25%) for <code>AI_VALIDATION</code> contributions</li>
+                    <li><code>BONUS_NONE</code> → <code>1.00000069&nbsp;FC</code></li>
+                    <li><code>BONUS_LOW</code> → <code>1.25000420&nbsp;FC</code></li>
+                    <li><code>BONUS_MEDIUM</code> → <code>1.75000006&nbsp;FC</code></li>
+                    <li><code>BONUS_HIGH</code> → <code>2.69000009&nbsp;FC</code></li>
+                    <li><code>BONUS_CRITICAL</code> → <code>3.69428008&nbsp;FC</code> (reserved for AI validation &amp; ethical review)</li>
                 </ul>
                 
                 <h3>Contribution Extraction</h3>
@@ -286,22 +283,22 @@ CAmount blockReward = nFees + GetFleetCreditsBlockSubsidyWithContributions(
                 
                 <h3>Understanding the Base Reward</h3>
                 <div class="info-box">
-                    <strong>Why 10,000 FC for "No Contributions"?</strong><br>
-                    The base reward of 10,000 FC is the <strong>standard mining reward</strong> for securing the network and validating transactions. This is paid to miners for their computational work securing the blockchain, regardless of whether the block contains contributions. Think of it as payment for the essential service of network security.<br><br>
-                    <strong>Contributions add bonuses ON TOP</strong> of this base reward—they don't replace it. The contribution system incentivizes including valuable data in blocks, but the base reward ensures miners are always compensated for network security.
+                    <strong>Why 1.00000069 FC for “No Contributions”?</strong><br>
+                    The base reward is the guaranteed miner subsidy for securing the chain, independent of contribution traffic. It maintains a healthy proof-of-work incentive floor while keeping overall inflation modest.<br><br>
+                    <strong>Contribution tiers replace percentage multipliers with explicit payouts</strong>. This keeps issuance predictable and makes it crystal clear how much value each verified contribution delivers.
                 </div>
                 
                 <h3>Reward Examples</h3>
                 <table>
-                    <tr><th>Scenario</th><th>Base Reward</th><th>Bonus</th><th>Final Reward</th><th>Explanation</th></tr>
-                    <tr><td>No contributions</td><td>10,000 FC</td><td>1.0x</td><td>10,000 FC</td><td>Standard mining reward for network security</td></tr>
-                    <tr><td>Low bonus contribution</td><td>10,000 FC</td><td>1.05x</td><td>10,500 FC</td><td>Base reward + 5% bonus for minor contribution</td></tr>
-                    <tr><td>Medium bonus contribution</td><td>10,000 FC</td><td>1.10x</td><td>11,000 FC</td><td>Base reward + 10% bonus for moderate contribution</td></tr>
-                    <tr><td>High bonus contribution</td><td>10,000 FC</td><td>1.15x</td><td>11,500 FC</td><td>Base reward + 15% bonus for high-value contribution</td></tr>
-                    <tr><td>Critical AI validation</td><td>10,000 FC</td><td>1.25x</td><td>12,500 FC</td><td>Base reward + 25% bonus for critical AI validation</td></tr>
+                    <tr><th>Scenario</th><th>Tier</th><th>Final Reward</th><th>Explanation</th></tr>
+                    <tr><td>No contributions</td><td>BASE</td><td>1.00000069 FC</td><td>Standard mining reward with no verified payloads</td></tr>
+                    <tr><td>Foundational contribution</td><td>BONUS_LOW</td><td>1.25000420 FC</td><td>Intro-level docs, triage, light reviews</td></tr>
+                    <tr><td>Substantive contribution</td><td>BONUS_MEDIUM</td><td>1.75000006 FC</td><td>Meaningful code/data deliveries</td></tr>
+                    <tr><td>High-impact contribution</td><td>BONUS_HIGH</td><td>2.69000009 FC</td><td>Major releases, multi-week efforts</td></tr>
+                    <tr><td>Critical AI / Ethical review</td><td>BONUS_CRITICAL</td><td>3.69428008 FC</td><td>Safety-sensitive validation routed through oracles</td></tr>
                 </table>
                 
-                <p><strong>Key Point:</strong> The base reward is fundamental to incentivizing mining and network security. Contributions provide <em>additional</em> rewards for including valuable community data, creating a dual incentive system.</p>
+                <p><strong>Key Point:</strong> Tiers are deterministic. A block either lands in a specific payout band or it doesn’t, eliminating floating-point rounding issues while keeping miner economics transparent.</p>
                 
                 <h3>Multiple Contributions</h3>
                 <p>When multiple contributions exist in a block, only the <strong>highest bonus level</strong> is used for the multiplier. This prevents exponential reward growth while still incentivizing high-value contributions.</p>

@@ -219,7 +219,7 @@
                 <p><strong>Files:</strong> <code>src/pow.cpp</code>, <code>src/fleetcredits.cpp</code>, <code>src/chainparams.cpp</code></p>
                 
                 <h3>Block Reward</h3>
-                <p>Fixed 10,000 FC per block, no halving. See <a href="contribution-rewards.html">Reward System</a> for contribution bonuses.</p>
+                <p>Fixed <code>1.00000069&nbsp;FC</code> base reward per block, no halving. See <a href="contribution-rewards.html">Reward System</a> for tiered payouts.</p>
                 
                 <h3>Difficulty Adjustment</h3>
                 <p>Digishield algorithm adjusts difficulty every block to maintain 60-second block time.</p>
@@ -229,20 +229,20 @@
                 
                 <h4>Genesis Parameters (Mainnet)</h4>
                 <ul>
-                    <li><strong>Timestamp:</strong> November 4, 2025 00:00:00 UTC (<code>1730688000</code>)</li>
-                    <li><strong>Nonce:</strong> <code>905381</code></li>
+                    <li><strong>Timestamp:</strong> April 20, 2026 00:00:00 UTC (<code>1776643200</code>)</li>
+                    <li><strong>Nonce:</strong> <code>2804420</code></li>
                     <li><strong>Difficulty:</strong> <code>0x1e0ffff0</code></li>
-                    <li><strong>Reward:</strong> 10,000 FC</li>
-                    <li><strong>Coinbase Message:</strong> <code>"Nintondo"</code></li>
-                    <li><strong>Genesis Hash:</strong> <code>829a84f34599ea8e4ac00eb998ff13cdb6fcc20585017c4890e8fe001b8aa95f</code></li>
-                    <li><strong>Merkle Root:</strong> <code>41644a825cd68f53c164e9eeddbbe82c408a61191f19e7954bf56291ee81d912</code></li>
+                    <li><strong>Reward:</strong> 1.00000069 FC</li>
+                    <li><strong>Coinbase Message:</strong> <code>"4/20/26 - TTLH-TimeToLive(*￣▽￣*)ブHumans"</code></li>
+                    <li><strong>Genesis Hash:</strong> <code>00000aeebd696b5c091e4bc6575876635b4f68e9c7e143a243b74191d043ed3d</code></li>
+                    <li><strong>Merkle Root:</strong> <code>53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5</code></li>
                 </ul>
                 
                 <pre><code>// src/chainparams.cpp (mainnet)
-genesis = CreateGenesisBlock(1730688000, 905381, 0x1e0ffff0, 1, 10000 * COIN);
+genesis = CreateGenesisBlock(1776643200, 2804420, 0x1e0ffff0, 1, FC_BASE_BLOCK_REWARD);
 consensus.hashGenesisBlock = genesis.GetHash();
-assert(consensus.hashGenesisBlock == uint256S("0x829a84f34599ea8e4ac00eb998ff13cdb6fcc20585017c4890e8fe001b8aa95f"));
-assert(genesis.hashMerkleRoot == uint256S("0x41644a825cd68f53c164e9eeddbbe82c408a61191f19e7954bf56291ee81d912"));
+assert(consensus.hashGenesisBlock == uint256S("0x00000aeebd696b5c091e4bc6575876635b4f68e9c7e143a243b74191d043ed3d"));
+assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));
 </code></pre>
                 
                 <div class="info-box">
@@ -250,7 +250,7 @@ assert(genesis.hashMerkleRoot == uint256S("0x41644a825cd68f53c164e9eeddbbe82c408
                 </div>
 
                 <h4>Testnet / Regtest</h4>
-                <p>Testnet and regtest retain the runtime mining loop so developers can tweak consensus parameters without recomputing hashes. Their genesis blocks reuse the November 2025 timestamp but mine a nonce at startup (see the loop in the testnet/regtest sections of <code>chainparams.cpp</code>).</p>
+                <p>Testnet and regtest reuse the same April&nbsp;2026 timestamp with easier difficulties. We pre-mine and hardcode their nonce/hash pairs as well, but the initialization code keeps a fallback loop for developers experimenting with alternative parameters.</p>
                 
                 <h4>Why Explicit Validation?</h4>
                 <p>Even with pre-mined values, the code still demonstrates the validation path:</p>

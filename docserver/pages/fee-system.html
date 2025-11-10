@@ -242,7 +242,7 @@
                 <h3>Fee Calculation</h3>
                 <p>The <code>GetFleetCreditsMinFee()</code> function determines transaction fees:</p>
                 <pre><code>CAmount GetFleetCreditsMinFee(unsigned int nBytes, unsigned int nBlockHeight) {
-    // Check if transaction is a micro-transaction (< 1000 FC total output)
+    // Check if transaction is a micro-transaction (< 0.01 FC total output)
     if (totalOutputValue < MICRO_TX_THRESHOLD) {
         return 0;  // Zero fees for micro-transactions
     }

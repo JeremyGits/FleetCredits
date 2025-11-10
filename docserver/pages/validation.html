@@ -222,7 +222,7 @@
                 <p>All transactions are validated before inclusion in blocks:</p>
                 <ul>
                     <li><strong>Script Verification:</strong> Executes and validates scriptSig and scriptPubKey</li>
-                    <li><strong>Fee Calculation:</strong> Zero fees for transactions &lt;1000 FC, scalable fees otherwise</li>
+                    <li><strong>Fee Calculation:</strong> Zero fees for transactions &lt;0.01 FC, scalable fees otherwise</li>
                     <li><strong>UTXO Availability:</strong> Ensures all inputs reference valid unspent outputs</li>
                     <li><strong>Contribution Transaction Parsing:</strong> Extracts and validates contribution data from OP_RETURN outputs</li>
                     <li><strong>Double-Spend Prevention:</strong> Checks mempool for conflicting transactions</li>
@@ -244,13 +244,13 @@
                 <h4>Genesis Block Mining</h4>
                 <p>Mainnet now ships with a pre-mined genesis block. The constructor simply plugs in the nonce/timestamp pair and asserts the resulting hash:</p>
                 <pre><code>// chainparams.cpp (mainnet)
-genesis = CreateGenesisBlock(1730688000, 905381, 0x1e0ffff0, 1, 10000 * COIN);
+genesis = CreateGenesisBlock(1776643200, 2804420, 0x1e0ffff0, 1, FC_BASE_BLOCK_REWARD);
 consensus.hashGenesisBlock = genesis.GetHash();
-assert(consensus.hashGenesisBlock == uint256S("0x829a84f34599ea8e4ac00eb998ff13cdb6fcc20585017c4890e8fe001b8aa95f"));
-assert(genesis.hashMerkleRoot == uint256S("0x41644a825cd68f53c164e9eeddbbe82c408a61191f19e7954bf56291ee81d912"));</code></pre>
+assert(consensus.hashGenesisBlock == uint256S("0x00000aeebd696b5c091e4bc6575876635b4f68e9c7e143a243b74191d043ed3d"));
+assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));</code></pre>
                 <p>This replaces the previous startup mining loop, reducing startup time without sacrificing PoW validation.</p>
                 
-                <p>Testnet and regtest still execute a nonce-search loop on startup so developers can tweak parameters without recomputing hashes; see the corresponding sections of <code>chainparams.cpp</code> for those implementations.</p>
+                <p>Testnet and regtest include similar pre-mined fixtures, but the constructors still expose a nonce-search loop for developers experimenting with alternative parameters.</p>
                 
                 <h4>Genesis Block Validation Flow</h4>
                 <p>When reading blocks from disk (<code>ReadBlockFromDisk</code> in <code>validation.cpp</code>):</p>

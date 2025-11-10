@@ -461,9 +461,9 @@
                     
                     <h4>Reward Structure</h4>
                     <ul>
-                        <li><strong>Mentees:</strong> 1000 FC base + 500 FC for improvements</li>
-                        <li><strong>Mentors:</strong> 2000 FC per review + 1.10x–1.15x for complexity</li>
-                        <li><strong>Milestones:</strong> 5 contributions = 1.10x bonus, 10 contributions = 1.15x bonus</li>
+                        <li><strong>Mentees:</strong> Typical split of the Substantive tier — e.g. 0.75&nbsp;FC for meaningful improvements</li>
+                        <li><strong>Mentors:</strong> 1.00&nbsp;FC per approved review, plus optional 0.25&nbsp;FC uplift for complex feedback</li>
+                        <li><strong>Milestones:</strong> Running history of successful mentorships feeds back into contribution tier selection</li>
                     </ul>
                     
                     <h4>Bonus Level</h4>
@@ -473,7 +473,7 @@
                     <p>No</p>
                     
                     <h4>Example Use Case</h4>
-                    <p>A novice developer ("vibe coder") submits code for review. An experienced developer ("real coder") reviews it, provides detailed feedback (200 words), and marks it as NEEDS_WORK. The mentee improves the code based on feedback and resubmits. Both receive rewards: mentor gets 2200 FC (2000 base + 10% complexity bonus), mentee gets 1500 FC (1000 base + 500 improvement).</p>
+                    <p>A novice developer ("vibe coder") submits code for review. An experienced developer ("real coder") reviews it, provides detailed feedback (200 words), and marks it as NEEDS_WORK. The mentee improves the code based on feedback and resubmits. Both receive rewards split from the 1.75000006&nbsp;FC Substantive payout: mentor gets 1.05&nbsp;FC (base + complex feedback uplift), mentee receives 0.70&nbsp;FC for implementing the improvements.</p>
                 </div>
 
                 <div class="api-endpoint">
@@ -687,19 +687,17 @@ tx.vout.push_back(contrib_out);</code></pre>
 
             <section class="content-section">
                 <h2>Reward Integration</h2>
-                <p>When a block contains verified contributions, the block reward is calculated as:</p>
-                <pre><code>base_reward = 10000 * COIN
-bonus_multiplier = GetBonusMultiplier(highest_bonus_level_in_block, contrib_type)
-final_reward = base_reward * bonus_multiplier</code></pre>
+                <p>When a block contains verified contributions, the chain selects the highest tier present and pays the corresponding absolute reward:</p>
+                <pre><code>CAmount payout = GetContributionTierPayout(highest_bonus_level, contrib_type);</code></pre>
                 
-                <h3>Bonus Multipliers</h3>
+                <h3>Tier Payouts</h3>
                 <table>
-                    <tr><th>Bonus Level</th><th>Standard Multiplier</th><th>AI_VALIDATION Multiplier</th></tr>
-                    <tr><td>BONUS_NONE</td><td>1.0x</td><td>1.0x</td></tr>
-                    <tr><td>BONUS_LOW</td><td>1.05x</td><td>1.05x</td></tr>
-                    <tr><td>BONUS_MEDIUM</td><td>1.10x</td><td>1.10x</td></tr>
-                    <tr><td>BONUS_HIGH</td><td>1.15x</td><td>1.15x</td></tr>
-                    <tr><td>BONUS_CRITICAL</td><td>1.20x</td><td><strong>1.25x</strong></td></tr>
+                    <tr><th>Bonus Level</th><th>Payout</th></tr>
+                    <tr><td>BONUS_NONE</td><td>1.00000069 FC</td></tr>
+                    <tr><td>BONUS_LOW</td><td>1.25000420 FC</td></tr>
+                    <tr><td>BONUS_MEDIUM</td><td>1.75000006 FC</td></tr>
+                    <tr><td>BONUS_HIGH</td><td>2.69000009 FC</td></tr>
+                    <tr><td>BONUS_CRITICAL (AI / Ethical)</td><td><strong>3.69428008 FC</strong></td></tr>
                 </table>
                 
                 <p>See <a href="contribution-rewards.html">Reward System</a> for detailed reward calculation.</p>

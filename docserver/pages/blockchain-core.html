@@ -250,26 +250,26 @@
                 <h4>Genesis Block Creation</h4>
                 <p>The helper <code>CreateGenesisBlock()</code> in <code>chainparams.cpp</code> assembles the coinbase transaction and block with caller-supplied parameters. For mainnet we now pass the pre-mined values:</p>
                 <pre><code>// Mainnet parameters
-static const uint32_t GENESIS_TIME  = 1730688000;  // Nov 4, 2025 00:00:00 UTC
-static const uint32_t GENESIS_NONCE = 905381;
+static const uint32_t GENESIS_TIME  = 1776643200;  // Apr 20, 2026 00:00:00 UTC
+static const uint32_t GENESIS_NONCE = 2804420;
 static const uint32_t GENESIS_BITS  = 0x1e0ffff0;
 
-genesis = CreateGenesisBlock(GENESIS_TIME, GENESIS_NONCE, GENESIS_BITS, 1, 10000 * COIN);
+genesis = CreateGenesisBlock(GENESIS_TIME, GENESIS_NONCE, GENESIS_BITS, 1, FC_BASE_BLOCK_REWARD);
 consensus.hashGenesisBlock = genesis.GetHash();
-assert(consensus.hashGenesisBlock == uint256S("0x829a84f34599ea8e4ac00eb998ff13cdb6fcc20585017c4890e8fe001b8aa95f"));
-assert(genesis.hashMerkleRoot == uint256S("0x41644a825cd68f53c164e9eeddbbe82c408a61191f19e7954bf56291ee81d912"));</code></pre>
+assert(consensus.hashGenesisBlock == uint256S("0x00000aeebd696b5c091e4bc6575876635b4f68e9c7e143a243b74191d043ed3d"));
+assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));</code></pre>
                 
                 <h4>Genesis Block Properties</h4>
                 <ul>
                     <li><strong>Previous Hash:</strong> <code>hashPrevBlock.SetNull()</code> (all zeros)</li>
                     <li><strong>Merkle Root:</strong> Deterministic result of the coinbase transaction</li>
                     <li><strong>No AuxPow:</strong> Genesis blocks never include merge-mining data</li>
-                    <li><strong>Checkpoint:</strong> Height 0 checkpoint records <code>829a84f3...</code></li>
+                    <li><strong>Checkpoint:</strong> Height 0 checkpoint records <code>00000aeebd...</code></li>
                     <li><strong>PoW:</strong> Hardcoded nonce/difficulty represent a valid Scrypt solution</li>
                 </ul>
                 
                 <h4>Runtime Behaviour</h4>
-                <p>Mainnet uses the pre-mined values above, eliminating the expensive “mine at startup” loop and reducing boot time to seconds. Testnet/regtest still execute the PoW loop on startup so developers can tweak consensus parameters without recompiling hashes.</p>
+                <p>Mainnet uses the pre-mined values above, eliminating the expensive “mine at startup” loop and reducing boot time to seconds. Testnet/regtest ship with pre-computed values too, but their parameter blocks retain the fallback mining loop for experimentation.</p>
                 
                 <h4>Genesis Block Validation</h4>
                 <p>When validating the genesis block:</p>
