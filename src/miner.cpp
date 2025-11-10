@@ -230,40 +230,69 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         // Calculate total contributor bonus pool (50% of bonus)
         CAmount contributorBonusPool = bonusAmount - minerBonusShare;
         
-        // Calculate total bonus weight for normalization
-        double totalBonusWeight = 0.0;
+        // Aggregate weights per contributor based on the bonus they introduce
+        std::map<CPubKey, CAmount> contributorWeights;
         for (const auto& contrib : contributions) {
-            if (contrib.bonus_level > BONUS_NONE) {
-                double multiplier = GetBonusMultiplier(contrib.bonus_level, contrib.contrib_type);
-                totalBonusWeight += (multiplier - 1.0);
+            if (contrib.bonus_level == BONUS_NONE) {
+                continue;
             }
+
+            // Basic validation ensures we don't reward malformed payloads
+            if (!ValidateContributionTransaction(contrib)) {
+                continue;
+            }
+
+            CAmount tierReward = GetContributionTierPayout(contrib.bonus_level, contrib.contrib_type);
+            CAmount bonusWeight = tierReward - baseReward;
+            if (bonusWeight <= 0) {
+                continue;
+            }
+
+            contributorWeights[contrib.contributor] += bonusWeight;
         }
-        
+
+        CAmount totalBonusWeight = 0;
+        for (const auto& entry : contributorWeights) {
+            totalBonusWeight += entry.second;
+        }
+
         // Distribute contributor rewards proportionally
-        std::map<CPubKey, CAmount> contributorRewards;  // Aggregate rewards per contributor
-        for (const auto& contrib : contributions) {
-            if (contrib.bonus_level > BONUS_NONE && totalBonusWeight > 0.0) {
-                double multiplier = GetBonusMultiplier(contrib.bonus_level, contrib.contrib_type);
-                double contributorWeight = (multiplier - 1.0) / totalBonusWeight;
-                CAmount contributorReward = static_cast<CAmount>(contributorBonusPool * contributorWeight);
-                
-                if (contributorReward > 0) {
-                    // Aggregate rewards for same contributor (if multiple contributions)
-                    contributorRewards[contrib.contributor] += contributorReward;
+        std::map<CPubKey, CAmount> contributorRewards;
+        if (totalBonusWeight > 0) {
+            CAmount remainingPool = contributorBonusPool;
+            size_t processed = 0;
+            const size_t totalRecipients = contributorWeights.size();
+
+            for (const auto& entry : contributorWeights) {
+                ++processed;
+                CAmount rewardAmount;
+                if (processed == totalRecipients) {
+                    // Give any rounding remainder to the final recipient
+                    rewardAmount = remainingPool;
+                } else {
+                    rewardAmount = (contributorBonusPool * entry.second) / totalBonusWeight;
+                    if (rewardAmount > remainingPool) {
+                        rewardAmount = remainingPool;
+                    }
+                }
+
+                if (rewardAmount > 0) {
+                    contributorRewards[entry.first] += rewardAmount;
+                    remainingPool -= rewardAmount;
                 }
             }
         }
-        
+
         // Add coinbase outputs for each contributor
         for (const auto& rewardPair : contributorRewards) {
             const CPubKey& contributorPubKey = rewardPair.first;
             const CAmount& rewardAmount = rewardPair.second;
-            
+
             if (rewardAmount > 0) {
                 // Convert CPubKey to script for output
                 CKeyID keyID = contributorPubKey.GetID();
                 CScript contribScript = GetScriptForDestination(keyID);
-                
+
                 // Add contributor output
                 CTxOut contribOutput(rewardAmount, contribScript);
                 coinbaseTx.vout.push_back(contribOutput);

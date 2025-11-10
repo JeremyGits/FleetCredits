@@ -139,26 +139,11 @@ bool CheckAuxPowProofOfWork(const CBlockHeader& block, const Consensus::Params& 
 
 CAmount GetFleetCreditsBlockSubsidy(int nHeight, const Consensus::Params& consensusParams, uint256 prevHash)
 {
-    int halvings = nHeight / consensusParams.nSubsidyHalvingInterval;
-
-    if (!consensusParams.fSimplifiedRewards)
-    {
-        // Old-style rewards derived from the previous block hash
-        const std::string cseed_str = prevHash.ToString().substr(7, 7);
-        const char* cseed = cseed_str.c_str();
-        char* endp = NULL;
-        long seed = strtol(cseed, &endp, 16);
-        CAmount maxReward = (1000000 >> halvings) - 1;
-        int rand = generateMTRandom(seed, maxReward);
-
-        return (1 + rand) * COIN;
-    } else if (nHeight < (6 * consensusParams.nSubsidyHalvingInterval)) {
-        // New-style constant rewards for each halving interval
-        return (500000 * COIN) >> halvings;
-    } else {
-        // Constant inflation - Fleet Credits: Fixed 10,000 FC per block
-        return 10000 * COIN;
-    }
+    (void)nHeight;
+    (void)consensusParams;
+    (void)prevHash;
+    // Fleet Credits v1.1+: deterministic base reward of 1.00000069 FC per block
+    return FC_BASE_BLOCK_REWARD;
 }
 
 /** Get block subsidy with contribution bonuses applied */
@@ -251,10 +236,12 @@ CAmount GetFleetCreditsBlockSubsidyWithContributions(int nHeight, const Consensu
         }
     }
     
-    // Apply bonus multiplier
+    // Apply tier payout mapping
     if (maxBonusLevel > BONUS_NONE) {
-        double multiplier = GetBonusMultiplier(maxBonusLevel, maxContribType);
-        return static_cast<CAmount>(baseReward * multiplier);
+        CAmount tierReward = GetContributionTierPayout(maxBonusLevel, maxContribType);
+        if (tierReward > baseReward) {
+            return tierReward;
+        }
     }
     
     return baseReward;

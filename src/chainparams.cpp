@@ -12,6 +12,7 @@
 #include "chainparams.h"
 #include "consensus/merkle.h"
 #include "pow.h"
+#include "primitives/contribution.h"
 
 #include "tinyformat.h"
 #include "util.h"
@@ -57,7 +58,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Nintondo";
+    const char* pszTimestamp = u8"4/20/26 - TTLH-TimeToLive(*￣▽￣*)ブHumans";
     const CScript genesisOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -162,13 +163,11 @@ public:
         nDefaultPort = 42069;
         nPruneAfterHeight = 100000;
 
-        // Fleet Credits Genesis Block - mined once and hardcoded for fast startup
-        // Timestamp: November 4, 2025 00:00:00 UTC (1730688000)
-        genesis = CreateGenesisBlock(1730688000, 905381, 0x1e0ffff0, 1, 10000 * COIN);
-
+        // Fleet Credits Genesis Block (pre-mined)
+        genesis = CreateGenesisBlock(1776643200, 2804420, 0x1e0ffff0, 1, FC_BASE_BLOCK_REWARD);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x829a84f34599ea8e4ac00eb998ff13cdb6fcc20585017c4890e8fe001b8aa95f"));
-        assert(genesis.hashMerkleRoot == uint256S("0x41644a825cd68f53c164e9eeddbbe82c408a61191f19e7954bf56291ee81d912"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000aeebd696b5c091e4bc6575876635b4f68e9c7e143a243b74191d043ed3d"));
+        assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
 
@@ -201,8 +200,8 @@ public:
 
         chainTxData = ChainTxData{
             // Fleet Credits - Fresh blockchain starting from genesis
-            // Timestamp: November 4, 2025 00:00:00 UTC (1730688000)
-            1730688000, // * UNIX timestamp of genesis block
+            // Timestamp: April 20, 2026 00:00:00 UTC (1776643200)
+            1776643200, // * UNIX timestamp of genesis block
             0,          // * total number of transactions (new blockchain)
             0.0         // * estimated number of transactions per second (will be calculated as network grows)
         };
@@ -306,43 +305,11 @@ public:
         nDefaultPort = 44556;
         nPruneAfterHeight = 1000;
 
-        // Fleet Credits Testnet Genesis Block - Fresh start
-        // Timestamp: November 4, 2025 00:00:00 UTC (1730688000) - Current date for launch
-        genesis = CreateGenesisBlock(1730688000, 0, 0x1e0ffff0, 1, 10000 * COIN);
-        
-        // Mine the genesis block to ensure it has valid PoW
-        // CRITICAL: Genesis block MUST have valid PoW for blockchain integrity
-        const Consensus::Params& testConsensusParams = consensus;
-        uint32_t maxNonceAttempts = 0xFFFFFFFF; // Max uint32_t
-        uint32_t nonceAttempts = 0;
-        
-        while (!CheckProofOfWork(genesis.GetPoWHash(), genesis.nBits, testConsensusParams)) {
-            ++genesis.nNonce;
-            ++nonceAttempts;
-            
-            // Prevent infinite loop - if we can't find a solution, try different timestamp
-            if (genesis.nNonce == 0) {
-                genesis.nTime++;
-                genesis.nNonce = 0;
-                nonceAttempts = 0;
-                
-                // Safety: if we've tried too many timestamps, something is wrong
-                if (genesis.nTime > 1730688100) { // 100 seconds later
-                    assert(false && "CRITICAL: Failed to mine testnet genesis block with valid PoW");
-                }
-            }
-            
-            // Safety check
-            if (nonceAttempts >= maxNonceAttempts) {
-                assert(false && "CRITICAL: Exceeded max nonce attempts mining testnet genesis block");
-            }
-        }
-        
-        // Verify the mined genesis block has valid PoW (double-check)
-        assert(CheckProofOfWork(genesis.GetPoWHash(), genesis.nBits, testConsensusParams) && 
-               "CRITICAL: Mined testnet genesis block failed PoW validation");
-        
+        // Fleet Credits Testnet Genesis Block (shares mainnet PoW solution)
+        genesis = CreateGenesisBlock(1776643200, 2804420, 0x1e0ffff0, 1, FC_BASE_BLOCK_REWARD);
         consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x00000aeebd696b5c091e4bc6575876635b4f68e9c7e143a243b74191d043ed3d"));
+        assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         minDifficultyConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
@@ -375,8 +342,8 @@ public:
 
         chainTxData = ChainTxData{
             // Fleet Credits Testnet - Fresh blockchain starting from genesis
-            // Timestamp: November 4, 2025 00:00:00 UTC (1730688000)
-            1730688000, // * UNIX timestamp of genesis block
+            // Timestamp: April 20, 2026 00:00:00 UTC (1776643200)
+            1776643200, // * UNIX timestamp of genesis block
             0,          // * total number of transactions (new blockchain)
             0.0         // * estimated number of transactions per second (will be calculated as network grows)
         };
@@ -457,47 +424,11 @@ public:
         nDefaultPort = 18444;
         nPruneAfterHeight = 1000;
 
-        // Fleet Credits Regtest Genesis Block - Fresh start
-        // Timestamp: November 4, 2025 00:00:00 UTC (1730688000) - Current date for launch
-        // Mine genesis block with valid PoW - CRITICAL: Must have valid PoW for blockchain integrity
-        genesis = CreateGenesisBlock(1730688000, 0, 0x207fffff, 1, 10000 * COIN);
-        
-        // Mine the genesis block to ensure it has valid PoW
-        // For regtest with difficulty 0x207fffff, this should be very fast
-        // This is ESSENTIAL - genesis block MUST have valid PoW, no exceptions
-        const Consensus::Params& consensusParams = consensus;
-        uint32_t maxNonceAttempts = 0xFFFFFFFF; // Max uint32_t
-        uint32_t nonceAttempts = 0;
-        
-        while (!CheckProofOfWork(genesis.GetPoWHash(), genesis.nBits, consensusParams)) {
-            ++genesis.nNonce;
-            ++nonceAttempts;
-            
-            // Prevent infinite loop - if we can't find a solution with this difficulty, something is wrong
-            if (genesis.nNonce == 0) {
-                // Wrapped around - this shouldn't happen with such low difficulty (0x207fffff)
-                // But let's be safe and use a different timestamp
-                genesis.nTime++;
-                genesis.nNonce = 0;
-                nonceAttempts = 0;
-                
-                // Extra safety: if we've tried multiple timestamps, something is seriously wrong
-                if (genesis.nTime > 1704067300) { // 100 seconds later
-                    assert(false && "CRITICAL: Failed to mine genesis block with valid PoW - difficulty too high or bug in CheckProofOfWork");
-                }
-            }
-            
-            // Safety check - should never hit this with regtest difficulty
-            if (nonceAttempts >= maxNonceAttempts) {
-                assert(false && "CRITICAL: Exceeded max nonce attempts mining genesis block");
-            }
-        }
-        
-        // Verify the mined genesis block has valid PoW (double-check)
-        assert(CheckProofOfWork(genesis.GetPoWHash(), genesis.nBits, consensusParams) && 
-               "CRITICAL: Mined genesis block failed PoW validation - blockchain integrity compromised");
-        
+        // Fleet Credits Regtest Genesis Block (pre-mined)
+        genesis = CreateGenesisBlock(1776643200, 0, 0x207fffff, 1, FC_BASE_BLOCK_REWARD);
         consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x6e03b203631506b4352311e0892241bf16fe5fc16b53c07777a16192aab636ae"));
+        assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
 

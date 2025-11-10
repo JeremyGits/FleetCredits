@@ -73,7 +73,7 @@ CAmount GetFleetCreditsMinRelayFee(const CTransaction& tx, unsigned int nBytes, 
         nValueOut += txout.nValue;
     }
     
-    // Zero fees for transactions < 1000 FC (micro-transactions)
+    // Zero fees for transactions < 0.01 FC (micro-transactions)
     if (nValueOut < MICRO_TX_THRESHOLD) {
         return 0;
     }
