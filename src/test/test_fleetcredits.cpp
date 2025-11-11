@@ -44,7 +44,6 @@ static const int COINBASE_MATURITY = 60*4; // 4 hours of blocks
 BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
 {
         RandomInit();
-        ECC_Start();
         SetupEnvironment();
         SetupNetworking();
         InitSignatureCache();
@@ -56,7 +55,6 @@ BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
 
 BasicTestingSetup::~BasicTestingSetup()
 {
-        ECC_Stop();
         g_connman.reset();
 }
 
