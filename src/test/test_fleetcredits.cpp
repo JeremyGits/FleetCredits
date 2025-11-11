@@ -27,6 +27,7 @@
 #include "test/testutil.h"
 
 #include <memory>
+#include <mutex>
 
 #include <boost/test/unit_test.hpp>
 #include <boost/thread.hpp>
@@ -41,9 +42,20 @@ extern void noui_connect();
 /** Coinbase transaction outputs can only be spent after this number of new blocks (network rule) */
 static const int COINBASE_MATURITY = 60*4; // 4 hours of blocks
 
+namespace {
+std::mutex g_ecc_sign_mutex;
+int g_ecc_sign_refcount = 0;
+}
+
 BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
 {
         RandomInit();
+        {
+            std::lock_guard<std::mutex> lock(g_ecc_sign_mutex);
+            if (g_ecc_sign_refcount++ == 0) {
+                ECC_Start();
+            }
+        }
         SetupEnvironment();
         SetupNetworking();
         InitSignatureCache();
@@ -55,6 +67,12 @@ BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
 
 BasicTestingSetup::~BasicTestingSetup()
 {
+        {
+            std::lock_guard<std::mutex> lock(g_ecc_sign_mutex);
+            if (--g_ecc_sign_refcount == 0) {
+                ECC_Stop();
+            }
+        }
         g_connman.reset();
 }
 
