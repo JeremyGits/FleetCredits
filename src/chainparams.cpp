@@ -166,7 +166,7 @@ public:
         // Fleet Credits Genesis Block (pre-mined)
         genesis = CreateGenesisBlock(1776643200, 2804420, 0x1e0ffff0, 1, FC_BASE_BLOCK_REWARD);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000aeebd696b5c091e4bc6575876635b4f68e9c7e143a243b74191d043ed3d"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0c233e4e9a757cade6ec5892756f6449dcc66e4497d531faed987142f1a23f6b"));
         assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
@@ -308,7 +308,7 @@ public:
         // Fleet Credits Testnet Genesis Block (shares mainnet PoW solution)
         genesis = CreateGenesisBlock(1776643200, 2804420, 0x1e0ffff0, 1, FC_BASE_BLOCK_REWARD);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000aeebd696b5c091e4bc6575876635b4f68e9c7e143a243b74191d043ed3d"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0c233e4e9a757cade6ec5892756f6449dcc66e4497d531faed987142f1a23f6b"));
         assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
@@ -427,7 +427,7 @@ public:
         // Fleet Credits Regtest Genesis Block (pre-mined)
         genesis = CreateGenesisBlock(1776643200, 0, 0x207fffff, 1, FC_BASE_BLOCK_REWARD);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x6e03b203631506b4352311e0892241bf16fe5fc16b53c07777a16192aab636ae"));
+        assert(consensus.hashGenesisBlock == uint256S("0x556f8207d42c427a03d882d2e338a0102342648ce203f82a11efbe596da0f55e"));
         assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));
         digishieldConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
         auxpowConsensus.hashGenesisBlock = consensus.hashGenesisBlock;
