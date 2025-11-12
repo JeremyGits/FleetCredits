@@ -59,9 +59,17 @@ class FleetCreditsMiner:
         """Get network information."""
         return self.rpc_call("getnetworkinfo")
     
-    def generate_blocks(self, num_blocks: int) -> list:
-        """Generate (mine) blocks."""
-        return self.rpc_call("generate", [num_blocks])
+    def generate_blocks(self, num_blocks: int, address: Optional[str] = None) -> list:
+        """Generate (mine) blocks.
+        
+        Args:
+            num_blocks: Number of blocks to generate
+            address: Optional address to send rewards to (uses generatetoaddress if provided)
+        """
+        if address:
+            return self.rpc_call("generatetoaddress", [num_blocks, address])
+        else:
+            return self.rpc_call("generate", [num_blocks])
     
     def get_block_count(self) -> int:
         """Get current block count."""
@@ -71,15 +79,23 @@ class FleetCreditsMiner:
         """Get wallet balance."""
         return self.rpc_call("getbalance")
     
-    def mine_blocks(self, num_blocks: int, show_stats: bool = True) -> list:
-        """Mine blocks and optionally show statistics."""
+    def mine_blocks(self, num_blocks: int, show_stats: bool = True, address: Optional[str] = None) -> list:
+        """Mine blocks and optionally show statistics.
+        
+        Args:
+            num_blocks: Number of blocks to mine
+            show_stats: Whether to display mining statistics
+            address: Optional address to send rewards to (uses generatetoaddress if provided)
+        """
         if show_stats:
             print(f"⛏️  Mining {num_blocks} block(s)...")
+            if address:
+                print(f"   Rewards will go to: {address}")
             start_height = self.get_block_count()
             start_balance = self.get_balance()
         
         start_time = time.time()
-        block_hashes = self.generate_blocks(num_blocks)
+        block_hashes = self.generate_blocks(num_blocks, address)
         elapsed = time.time() - start_time
         
         if show_stats:
@@ -95,11 +111,19 @@ class FleetCreditsMiner:
         
         return block_hashes
     
-    def auto_mine(self, interval: float = 1.0, max_blocks: Optional[int] = None):
-        """Continuously mine blocks."""
+    def auto_mine(self, interval: float = 1.0, max_blocks: Optional[int] = None, address: Optional[str] = None):
+        """Continuously mine blocks.
+        
+        Args:
+            interval: Seconds between blocks
+            max_blocks: Maximum number of blocks to mine (None = unlimited)
+            address: Optional address to send rewards to (uses generatetoaddress if provided)
+        """
         print(f"🤖 Auto-mining mode (interval: {interval}s)")
         if max_blocks:
             print(f"   Will mine up to {max_blocks} blocks")
+        if address:
+            print(f"   Rewards will go to: {address}")
         print("   Press Ctrl+C to stop\n")
         
         total_mined = 0
@@ -109,7 +133,7 @@ class FleetCreditsMiner:
                     print(f"\n✅ Reached maximum blocks ({max_blocks})")
                     break
                 
-                self.mine_blocks(1, show_stats=True)
+                self.mine_blocks(1, show_stats=True, address=address)
                 total_mined += 1
                 
                 if interval > 0:
@@ -125,11 +149,13 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  %(prog)s mine 10              # Mine 10 blocks
-  %(prog)s auto                 # Auto-mine continuously
-  %(prog)s auto --interval 2    # Auto-mine with 2 second intervals
-  %(prog)s --rpc-url http://127.0.0.1:42068 mine 5  # Regtest (default)
-  %(prog)s --rpc-url http://96.126.123.195:42068 --rpc-user user --rpc-password pass mine 5  # Remote regtest
+  %(prog)s mine 10                              # Mine 10 blocks (rewards go to server wallet)
+  %(prog)s mine 10 --address YOUR_ADDRESS       # Mine 10 blocks to your address
+  %(prog)s auto                                  # Auto-mine continuously
+  %(prog)s auto --interval 6                    # Auto-mine with 6 second intervals
+  %(prog)s auto --interval 6 --address ADDR     # Auto-mine to your address
+  %(prog)s --rpc-url http://127.0.0.1:42068 mine 5
+  %(prog)s --rpc-url http://96.126.123.195:42068 --rpc-user user --rpc-password pass mine 5 --address YOUR_QT_ADDRESS
         """
     )
     
@@ -152,6 +178,10 @@ Examples:
     # Mine command
     mine_parser = subparsers.add_parser("mine", help="Mine specific number of blocks")
     mine_parser.add_argument("blocks", type=int, help="Number of blocks to mine")
+    mine_parser.add_argument(
+        "--address",
+        help="Address to send block rewards to (uses generatetoaddress if provided)"
+    )
     
     # Auto command
     auto_parser = subparsers.add_parser("auto", help="Auto-mine blocks continuously")
@@ -165,6 +195,10 @@ Examples:
         "--max-blocks",
         type=int,
         help="Maximum number of blocks to mine (default: unlimited)"
+    )
+    auto_parser.add_argument(
+        "--address",
+        help="Address to send block rewards to (uses generatetoaddress if provided)"
     )
     
     # Status command
@@ -215,9 +249,9 @@ Examples:
     # Execute command
     try:
         if args.command == "mine":
-            miner.mine_blocks(args.blocks)
+            miner.mine_blocks(args.blocks, address=getattr(args, 'address', None))
         elif args.command == "auto":
-            miner.auto_mine(interval=args.interval, max_blocks=args.max_blocks)
+            miner.auto_mine(interval=args.interval, max_blocks=args.max_blocks, address=getattr(args, 'address', None))
         elif args.command == "status":
             info = miner.get_blockchain_info()
             balance = miner.get_balance()

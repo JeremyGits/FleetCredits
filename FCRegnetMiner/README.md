@@ -58,8 +58,11 @@ make
 ### Mine Specific Number of Blocks
 
 ```bash
-# Python
+# Python - Mine to server wallet (default)
 python3 fc_miner.py mine 5
+
+# Python - Mine to your Qt wallet address
+python3 fc_miner.py mine 5 --address YOUR_QT_WALLET_ADDRESS
 
 # C++
 ./fc_miner mine 5
@@ -68,8 +71,11 @@ python3 fc_miner.py mine 5
 ### Auto-Mining (Continuous)
 
 ```bash
-# Python
+# Python - Auto-mine to server wallet
 python3 fc_miner.py auto
+
+# Python - Auto-mine to your Qt wallet address
+python3 fc_miner.py auto --interval 6 --address YOUR_QT_WALLET_ADDRESS
 
 # C++
 ./fc_miner auto
@@ -105,9 +111,14 @@ You can connect to remote Fleet Credits nodes! See [REMOTE_CONNECTION.md](REMOTE
 
 **Quick remote example:**
 ```bash
-# Remote regtest node
+# Remote regtest node (rewards go to server wallet)
 python3 fc_miner.py --rpc-url http://96.126.123.195:42068 --rpc-user user --rpc-password pass mine 10
+
+# Remote regtest node (rewards go to your Qt wallet)
+python3 fc_miner.py --rpc-url http://96.126.123.195:42068 --rpc-user user --rpc-password pass mine 10 --address YOUR_QT_WALLET_ADDRESS
 ```
+
+**Note:** To get your Qt wallet address, open the Qt client and go to the "Receive" tab, then click "New Address" or use an existing address.
 
 ## Future Enhancements
 

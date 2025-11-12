@@ -46,11 +46,17 @@ cd /mnt/d/seriousprojects/FleetCredits/FCRegnetMiner
 # Install Python requests if needed
 pip3 install requests
 
-# Mine 10 blocks
+# Mine 10 blocks (rewards go to server wallet)
 python3 fc_miner.py mine 10
 
-# Or auto-mine continuously
+# Mine 10 blocks to your Qt wallet address
+python3 fc_miner.py mine 10 --address YOUR_QT_WALLET_ADDRESS
+
+# Auto-mine continuously (rewards go to server wallet)
 python3 fc_miner.py auto
+
+# Auto-mine to your Qt wallet address
+python3 fc_miner.py auto --interval 6 --address YOUR_QT_WALLET_ADDRESS
 ```
 
 ## Troubleshooting
@@ -107,10 +113,34 @@ If you've configured RPC authentication in `fleetcredits.conf`:
 python3 fc_miner.py --rpc-user myuser --rpc-password mypass mine 10
 ```
 
+## Mining to Your Qt Wallet
+
+By default, mining rewards go to the server's wallet. To send rewards to your Qt wallet:
+
+1. **Get an address from your Qt wallet:**
+   - Open the Qt client
+   - Go to the "Receive" tab
+   - Click "New Address" or use an existing address
+   - Copy the address
+
+2. **Mine to that address:**
+   ```bash
+   python3 fc_miner.py mine 10 --address YOUR_QT_WALLET_ADDRESS
+   ```
+
+3. **Auto-mine to your Qt wallet:**
+   ```bash
+   python3 fc_miner.py auto --interval 6 --address YOUR_QT_WALLET_ADDRESS
+   ```
+
+**Note:** When using `--address`, the miner uses `generatetoaddress` RPC command, which sends block rewards directly to the specified address. This works even if the address is from a different wallet (like your Qt client).
+
 ## Next Steps
 
 Once the miner is working:
 - Try `python3 fc_miner.py auto` for continuous mining
+- Try `python3 fc_miner.py auto --address YOUR_ADDRESS` to mine to your Qt wallet
 - Check your balance: `python3 fc_miner.py status`
-- Use `fleetcredits-cli -regtest getbalance` to verify rewards
+- Use `fleetcredits-cli -regtest getbalance` to verify rewards (server wallet)
+- Check your Qt wallet balance in the Qt client (if mining to your address)
 
