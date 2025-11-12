@@ -40,6 +40,7 @@
 #include "util.h"
 #include "utilmoneystr.h"
 #include "utilstrencodings.h"
+#include "utiltime.h"
 #include "validationinterface.h"
 #include "versionbits.h"
 #include "warnings.h"
@@ -1364,7 +1365,11 @@ void static InvalidChainFound(CBlockIndex* pindexNew)
       log(pindexNew->nChainWork.getdouble())/log(2.0), DateTimeStrFormat("%Y-%m-%d %H:%M:%S",
       pindexNew->GetBlockTime()));
     CBlockIndex *tip = chainActive.Tip();
-    assert (tip);
+    if (!tip) {
+        LogPrintf("%s: no active chain tip while reporting invalid block=%s height=%d\n", __func__,
+          pindexNew->GetBlockHash().ToString(), pindexNew->nHeight);
+        return;
+    }
     LogPrintf("%s:  current best=%s  height=%d  log2_work=%.8g  date=%s\n", __func__,
       tip->GetBlockHash().ToString(), chainActive.Height(), log(tip->nChainWork.getdouble())/log(2.0),
       DateTimeStrFormat("%Y-%m-%d %H:%M:%S", tip->GetBlockTime()));
@@ -1417,6 +1422,8 @@ bool CScriptCheck::operator()() {
     const CScript &scriptSig = ptxTo->vin[nIn].scriptSig;
     const CScriptWitness *witness = &ptxTo->vin[nIn].scriptWitness;
     if (!VerifyScript(scriptSig, scriptPubKey, witness, nFlags, CachingTransactionSignatureChecker(ptxTo, nIn, amount, cacheStore, *txdata), &error)) {
+        fprintf(stderr, "CScriptCheck failure: tx=%s input=%u error=%s flags=%u amount=%s\n",
+                ptxTo->GetHash().ToString().c_str(), nIn, ScriptErrorString(error), nFlags, FormatMoney(amount).c_str());
         return false;
     }
     return true;
@@ -1994,8 +2001,12 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             std::vector<CScriptCheck> vChecks;
             bool fCacheResults = fJustCheck; /* Don't cache results if we're actually connecting blocks (still consult the cache, though) */
             if (!CheckInputs(tx, state, view, fScriptChecks, flags, fCacheResults, txdata[i], nScriptCheckThreads ? &vChecks : NULL))
+            {
+                fprintf(stderr, "ConnectBlock CheckInputs failure: tx=%s reject=%s debug=%s code=%u\n",
+                        tx.GetHash().ToString().c_str(), state.GetRejectReason().c_str(), state.GetDebugMessage().c_str(), state.GetRejectCode());
                 return error("ConnectBlock(): CheckInputs on %s failed with %s",
-                    tx.GetHash().ToString(), FormatStateMessage(state));
+                             tx.GetHash().ToString(), FormatStateMessage(state));
+            }
             control.Add(vChecks);
         }
 
@@ -2154,7 +2165,14 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                                REJECT_INVALID, "bad-cb-amount");
 
     if (!control.Wait())
+    {
+        fprintf(stderr, "ConnectBlock script check wait failure: state_valid=%s reject=%s debug=%s code=%u\n",
+                state.IsValid() ? "true" : "false", state.GetRejectReason().c_str(), state.GetDebugMessage().c_str(), state.GetRejectCode());
+        if (!state.IsValid()) {
+            return false;
+        }
         return state.DoS(100, false);
+    }
     int64_t nTime4 = GetTimeMicros(); nTimeVerify += nTime4 - nTime2;
     LogPrint("bench", "    - Verify %u txins: %.2fms (%.3fms/txin) [%.2fs]\n", nInputs - 1, 0.001 * (nTime4 - nTime2), nInputs <= 1 ? 0 : 0.001 * (nTime4 - nTime2) / (nInputs-1), nTimeVerify * 0.000001);
 
@@ -2486,8 +2504,15 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
         bool rv = ConnectBlock(blockConnecting, state, pindexNew, view, chainparams);
         GetMainSignals().BlockChecked(blockConnecting, state);
         if (!rv) {
-            if (state.IsInvalid())
+            arith_uint256 bnTarget;
+            bnTarget.SetCompact(pindexNew->nBits);
+            fprintf(stderr, "ConnectTip failure: hash=%s target=%s nBits=0x%08x reject=%s debug=%s code=%u\n",
+                blockConnecting.GetPoWHash().GetHex().c_str(), bnTarget.GetHex().c_str(), pindexNew->nBits,
+                state.GetRejectReason().c_str(), state.GetDebugMessage().c_str(), state.GetRejectCode());
+            fflush(stderr);
+            if (state.IsInvalid()) {
                 InvalidBlockFound(pindexNew, state);
+            }
             return error("ConnectTip(): ConnectBlock %s failed", pindexNew->GetBlockHash().ToString());
         }
         nTime3 = GetTimeMicros(); nTimeConnectTotal += nTime3 - nTime2;
@@ -3556,8 +3581,10 @@ bool ProcessNewBlock(const CChainParams& chainparams, const std::shared_ptr<cons
     NotifyHeaderTip();
 
     CValidationState state; // Only used to report errors, not invalidity - ignore it
-    if (!ActivateBestChain(state, chainparams, pblock))
+    if (!ActivateBestChain(state, chainparams, pblock)) {
+        fprintf(stderr, "ActivateBestChain failure: reject=%s debug=%s code=%u\n", state.GetRejectReason().c_str(), state.GetDebugMessage().c_str(), state.GetRejectCode());
         return error("%s: ActivateBestChain failed", __func__);
+    }
 
     return true;
 }
