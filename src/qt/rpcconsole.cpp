@@ -930,10 +930,13 @@ void RPCConsole::on_openDebugLogfileButton_clicked()
 
 void RPCConsole::on_addPeerClicked() 
 {
-    AddPeerDialog *win = new AddPeerDialog(0);  // Use 0 as parent like TestPeerDialog
+    // Create dialog exactly like TestPeerDialog (which works)
+    AddPeerDialog *win = new AddPeerDialog(0);
     
-    // Set window flags to ensure it shows as a proper window
-    win->setWindowFlags(Qt::Dialog | Qt::WindowTitleHint | Qt::WindowCloseButtonHint);
+    if (!win) {
+        QMessageBox::warning(this, tr("Add Peer"), tr("Failed to create Add Peer dialog"), QMessageBox::Ok);
+        return;
+    }
     
     // Connect peer added signal to refresh peer list
     connect(win, &AddPeerDialog::peerAdded, [this]() {
@@ -958,15 +961,21 @@ void RPCConsole::on_addPeerClicked()
         }
     });
 
-    // Center window
-    const QPoint global = ui->tabWidget->mapToGlobal(ui->tabWidget->rect().center());
-    win->move(global.x() - win->width() / 2, global.y() - win->height() / 2);
-    
-    // Show the dialog
+    // Ensure dialog is visible and on top
+    win->setVisible(true);
     win->showNormal();
     win->show();
     win->raise();
     win->activateWindow();
+    win->setFocus();
+
+    // Center window (after showing, so it has proper size)
+    QTimer::singleShot(10, [win, this]() {
+        if (win) {
+            const QPoint global = ui->tabWidget->mapToGlobal(ui->tabWidget->rect().center());
+            win->move(global.x() - win->width() / 2, global.y() - win->height() / 2);
+        }
+    });
 }
 
 void RPCConsole::on_removePeerClicked() 
