@@ -12,6 +12,9 @@
 #include "fleetcreditsunits.h"
 #include "rpc/server.h"
 #include "rpc/protocol.h"
+#include "rpc/client.h"
+
+#include <univalue.h>
 
 #include <QMessageBox>
 #include <QJsonDocument>
@@ -200,10 +203,30 @@ void ContributionsPage::onSubmitClicked()
             QMessageBox::information(this, tr("Submit Contribution"),
                 tr("Contribution submitted. Result: %1").arg(QString::fromStdString(result.write())));
         }
+    } catch (UniValue& objError) {
+        // Catch JSONRPCError (thrown as UniValue)
+        try {
+            int code = find_value(objError, "code").get_int();
+            std::string message = find_value(objError, "message").get_str();
+            QString errorMsg = QString::fromStdString(message);
+            if (code != 0) {
+                errorMsg += tr(" (code %1)").arg(code);
+            }
+            QMessageBox::critical(this, tr("Submit Contribution Error"),
+                tr("Failed to submit contribution:\n\n%1").arg(errorMsg));
+        } catch (const std::runtime_error&) {
+            // If we can't parse the error, show raw JSON
+            QMessageBox::critical(this, tr("Submit Contribution Error"),
+                tr("Failed to submit contribution:\n\n%1").arg(QString::fromStdString(objError.write())));
+        }
     } catch (const std::exception& e) {
         QString errorMsg = QString::fromStdString(e.what());
         QMessageBox::critical(this, tr("Submit Contribution Error"),
             tr("Failed to submit contribution:\n\n%1").arg(errorMsg));
+    } catch (...) {
+        // Catch any other unexpected exceptions
+        QMessageBox::critical(this, tr("Submit Contribution Error"),
+            tr("Failed to submit contribution: Unknown error occurred"));
     }
 }
 
@@ -259,9 +282,26 @@ void ContributionsPage::onContributionClicked(const QModelIndex &index)
             QMessageBox::information(this, tr("Contribution Details"),
                 tr("Transaction ID: %1\n\nStatus: %2").arg(txid, QString::fromStdString(result.write())));
         }
+    } catch (UniValue& objError) {
+        try {
+            int code = find_value(objError, "code").get_int();
+            std::string message = find_value(objError, "message").get_str();
+            QString errorMsg = QString::fromStdString(message);
+            if (code != 0) {
+                errorMsg += tr(" (code %1)").arg(code);
+            }
+            QMessageBox::warning(this, tr("Contribution Details"),
+                tr("Failed to get contribution status:\n\n%1").arg(errorMsg));
+        } catch (const std::runtime_error&) {
+            QMessageBox::warning(this, tr("Contribution Details"),
+                tr("Failed to get contribution status:\n\n%1").arg(QString::fromStdString(objError.write())));
+        }
     } catch (const std::exception& e) {
         QMessageBox::warning(this, tr("Contribution Details"),
             tr("Failed to get contribution status:\n\n%1").arg(QString::fromStdString(e.what())));
+    } catch (...) {
+        QMessageBox::warning(this, tr("Contribution Details"),
+            tr("Failed to get contribution status: Unknown error occurred"));
     }
 }
 
@@ -346,10 +386,17 @@ void ContributionsPage::refreshContributions()
                 ui->contributionsTable->sortByColumn(5, Qt::DescendingOrder);
             }
         }
+    } catch (UniValue& objError) {
+        // Silently fail - contributions might not be available yet
+        // This is normal if no contributions have been confirmed yet
+        // or if the transaction is still in mempool
+        // or if the RPC method doesn't exist yet
     } catch (const std::exception& e) {
         // Silently fail - contributions might not be available yet
         // This is normal if no contributions have been confirmed yet
         // or if the transaction is still in mempool
+    } catch (...) {
+        // Silently fail - unknown errors
     }
 }
 
