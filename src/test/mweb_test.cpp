@@ -6,6 +6,7 @@
 #include "primitives/mweb.h"
 #include "primitives/contribution.h"
 #include "primitives/block.h"
+#include "key.h"
 #include "util.h"
 #include "fleetcredits.h"
 
@@ -24,6 +25,10 @@ CMWEBTransaction CreateTestMWEBTransaction(uint64_t amount, const uint256& blind
     
     // Create a test kernel
     CMWEBKernel kernel;
+    CKey excess_key;
+    excess_key.MakeNewKey(true);
+    kernel.excess_value = excess_key.GetPubKey();
+    kernel.signature.assign(64, 0x01);
     kernel.fee = 0;  // Zero fees for micro-transactions
     kernel.kernel_id = GetRandHash();
     tx.kernels.push_back(kernel);

@@ -13,7 +13,7 @@
 #include <boost/test/unit_test.hpp>
 #include <vector>
 
-BOOST_FIXTURE_TEST_SUITE(mweb_tests, TestingSetup)
+BOOST_FIXTURE_TEST_SUITE(mweb_tests, BasicTestingSetup)
 
 BOOST_AUTO_TEST_CASE(mweb_transaction_structure)
 {
@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE(mweb_block_integration)
     // Create MWEB extension block
     std::vector<CMWEBTransaction> mweb_txs;
     uint256 blinding_factor = GetRandHash();
-    mweb_txs.push_back(MWEBTest::CreateTestMWEBTransaction(10000 * COIN, blinding_factor));
+    mweb_txs.push_back(MWEBTest::CreateTestMWEBTransaction(FC_CRITICAL_BLOCK_REWARD, blinding_factor));
     
     CMWEBExtensionBlock mweb_block = MWEBTest::CreateTestMWEBExtensionBlock(mweb_txs);
     main_block.mweb_extension.reset(new CMWEBExtensionBlock(mweb_block));

@@ -22,28 +22,72 @@
 #include <boost/date_time/posix_time/posix_time_types.hpp>
 #include <boost/foreach.hpp>
 #include <boost/test/unit_test.hpp>
+#include <memory>
+#include <map>
 
-// Tests these internal-to-net_processing.cpp methods:
-extern bool AddOrphanTx(const CTransactionRef& tx, NodeId peer);
-extern void EraseOrphansFor(NodeId peer);
-extern unsigned int LimitOrphanTxSize(unsigned int nMaxOrphans);
+#ifdef WIN32
+#include <winsock2.h>
+#else
+#include <arpa/inet.h>
+#endif
+
+extern std::unique_ptr<CConnman> g_connman;
 struct COrphanTx {
     CTransactionRef tx;
     NodeId fromPeer;
     int64_t nTimeExpire;
 };
 extern std::map<uint256, COrphanTx> mapOrphanTransactions;
+extern bool AddOrphanTx(const CTransactionRef& tx, NodeId peer);
+extern void EraseOrphansFor(NodeId peer);
+extern unsigned int LimitOrphanTxSize(unsigned int nMaxOrphans);
 
-CService ip(uint32_t i)
+namespace {
+struct DoSTestingSetup : BasicTestingSetup {
+    DoSTestingSetup() : BasicTestingSetup(CBaseChainParams::REGTEST) {
+        g_connman.reset(new CConnman(0x1337, 0x1337));
+        connman = g_connman.get();
+        RegisterNodeSignals(GetNodeSignals());
+        {
+            LOCK(cs_main);
+            if (pindexBestHeader == nullptr) {
+                static CBlockIndex dummyIndex;
+                static uint256 dummyHash;
+                dummyHash = Params().GenesisBlock().GetHash();
+                dummyIndex.phashBlock = &dummyHash;
+                dummyIndex.nTime = Params().GenesisBlock().GetBlockTime();
+                dummyIndex.nTimeMax = dummyIndex.nTime;
+                dummyIndex.nHeight = 0;
+                dummyIndex.pprev = nullptr;
+                dummyIndex.nStatus = BLOCK_VALID_HEADER;
+                dummyIndex.nChainWork = 0;
+                dummyIndex.nChainTx = 1;
+                pindexBestHeader = &dummyIndex;
+                if (chainActive.Tip() == nullptr) {
+                    chainActive.SetTip(&dummyIndex);
+                }
+            }
+        }
+    }
+    ~DoSTestingSetup() {
+        UnregisterNodeSignals(GetNodeSignals());
+        g_connman.reset();
+        connman = nullptr;
+    }
+    CConnman* connman = nullptr;
+};
+
+static CService ip(uint32_t i)
 {
     struct in_addr s;
-    s.s_addr = i;
-    return CService(CNetAddr(s), Params().GetDefaultPort());
+    s.s_addr = htonl(i);
+    return CService(s, Params().GetDefaultPort());
 }
 
 static NodeId id = 0;
+} // namespace
 
-BOOST_FIXTURE_TEST_SUITE(DoS_tests, TestingSetup)
+BOOST_FIXTURE_TEST_SUITE(DoS_tests, DoSTestingSetup)
 
 BOOST_AUTO_TEST_CASE(DoS_banning)
 {
@@ -128,6 +172,10 @@ BOOST_AUTO_TEST_CASE(DoS_bantime)
 
 CTransactionRef RandomOrphan()
 {
+    LOCK(cs_main);
+    if (mapOrphanTransactions.empty()) {
+        return CTransactionRef();
+    }
     std::map<uint256, COrphanTx>::iterator it;
     it = mapOrphanTransactions.lower_bound(InsecureRand256());
     if (it == mapOrphanTransactions.end())
@@ -154,7 +202,10 @@ BOOST_AUTO_TEST_CASE(DoS_mapOrphans)
         tx.vout[0].nValue = 1*CENT;
         tx.vout[0].scriptPubKey = GetScriptForDestination(key.GetPubKey().GetID());
 
-        AddOrphanTx(MakeTransactionRef(tx), i);
+        {
+            LOCK(cs_main);
+            AddOrphanTx(MakeTransactionRef(tx), i);
+        }
     }
 
     // ... and 50 that depend on other orphans:
@@ -171,7 +222,10 @@ BOOST_AUTO_TEST_CASE(DoS_mapOrphans)
         tx.vout[0].scriptPubKey = GetScriptForDestination(key.GetPubKey().GetID());
         SignSignature(keystore, *txPrev, tx, 0, SIGHASH_ALL);
 
-        AddOrphanTx(MakeTransactionRef(tx), i);
+        {
+            LOCK(cs_main);
+            AddOrphanTx(MakeTransactionRef(tx), i);
+        }
     }
 
     // This really-big orphan should be ignored:
@@ -195,24 +249,38 @@ BOOST_AUTO_TEST_CASE(DoS_mapOrphans)
         for (unsigned int j = 1; j < tx.vin.size(); j++)
             tx.vin[j].scriptSig = tx.vin[0].scriptSig;
 
-        BOOST_CHECK(!AddOrphanTx(MakeTransactionRef(tx), i));
+        {
+            LOCK(cs_main);
+            bool added = AddOrphanTx(MakeTransactionRef(tx), i);
+            BOOST_CHECK(!added);
+        }
     }
 
     // Test EraseOrphansFor:
     for (NodeId i = 0; i < 3; i++)
     {
-        size_t sizeBefore = mapOrphanTransactions.size();
+        size_t sizeBefore;
+        {
+            LOCK(cs_main);
+            sizeBefore = mapOrphanTransactions.size();
+        }
         EraseOrphansFor(i);
-        BOOST_CHECK(mapOrphanTransactions.size() < sizeBefore);
+        {
+            LOCK(cs_main);
+            BOOST_CHECK(mapOrphanTransactions.size() < sizeBefore);
+        }
     }
 
     // Test LimitOrphanTxSize() function:
-    LimitOrphanTxSize(40);
-    BOOST_CHECK(mapOrphanTransactions.size() <= 40);
-    LimitOrphanTxSize(10);
-    BOOST_CHECK(mapOrphanTransactions.size() <= 10);
-    LimitOrphanTxSize(0);
-    BOOST_CHECK(mapOrphanTransactions.empty());
+    {
+        LOCK(cs_main);
+        LimitOrphanTxSize(40);
+        BOOST_CHECK(mapOrphanTransactions.size() <= 40);
+        LimitOrphanTxSize(10);
+        BOOST_CHECK(mapOrphanTransactions.size() <= 10);
+        LimitOrphanTxSize(0);
+        BOOST_CHECK(mapOrphanTransactions.empty());
+    }
 }
 
 BOOST_AUTO_TEST_SUITE_END()

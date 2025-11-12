@@ -11,7 +11,7 @@
 
 #include <boost/test/unit_test.hpp>
 
-BOOST_FIXTURE_TEST_SUITE(fleetcredits_tests, TestingSetup)
+BOOST_FIXTURE_TEST_SUITE(fleetcredits_tests, BasicTestingSetup)
 
 static CContributionTransaction MakeStubContribution(CKey& key, ContributionType type, uint32_t bonusLevel)
 {
@@ -73,19 +73,26 @@ BOOST_AUTO_TEST_CASE(block_subsidy_with_contributions)
         GetFleetCreditsBlockSubsidyWithContributions(1, params, prevHash, {}),
         FC_BASE_BLOCK_REWARD);
 
-    // Foundational contribution
+    // Foundational contribution (creative work auto-verifies)
     std::vector<CContributionTransaction> contribs;
-    contribs.push_back(MakeStubContribution(key, CODE_CONTRIBUTION, BONUS_LOW));
+    contribs.push_back(MakeStubContribution(key, CREATIVE_WORK, BONUS_LOW));
     BOOST_CHECK_EQUAL(
         GetFleetCreditsBlockSubsidyWithContributions(1, params, prevHash, contribs),
         FC_FOUNDATIONAL_BLOCK_REWARD);
 
-    // Critical AI validation overrides payout
+    // High-impact contribution tier
+    contribs.clear();
+    contribs.push_back(MakeStubContribution(key, CREATIVE_WORK, BONUS_HIGH));
+    BOOST_CHECK_EQUAL(
+        GetFleetCreditsBlockSubsidyWithContributions(1, params, prevHash, contribs),
+        FC_HIGH_IMPACT_BLOCK_REWARD);
+
+    // Critical tier requires validated AI/ethical review; unverified submissions fall back to base
     contribs.clear();
     contribs.push_back(MakeStubContribution(key, AI_VALIDATION, BONUS_CRITICAL));
     BOOST_CHECK_EQUAL(
         GetFleetCreditsBlockSubsidyWithContributions(1, params, prevHash, contribs),
-        FC_CRITICAL_BLOCK_REWARD);
+        FC_BASE_BLOCK_REWARD);
 }
 
 BOOST_AUTO_TEST_CASE(get_next_work_difficulty_limit)

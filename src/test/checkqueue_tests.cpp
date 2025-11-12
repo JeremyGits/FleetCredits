@@ -5,6 +5,7 @@
 #include "util.h"
 #include "utiltime.h"
 #include "validation.h"
+#include "chainparamsbase.h"
 
 #include "test/test_fleetcredits.h"
 #include "checkqueue.h"
@@ -20,9 +21,26 @@
 #include <memory>
 #include "random.h"
 
+namespace {
+struct CheckQueueTestingSetup : BasicTestingSetup {
+    CheckQueueTestingSetup() : BasicTestingSetup(CBaseChainParams::REGTEST) {
+        nScriptCheckThreads = 3;
+        for (int i = 0; i < nScriptCheckThreads - 1; ++i) {
+            threadGroup.create_thread(&ThreadScriptCheck);
+        }
+    }
+    ~CheckQueueTestingSetup() {
+        threadGroup.interrupt_all();
+        threadGroup.join_all();
+        nScriptCheckThreads = 0;
+    }
+    boost::thread_group threadGroup;
+};
+} // namespace
+
 // BasicTestingSetup not sufficient because nScriptCheckThreads is not set
 // otherwise.
-BOOST_FIXTURE_TEST_SUITE(checkqueue_tests, TestingSetup)
+BOOST_FIXTURE_TEST_SUITE(checkqueue_tests, CheckQueueTestingSetup)
 
 static const int QUEUE_BATCH_SIZE = 128;
 

@@ -23,11 +23,15 @@
 #include "rpc/server.h"
 #include "rpc/register.h"
 #include "script/sigcache.h"
+#include "utiltime.h"
 
 #include "test/testutil.h"
 
 #include <memory>
+#include <cassert>
 #include <mutex>
+#include <string>
+#include <iostream>
 
 #include <boost/test/unit_test.hpp>
 #include <boost/thread.hpp>
@@ -62,11 +66,14 @@ BasicTestingSetup::BasicTestingSetup(const std::string& chainName)
         fPrintToDebugLog = false; // don't want to write to debug.log file
         fCheckBlockIndex = true;
         SelectParams(chainName);
+        SetMockTime(Params().GenesisBlock().GetBlockTime());
+        assert(GetTime() == Params().GenesisBlock().GetBlockTime());
         noui_connect();
 }
 
 BasicTestingSetup::~BasicTestingSetup()
 {
+        SetMockTime(0);
         {
             std::lock_guard<std::mutex> lock(g_ecc_sign_mutex);
             if (--g_ecc_sign_refcount == 0) {
@@ -79,6 +86,10 @@ BasicTestingSetup::~BasicTestingSetup()
 TestingSetup::TestingSetup(const std::string& chainName) : BasicTestingSetup(chainName)
 {
     const CChainParams& chainparams = Params();
+    const int64_t mock_time = chainparams.GenesisBlock().GetBlockTime() + 365 * 24 * 60 * 60;
+    if (GetTime() < mock_time) {
+        SetMockTime(mock_time);
+    }
         // Ideally we'd move all the RPC tests to the functional testing framework
         // instead of unit tests, but for now we need these here.
 
@@ -95,6 +106,9 @@ TestingSetup::TestingSetup(const std::string& chainName) : BasicTestingSetup(cha
         {
             CValidationState state;
             bool ok = ActivateBestChain(state, chainparams);
+            if (!ok) {
+                std::cerr << "ActivateBestChain failed: " << state.GetRejectReason() << std::endl;
+            }
             BOOST_CHECK(ok);
         }
         nScriptCheckThreads = 3;

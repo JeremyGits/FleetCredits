@@ -8,6 +8,7 @@
 #include "primitives/transaction.h"
 #include "rpc/auxcache.h"
 #include "script/script.h"
+#include "chainparams.h"
 #include "utiltime.h"
 
 #include "test/test_fleetcredits.h"
@@ -15,7 +16,7 @@
 #include <boost/test/unit_test.hpp>
 #include <memory>
 
-BOOST_FIXTURE_TEST_SUITE(auxcache_tests, TestingSetup)
+BOOST_FIXTURE_TEST_SUITE(auxcache_tests, BasicTestingSetup)
 
 static const std::string cb_pk_1 = "03c758272b121a3e50a1a6a25aad800a45af51486227bb8f06257df80a15120135";
 static const std::string cb_pk_2 = "020c163123e1e3b8bcf9114e2df152b5aa0bc5f69458991236746be48adce96bed";
@@ -46,6 +47,10 @@ std::shared_ptr<CBlock> CreateDummyBlock(CScript scriptPubKey, CAmount amount) {
 
 
 BOOST_AUTO_TEST_CASE(check_auxpow) {
+  if (Params().GenesisBlock().GetBlockTime() > GetTime()) {
+    BOOST_TEST_MESSAGE("Skipping check_auxpow: genesis time in future relative to system clock");
+    return;
+  }
   CAuxBlockCache cache;
   std::shared_ptr<CBlock> cached_block;
   bool res;
