@@ -28,8 +28,8 @@ While you can use `fleetcredits-cli -regtest generate 1` directly, this tool pro
 
 ## Requirements
 
-- Fleet Credits daemon running in regtest mode
-- RPC access enabled (default: port 18332 for regtest)
+- Fleet Credits daemon running in regtest mode with `-mocktime=1776643200`
+- RPC access enabled (default: port 42068 for regtest)
 - Python 3.6+ (for Python version) OR C++ compiler (for C++ version)
 
 ## Quick Start
@@ -78,11 +78,14 @@ python3 fc_miner.py auto
 ### Connect to Custom RPC (Local or Remote)
 
 ```bash
-# Local node
-python3 fc_miner.py --rpc-url http://127.0.0.1:18332 --rpc-user user --rpc-password pass mine 10
+# Local regtest node (default)
+python3 fc_miner.py --rpc-url http://127.0.0.1:42068 --rpc-user user --rpc-password pass mine 10
+
+# Remote regtest node
+python3 fc_miner.py --rpc-url http://96.126.123.195:42068 --rpc-user user --rpc-password pass mine 10
 
 # Remote node (mainnet)
-python3 fc_miner.py --rpc-url http://96.126.123.195:22555 --rpc-user user --rpc-password pass mine 10
+python3 fc_miner.py --rpc-url http://96.126.123.195:42068 --rpc-user user --rpc-password pass mine 10
 
 # Remote node (testnet)
 python3 fc_miner.py --rpc-url http://96.126.123.195:44555 --rpc-user user --rpc-password pass mine 10
@@ -94,7 +97,7 @@ See [REMOTE_CONNECTION.md](REMOTE_CONNECTION.md) for detailed remote connection 
 
 The miner reads RPC credentials from:
 1. Command line arguments (recommended)
-2. Default: `http://127.0.0.1:18332` (regtest default)
+2. Default: `http://127.0.0.1:42068` (regtest default)
 
 ### Remote Connection
 
@@ -102,7 +105,8 @@ You can connect to remote Fleet Credits nodes! See [REMOTE_CONNECTION.md](REMOTE
 
 **Quick remote example:**
 ```bash
-python3 fc_miner.py --rpc-url http://96.126.123.195:22555 --rpc-user user --rpc-password pass mine 10
+# Remote regtest node
+python3 fc_miner.py --rpc-url http://96.126.123.195:42068 --rpc-user user --rpc-password pass mine 10
 ```
 
 ## Future Enhancements

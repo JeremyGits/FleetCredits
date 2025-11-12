@@ -16,9 +16,9 @@ python3 fc_miner.py --rpc-url http://96.126.123.195:22555 --rpc-user myuser --rp
 
 | Network | RPC Port | P2P Port |
 |---------|----------|----------|
-| **Mainnet** | 22555 | 22556 |
+| **Mainnet** | 42068 | 42069 |
 | **Testnet** | 44555 | 44556 |
-| **Regtest** | 18332 | 18444 |
+| **Regtest** | 42068 | 18444 |
 
 ## Remote Server Setup
 

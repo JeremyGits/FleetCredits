@@ -8,8 +8,10 @@ You need to start the Fleet Credits daemon **before** running the miner.
 
 ```bash
 cd /mnt/d/seriousprojects/FleetCredits/fleetcredits
-./src/fleetcreditsd -regtest -printtoconsole
+./src/fleetcreditsd -regtest -mocktime=1776643200 -printtoconsole
 ```
+
+**Note:** The `-mocktime=1776643200` flag is required for regtest because the Fleet Credits genesis block has a future timestamp (April 20, 2026).
 
 Keep this terminal open. You'll see daemon output here.
 
@@ -17,7 +19,7 @@ Keep this terminal open. You'll see daemon output here.
 
 ```bash
 cd /mnt/d/seriousprojects/FleetCredits/fleetcredits
-./src/fleetcreditsd -regtest -daemon
+./src/fleetcreditsd -regtest -mocktime=1776643200 -daemon
 ```
 
 Check if it's running:
@@ -29,10 +31,10 @@ Check if it's running:
 
 ```bash
 cd /mnt/d/seriousprojects/FleetCredits/fleetcredits
-./bin/fleetcredits-qt -regtest
+./src/qt/fleetcredits-qt -regtest -mocktime=1776643200
 ```
 
-The Qt client automatically starts its own daemon.
+The Qt client automatically starts its own daemon. The `-mocktime=1776643200` flag is required for regtest.
 
 ## Step 2: Run the Miner
 
@@ -58,8 +60,8 @@ python3 fc_miner.py auto
 **Problem:** Daemon isn't running or RPC isn't accessible.
 
 **Solution:**
-1. Make sure daemon is running (see Step 1)
-2. Check RPC port (default: 18332 for regtest)
+1. Make sure daemon is running with `-mocktime=1776643200` (see Step 1)
+2. Check RPC port (default: 42068 for regtest)
 3. If using custom RPC settings, use `--rpc-url` flag
 
 ### "RPC Error: Method not found"
@@ -86,7 +88,7 @@ find /mnt/d/seriousprojects/FleetCredits/fleetcredits -name "fleetcreditsd" -typ
 ```bash
 # Terminal 1: Start daemon
 cd /mnt/d/seriousprojects/FleetCredits/fleetcredits
-./src/fleetcreditsd -regtest -printtoconsole
+./src/fleetcreditsd -regtest -mocktime=1776643200 -printtoconsole
 
 # Terminal 2: Run miner
 cd /mnt/d/seriousprojects/FleetCredits/FCRegnetMiner
@@ -96,7 +98,7 @@ python3 fc_miner.py mine 10
 ## RPC Configuration
 
 By default, the miner connects to:
-- **URL:** `http://127.0.0.1:18332` (regtest default)
+- **URL:** `http://127.0.0.1:42068` (regtest default)
 - **Auth:** None (if RPC auth not configured)
 
 If you've configured RPC authentication in `fleetcredits.conf`:
