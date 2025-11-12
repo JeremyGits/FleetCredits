@@ -253,6 +253,10 @@ assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf7
                 <h4>Testnet / Regtest</h4>
                 <p>Testnet and regtest reuse the same April&nbsp;2026 timestamp with easier difficulties. We pre-mine and hardcode their nonce/hash pairs as well, but the initialization code keeps a fallback loop for developers experimenting with alternative parameters.</p>
                 
+                <div class="warning-box">
+                    <strong>⚠️ Regtest Mocktime Requirement:</strong> Regtest mode requires the <code>-mocktime=1776643200</code> flag when starting the daemon or Qt client because the genesis block timestamp (April 20, 2026) is in the future. The regtest genesis hash is <code>556f8207d42c427a03d882d2e338a0102342648ce203f82a11efbe596da0f55e</code>.
+                </div>
+                
                 <h4>Why Explicit Validation?</h4>
                 <p>Even with pre-mined values, the code still demonstrates the validation path:</p>
                 <ul>

@@ -335,15 +335,27 @@ Regtest:  0xFA 0xBF 0xB5 0xDA  (Standard regtest)</code></pre>
                 <h2>Starting the Network</h2>
 
                 <h3>Regtest Mode (Recommended for Development)</h3>
-                <p>Completely isolated, no network needed:</p>
+                <p>Completely isolated, no network needed. <strong>Important:</strong> Regtest requires the <code>-mocktime=1776643200</code> flag because the genesis block timestamp is in the future (April 20, 2026).</p>
                 <pre><code># Start daemon in regtest mode
-./fleetcreditsd -regtest -daemon
+./fleetcreditsd -regtest -mocktime=1776643200 -daemon
 
 # Generate blocks locally
 ./fleetcredits-cli -regtest generate 100
 
 # Check balance
-./fleetcredits-cli -regtest getbalance</code></pre>
+./fleetcredits-cli -regtest getbalance
+
+# Verify genesis block
+./fleetcredits-cli -regtest getblockhash 0
+# Should return: 556f8207d42c427a03d882d2e338a0102342648ce203f82a11efbe596da0f55e</code></pre>
+                
+                <div class="warning-box">
+                    <strong>Genesis Block Mismatch:</strong> If you see a "genesis block mismatch" error, clear old regtest data:
+                    <pre><code>rm -rf ~/.fleetcredits/regtest/blocks
+rm -rf ~/.fleetcredits/regtest/chainstate
+rm -f ~/.fleetcredits/regtest/peers.dat</code></pre>
+                    Then restart with <code>-regtest -mocktime=1776643200</code>.
+                </div>
 
                 <h3>Private Testnet</h3>
                 <p>Connect multiple nodes manually:</p>

@@ -207,6 +207,10 @@
                         <span class="nav-icon">📚</span>
                         <span>Complete API Reference</span>
                     </a>
+                    <a href="ecosystem.html" class="nav-item">
+                        <span class="nav-icon">🌍</span>
+                        <span>Ecosystem</span>
+                    </a>
                 </div>
             </nav>
         </aside>
@@ -509,42 +513,54 @@ make -j$(nproc)</code></pre>
                 <h3>Running Fleet Credits</h3>
                 
                 <h4>Initial Test Run</h4>
-                <p>Test the daemon in regtest mode (local testing):</p>
+                <p>Test the daemon in regtest mode (local testing). <strong>Important:</strong> Regtest requires the <code>-mocktime=1776643200</code> flag because the genesis block timestamp is in the future (April 20, 2026).</p>
                 <pre><code># Run daemon (Linux)
-./src/fleetcreditsd -regtest -printtoconsole
+./src/fleetcreditsd -regtest -mocktime=1776643200 -printtoconsole
 
 # Run daemon (Windows)
-fleetcreditsd.exe -regtest -printtoconsole</code></pre>
+fleetcreditsd.exe -regtest -mocktime=1776643200 -printtoconsole</code></pre>
                 
                 <p>You should see initialization messages. Press <code>Ctrl+C</code> to stop.</p>
                 
                 <h4>Test RPC Commands</h4>
                 <pre><code># Start daemon in background (Linux)
-./src/fleetcreditsd -regtest -daemon
+./src/fleetcreditsd -regtest -mocktime=1776643200 -daemon
 
 # Start daemon in background (Windows)
-fleetcreditsd.exe -regtest -daemon
+fleetcreditsd.exe -regtest -mocktime=1776643200 -daemon
 
 # Wait a few seconds, then test (Linux)
 ./src/fleetcredits-cli -regtest getblockchaininfo
 ./src/fleetcredits-cli -regtest getnetworkinfo
+./src/fleetcredits-cli -regtest getblockhash 0
 
 # Test (Windows)
 fleetcredits-cli.exe -regtest getblockchaininfo
-fleetcredits-cli.exe -regtest getnetworkinfo</code></pre>
+fleetcredits-cli.exe -regtest getnetworkinfo
+fleetcredits-cli.exe -regtest getblockhash 0</code></pre>
+                
+                <p>The genesis block hash should be <code>556f8207d42c427a03d882d2e338a0102342648ce203f82a11efbe596da0f55e</code>.</p>
                 
                 <h4>Run GUI Client</h4>
                 <pre><code># Linux
-./src/qt/fleetcredits-qt -regtest
+./src/qt/fleetcredits-qt -regtest -mocktime=1776643200
 
 # Windows
-fleetcredits-qt.exe -regtest</code></pre>
+fleetcredits-qt.exe -regtest -mocktime=1776643200</code></pre>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Genesis Block Mismatch:</strong> If you see a "genesis block mismatch" error, clear old regtest data:
+                    <pre><code>rm -rf ~/.fleetcredits/regtest/blocks
+rm -rf ~/.fleetcredits/regtest/chainstate
+rm -f ~/.fleetcredits/regtest/peers.dat</code></pre>
+                    Then restart with <code>-regtest -mocktime=1776643200</code>.
+                </div>
                 
                 <h4>Network Modes</h4>
                 <ul>
-                    <li><strong>Regtest:</strong> <code>-regtest</code> - Local testing, instant blocks, isolated network</li>
+                    <li><strong>Regtest:</strong> <code>-regtest -mocktime=1776643200</code> - Local testing, instant blocks, isolated network. <strong>Requires mocktime flag.</strong></li>
                     <li><strong>Testnet:</strong> <code>-testnet</code> - Public test network (port 44556)</li>
-                    <li><strong>Mainnet:</strong> Default - Public production network (port 42069)</li>
+                    <li><strong>Mainnet:</strong> Default - Public production network (port 42069). Not yet launched (genesis timestamp is April 20, 2026).</li>
                 </ul>
                 
                 <div class="info-box">

@@ -471,7 +471,8 @@ sudo ufw allow from YOUR_IP to any port 42068 proto tcp</code></pre>
         <div class="step">
             <span class="step-number">1</span>
             <strong>Test Daemon Startup (Regtest Mode)</strong>
-            <pre><code>./src/fleetcreditsd -regtest -printtoconsole</code></pre>
+            <p><strong>Important:</strong> Regtest requires the <code>-mocktime=1776643200</code> flag because the genesis block timestamp is in the future (April 20, 2026).</p>
+            <pre><code>./src/fleetcreditsd -regtest -mocktime=1776643200 -printtoconsole</code></pre>
             
             <p>You should see initialization messages. Press <code>Ctrl+C</code> to stop.</p>
         </div>
@@ -480,11 +481,14 @@ sudo ufw allow from YOUR_IP to any port 42068 proto tcp</code></pre>
             <span class="step-number">2</span>
             <strong>Test RPC Commands</strong>
             <pre><code># Start daemon in background
-./src/fleetcreditsd -regtest -daemon
+./src/fleetcreditsd -regtest -mocktime=1776643200 -daemon
 
 # Wait a few seconds, then test
 ./src/fleetcredits-cli -regtest getblockchaininfo
-./src/fleetcredits-cli -regtest getnetworkinfo</code></pre>
+./src/fleetcredits-cli -regtest getnetworkinfo
+./src/fleetcredits-cli -regtest getblockhash 0</code></pre>
+            
+            <p>The genesis block hash should be <code>556f8207d42c427a03d882d2e338a0102342648ce203f82a11efbe596da0f55e</code>.</p>
         </div>
 
         <h2>📁 Step 8: Data Directory Setup</h2>

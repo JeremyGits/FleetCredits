@@ -259,17 +259,28 @@ consensus.hashGenesisBlock = genesis.GetHash();
 assert(consensus.hashGenesisBlock == uint256S("0x0c233e4e9a757cade6ec5892756f6449dcc66e4497d531faed987142f1a23f6b"));
 assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));</code></pre>
                 
+                <p>For regtest, the genesis block uses different parameters:</p>
+                <pre><code>// Regtest parameters
+genesis = CreateGenesisBlock(1776643200, 0, 0x207fffff, 1, FC_BASE_BLOCK_REWARD);
+consensus.hashGenesisBlock = genesis.GetHash();
+assert(consensus.hashGenesisBlock == uint256S("0x556f8207d42c427a03d882d2e338a0102342648ce203f82a11efbe596da0f55e"));
+assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));</code></pre>
+                
                 <h4>Genesis Block Properties</h4>
                 <ul>
                     <li><strong>Previous Hash:</strong> <code>hashPrevBlock.SetNull()</code> (all zeros)</li>
                     <li><strong>Merkle Root:</strong> Deterministic result of the coinbase transaction</li>
                     <li><strong>No AuxPow:</strong> Genesis blocks never include merge-mining data</li>
-                    <li><strong>Checkpoint:</strong> Height 0 checkpoint records <code>0c233e4e...</code></li>
+                    <li><strong>Checkpoint:</strong> Height 0 checkpoint records mainnet genesis <code>0c233e4e...</code> or regtest genesis <code>556f8207...</code></li>
                     <li><strong>PoW:</strong> Hardcoded nonce/difficulty represent a valid Scrypt solution</li>
                 </ul>
                 
                 <h4>Runtime Behaviour</h4>
-                <p>Mainnet uses the pre-mined values above, eliminating the expensive “mine at startup” loop and reducing boot time to seconds. Testnet/regtest ship with pre-computed values too, but their parameter blocks retain the fallback mining loop for experimentation.</p>
+                <p>Mainnet uses the pre-mined values above, eliminating the expensive "mine at startup" loop and reducing boot time to seconds. Testnet/regtest ship with pre-computed values too, but their parameter blocks retain the fallback mining loop for experimentation.</p>
+                
+                <div class="warning-box">
+                    <strong>⚠️ Regtest Mocktime Requirement:</strong> Because the genesis block timestamp (April 20, 2026) is in the future, regtest mode requires the <code>-mocktime=1776643200</code> flag when starting the daemon or Qt client. Without this flag, the client will fail to initialize correctly or may generate an incorrect genesis block.
+                </div>
                 
                 <h4>Genesis Block Validation</h4>
                 <p>When validating the genesis block:</p>

@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fleet Credits Ecosystem - Fleet Credits Developer Documentation</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+    <div class="docs-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🚀</span>
+                    <span class="logo-text">Fleet Credits</span>
+                </div>
+                <div class="version">v1.0.0 - Core</div>
+                <div class="tagline">Scrypt PoW Blockchain with Contribution Rewards & MWEB Privacy</div>
+                <div class="subtagline">✨ Complete Developer Documentation</div>
+            </div>
+
+            <div class="search-box">
+                <input type="text" placeholder="Search documentation..." id="searchInput">
+            </div>
+
+            <nav class="nav-menu">
+                <div class="nav-section">
+                    <div class="nav-section-title">GETTING STARTED</div>
+                    <a href="../index.html" class="nav-item">
+                        <span class="nav-icon">🏠</span>
+                        <span>Overview</span>
+                    </a>
+                    <a href="architecture.html" class="nav-item">
+                        <span class="nav-icon">🏛️</span>
+                        <span>Architecture</span>
+                    </a>
+                    <a href="network-params.html" class="nav-item">
+                        <span class="nav-icon">⚙️</span>
+                        <span>Network Parameters</span>
+                    </a>
+                    <a href="network-architecture.html" class="nav-item">
+                        <span class="nav-icon">🌐</span>
+                        <span>Network Architecture</span>
+                    </a>
+                    <a href="building.html" class="nav-item">
+                        <span class="nav-icon">🔨</span>
+                        <span>Building & Setup</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CORE BLOCKCHAIN</div>
+                    <a href="blockchain-core.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Block & Transaction</span>
+                    </a>
+                    <a href="utxo-model.html" class="nav-item">
+                        <span class="nav-icon">💎</span>
+                        <span>UTXO Model</span>
+                    </a>
+                    <a href="consensus.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>Consensus & PoW</span>
+                    </a>
+                    <a href="validation.html" class="nav-item">
+                        <span class="nav-icon">✅</span>
+                        <span>Validation System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">CONTRIBUTION SYSTEM</div>
+                    <a href="contribution-overview.html" class="nav-item">
+                        <span class="nav-icon">🎯</span>
+                        <span>Contribution Overview</span>
+                    </a>
+                    <a href="contribution-types.html" class="nav-item">
+                        <span class="nav-icon">📋</span>
+                        <span>Contribution Types</span>
+                    </a>
+                    <a href="contribution-rewards.html" class="nav-item">
+                        <span class="nav-icon">💰</span>
+                        <span>Reward System</span>
+                    </a>
+                    <a href="verification-system.html" class="nav-item">
+                        <span class="nav-icon">🔍</span>
+                        <span>Verification System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">MWEB PRIVACY</div>
+                    <a href="mweb-overview.html" class="nav-item">
+                        <span class="nav-icon">🔒</span>
+                        <span>MWEB Overview</span>
+                    </a>
+                    <a href="mweb-structures.html" class="nav-item">
+                        <span class="nav-icon">🏗️</span>
+                        <span>MWEB Structures</span>
+                    </a>
+                    <a href="mweb-operations.html" class="nav-item">
+                        <span class="nav-icon">⚡</span>
+                        <span>Peg-in/Peg-out</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">RPC API</div>
+                    <a href="rpc-overview.html" class="nav-item">
+                        <span class="nav-icon">📡</span>
+                        <span>RPC Overview</span>
+                    </a>
+                    <a href="rpc-contribution.html" class="nav-item">
+                        <span class="nav-icon">📤</span>
+                        <span>Contribution RPC</span>
+                    </a>
+                    <a href="rpc-mweb.html" class="nav-item">
+                        <span class="nav-icon">🔐</span>
+                        <span>MWEB RPC</span>
+                    </a>
+                    <a href="rpc-mining.html" class="nav-item">
+                        <span class="nav-icon">⛏️</span>
+                        <span>Mining RPC</span>
+                    </a>
+                    <a href="rpc-wallet.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet RPC</span>
+                    </a>
+                    <a href="rpc-blockchain.html" class="nav-item">
+                        <span class="nav-icon">⛓️</span>
+                        <span>Blockchain RPC</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">WALLET SYSTEM</div>
+                    <a href="wallet-overview.html" class="nav-item">
+                        <span class="nav-icon">👛</span>
+                        <span>Wallet Overview</span>
+                    </a>
+                    <a href="wallet-classes.html" class="nav-item">
+                        <span class="nav-icon">📦</span>
+                        <span>Wallet Classes</span>
+                    </a>
+                    <a href="address-system.html" class="nav-item">
+                        <span class="nav-icon">📍</span>
+                        <span>Address System</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">QT GUI</div>
+                    <a href="qt-overview.html" class="nav-item">
+                        <span class="nav-icon">🖥️</span>
+                        <span>GUI Overview</span>
+                    </a>
+                    <a href="qt-components.html" class="nav-item">
+                        <span class="nav-icon">🧩</span>
+                        <span>Components</span>
+                    </a>
+                    <a href="qt-models.html" class="nav-item">
+                        <span class="nav-icon">📊</span>
+                        <span>Models</span>
+                    </a>
+                    <a href="qt-themes.html" class="nav-item">
+                        <span class="nav-icon">🎨</span>
+                        <span>Themes</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">FEE STRUCTURE</div>
+                    <a href="fee-system.html" class="nav-item">
+                        <span class="nav-icon">💵</span>
+                        <span>Fee System</span>
+                    </a>
+                    <a href="community-reserve.html" class="nav-item">
+                        <span class="nav-icon">🏦</span>
+                        <span>Community Reserve</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">TESTING</div>
+                    <a href="testing-overview.html" class="nav-item">
+                        <span class="nav-icon">🧪</span>
+                        <span>Testing Overview</span>
+                    </a>
+                    <a href="test-structures.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Test Structures</span>
+                    </a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">REFERENCE</div>
+                    <a href="erd-diagram.html" class="nav-item">
+                        <span class="nav-icon">📐</span>
+                        <span>ERD Diagram</span>
+                    </a>
+                    <a href="naming-conventions.html" class="nav-item">
+                        <span class="nav-icon">📝</span>
+                        <span>Naming Conventions</span>
+                    </a>
+                    <a href="api-reference.html" class="nav-item">
+                        <span class="nav-icon">📚</span>
+                        <span>Complete API Reference</span>
+                    </a>
+                    <a href="ecosystem.html" class="nav-item active">
+                        <span class="nav-icon">🌍</span>
+                        <span>Ecosystem</span>
+                    </a>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Fleet Credits Ecosystem</h1>
+                <p class="subtitle">Complete overview of the Fleet Credits blockchain ecosystem, components, and participants</p>
+            </div>
+
+            <section class="content-section">
+                <h2>What is the Fleet Credits Ecosystem?</h2>
+                <p>The Fleet Credits ecosystem is a comprehensive blockchain platform that combines proven cryptocurrency technology with innovative features for privacy, contribution recognition, and community governance. Unlike traditional cryptocurrencies focused solely on value transfer, Fleet Credits creates a complete ecosystem that rewards diverse forms of value creation while maintaining optional privacy and decentralized governance.</p>
+                
+                <div class="info-box">
+                    <strong>🌍 Ecosystem Philosophy:</strong> Fleet Credits is designed as a <strong>technical blockchain project</strong> that recognizes and rewards contributions to open-source development, education, creative work, and community value creation. The ecosystem enables a post-scarcity economic model where value derives from utility and impact, not speculation.
+                </div>
+
+                <h2>Core Infrastructure</h2>
+                
+                <h3>Blockchain Layer</h3>
+                <ul>
+                    <li><strong>Consensus:</strong> Scrypt Proof-of-Work (ASIC-resistant, similar to Dogecoin)</li>
+                    <li><strong>Block Time:</strong> 60 seconds for fast transaction confirmation</li>
+                    <li><strong>Block Reward:</strong> Fixed 1.00000069 FC per block (no halving, unlimited issuance)</li>
+                    <li><strong>Network Isolation:</strong> Unique magic bytes and genesis block ensure complete separation from other blockchains</li>
+                    <li><strong>Difficulty Adjustment:</strong> Digishield algorithm for responsive difficulty retargeting</li>
+                </ul>
+
+                <h3>Network Infrastructure</h3>
+                <table>
+                    <tr><th>Network</th><th>Purpose</th><th>Ports</th><th>Status</th></tr>
+                    <tr><td><strong>Mainnet</strong></td><td>Production network</td><td>42069 (P2P), 42068 (RPC)</td><td>Launch: April 20, 2026</td></tr>
+                    <tr><td><strong>Testnet</strong></td><td>Public testing</td><td>44556 (P2P), 44555 (RPC)</td><td>Active</td></tr>
+                    <tr><td><strong>Regtest</strong></td><td>Local development</td><td>18444 (P2P), 42068 (RPC)</td><td>Active</td></tr>
+                </table>
+
+                <h2>Privacy Layer: MWEB</h2>
+                <p><strong>Mimblewimble Extension Blocks (MWEB)</strong> provide optional transaction privacy:</p>
+                <ul>
+                    <li><strong>Pedersen Commitments:</strong> Hide transaction amounts</li>
+                    <li><strong>Range Proofs:</strong> Verify amounts are non-negative without revealing values</li>
+                    <li><strong>Extension Blocks:</strong> Privacy transactions stored separately from transparent chain</li>
+                    <li><strong>Peg-in/Peg-out:</strong> Convert between transparent and private transactions</li>
+                    <li><strong>Dedicated Mempool:</strong> Separate mempool for MWEB transactions</li>
+                </ul>
+                <p>See <a href="mweb-overview.html">MWEB Overview</a> for detailed information.</p>
+
+                <h2>Contribution System</h2>
+                <p>The contribution system is a core innovation that recognizes and rewards various types of value creation beyond traditional mining rewards.</p>
+
+                <h3>Eight Contribution Types</h3>
+                <table>
+                    <tr><th>Type</th><th>Description</th><th>Verification</th></tr>
+                    <tr><td><code>CODE_CONTRIBUTION</code></td><td>Open-source code commits</td><td>Automated (GitHub API)</td></tr>
+                    <tr><td><code>CHARITABLE_ACT</code></td><td>Verified charitable donations</td><td>Oracle-based</td></tr>
+                    <tr><td><code>CREATIVE_WORK</code></td><td>Art, writing, music</td><td>IPFS hash + Oracle</td></tr>
+                    <tr><td><code>EDUCATIONAL_CONTENT</code></td><td>Teaching materials, courses</td><td>Oracle-based</td></tr>
+                    <tr><td><code>CODE_MENTORSHIP</code></td><td>Code mentorship activities</td><td>Oracle-based</td></tr>
+                    <tr><td><code>AI_VALIDATION</code></td><td>AI model validation work</td><td>Oracle-based</td></tr>
+                    <tr><td><code>DATA_LABELING</code></td><td>Data labeling for ML</td><td>Oracle-based</td></tr>
+                    <tr><td><code>ETHICAL_REVIEW</code></td><td>Ethical review of AI/tech</td><td>Oracle-based</td></tr>
+                </table>
+
+                <h3>Reward Tiers</h3>
+                <p>Contributions are evaluated and assigned to reward tiers:</p>
+                <table>
+                    <tr><th>Tier</th><th>Reward</th><th>Multiplier</th><th>Use Case</th></tr>
+                    <tr><td><strong>Base</strong></td><td>1.00000069 FC</td><td>1.0x</td><td>Standard block (no contribution)</td></tr>
+                    <tr><td><strong>Foundational</strong></td><td>1.25000420 FC</td><td>1.25x</td><td>Low-impact contributions</td></tr>
+                    <tr><td><strong>Substantive</strong></td><td>1.75000006 FC</td><td>1.75x</td><td>Medium-impact contributions</td></tr>
+                    <tr><td><strong>High Impact</strong></td><td>2.69000009 FC</td><td>2.69x</td><td>High-impact contributions</td></tr>
+                    <tr><td><strong>Critical</strong></td><td>3.69428008 FC</td><td>3.69x</td><td>AI validation, ethical review</td></tr>
+                </table>
+
+                <p>See <a href="contribution-overview.html">Contribution Overview</a> and <a href="contribution-rewards.html">Reward System</a> for detailed information.</p>
+
+                <h2>Governance System</h2>
+                <p>Fleet Credits includes decentralized governance mechanisms:</p>
+                <ul>
+                    <li><strong>Community Reserve:</strong> Funded from block rewards for ecosystem development</li>
+                    <li><strong>Proposal System:</strong> Submit governance proposals via RPC</li>
+                    <li><strong>Voting Mechanism:</strong> Community voting on proposals</li>
+                    <li><strong>Oracle Participation:</strong> Validators participate in contribution verification and governance</li>
+                </ul>
+                <p>See <a href="community-reserve.html">Community Reserve</a> for detailed information.</p>
+
+                <h2>Developer Tools & APIs</h2>
+                
+                <h3>RPC API</h3>
+                <p>Comprehensive RPC interface for programmatic interaction:</p>
+                <ul>
+                    <li><strong>Blockchain RPC:</strong> <code>getblockchaininfo</code>, <code>getblock</code>, <code>getblockhash</code></li>
+                    <li><strong>Contribution RPC:</strong> <code>submitcontribution</code>, <code>getcontributionstatus</code></li>
+                    <li><strong>MWEB RPC:</strong> <code>mwebpegout</code>, <code>mwebpegout</code>, <code>mwebbalance</code></li>
+                    <li><strong>Mining RPC:</strong> <code>generate</code>, <code>getmininginfo</code></li>
+                    <li><strong>Wallet RPC:</strong> <code>sendtoaddress</code>, <code>getbalance</code>, <code>listtransactions</code></li>
+                    <li><strong>Governance RPC:</strong> <code>submitproposal</code>, <code>vote</code></li>
+                </ul>
+                <p>See <a href="rpc-overview.html">RPC Overview</a> for complete API documentation.</p>
+
+                <h3>Client Applications</h3>
+                <ul>
+                    <li><strong>Qt GUI:</strong> Full-featured graphical wallet with contribution tracking, MWEB support, and governance features</li>
+                    <li><strong>CLI Tools:</strong> <code>fleetcredits-cli</code> for command-line interaction</li>
+                    <li><strong>Transaction Tool:</strong> <code>fleetcredits-tx</code> for transaction creation and manipulation</li>
+                    <li><strong>Daemon:</strong> <code>fleetcreditsd</code> for running a full node</li>
+                </ul>
+
+                <h3>Documentation</h3>
+                <ul>
+                    <li><strong>Developer Documentation:</strong> Complete technical reference (this site)</li>
+                    <li><strong>API Reference:</strong> Comprehensive RPC method documentation</li>
+                    <li><strong>Architecture Diagrams:</strong> ERD and system architecture documentation</li>
+                    <li><strong>Build Guides:</strong> Step-by-step setup instructions</li>
+                </ul>
+
+                <h2>Ecosystem Participants</h2>
+
+                <h3>Miners</h3>
+                <ul>
+                    <li><strong>Role:</strong> Secure the network through Proof-of-Work</li>
+                    <li><strong>Rewards:</strong> Block rewards (1.00000069 FC base, up to 3.69428008 FC with contributions)</li>
+                    <li><strong>Requirements:</strong> Scrypt-capable mining hardware</li>
+                    <li><strong>Incentive:</strong> Higher rewards when including verified contributions in blocks</li>
+                </ul>
+
+                <h3>Contributors</h3>
+                <ul>
+                    <li><strong>Role:</strong> Create value through code, education, creative work, etc.</li>
+                    <li><strong>Rewards:</strong> Higher block rewards when contributions are verified and included</li>
+                    <li><strong>Process:</strong> Submit contributions via RPC, verified by oracles, included in blocks by miners</li>
+                    <li><strong>Types:</strong> Developers, educators, artists, mentors, AI validators, ethical reviewers</li>
+                </ul>
+
+                <h3>Validators/Oracles</h3>
+                <ul>
+                    <li><strong>Role:</strong> Verify contributions that require manual validation</li>
+                    <li><strong>Process:</strong> Review contribution proofs, vote on validity</li>
+                    <li><strong>Stakes:</strong> Oracles stake FC to participate in verification</li>
+                    <li><strong>Incentive:</strong> Fees from verified contributions, governance participation</li>
+                </ul>
+
+                <h3>Node Operators</h3>
+                <ul>
+                    <li><strong>Role:</strong> Run full nodes to maintain network infrastructure</li>
+                    <li><strong>Benefits:</strong> Direct access to blockchain data, RPC services, network participation</li>
+                    <li><strong>Requirements:</strong> Storage for blockchain data, network connectivity</li>
+                    <li><strong>Types:</strong> Seed nodes, RPC service providers, wallet nodes</li>
+                </ul>
+
+                <h3>Users</h3>
+                <ul>
+                    <li><strong>Role:</strong> Send and receive FC, use MWEB privacy features</li>
+                    <li><strong>Tools:</strong> Qt GUI wallet, CLI tools, third-party applications</li>
+                    <li><strong>Features:</strong> Transparent transactions, optional MWEB privacy, contribution tracking</li>
+                </ul>
+
+                <h3>Developers</h3>
+                <ul>
+                    <li><strong>Role:</strong> Build applications, tools, and services on Fleet Credits</li>
+                    <li><strong>Resources:</strong> RPC API, documentation, testnet/regtest environments</li>
+                    <li><strong>Opportunities:</strong> Wallet integrations, payment processors, contribution platforms, governance tools</li>
+                </ul>
+
+                <h2>Ecosystem Comparison</h2>
+                <p>How Fleet Credits compares to other blockchain ecosystems:</p>
+
+                <h3>vs. Bitcoin</h3>
+                <table>
+                    <tr><th>Feature</th><th>Bitcoin</th><th>Fleet Credits</th></tr>
+                    <tr><td>Consensus</td><td>SHA-256 PoW</td><td>Scrypt PoW</td></tr>
+                    <tr><td>Block Time</td><td>10 minutes</td><td>60 seconds</td></tr>
+                    <tr><td>Privacy</td><td>Transparent</td><td>Optional MWEB</td></tr>
+                    <tr><td>Rewards</td><td>Mining only</td><td>Mining + Contributions</td></tr>
+                    <tr><td>Supply</td><td>Capped (21M)</td><td>Unlimited</td></tr>
+                    <tr><td>Governance</td><td>Informal</td><td>On-chain proposals</td></tr>
+                </table>
+
+                <h3>vs. Dogecoin</h3>
+                <table>
+                    <tr><th>Feature</th><th>Dogecoin</th><th>Fleet Credits</th></tr>
+                    <tr><td>Consensus</td><td>Scrypt PoW</td><td>Scrypt PoW</td></tr>
+                    <tr><td>Block Time</td><td>1 minute</td><td>60 seconds</td></tr>
+                    <tr><td>Privacy</td><td>Transparent</td><td>Optional MWEB</td></tr>
+                    <tr><td>Rewards</td><td>Fixed (10,000 DOGE)</td><td>Dynamic (1.00-3.69 FC)</td></tr>
+                    <tr><td>Contributions</td><td>None</td><td>8 types, tiered rewards</td></tr>
+                    <tr><td>Governance</td><td>Foundation-led</td><td>On-chain decentralized</td></tr>
+                </table>
+
+                <h3>vs. Ethereum</h3>
+                <table>
+                    <tr><th>Feature</th><th>Ethereum</th><th>Fleet Credits</th></tr>
+                    <tr><td>Consensus</td><td>Proof-of-Stake</td><td>Proof-of-Work</td></tr>
+                    <tr><td>Smart Contracts</td><td>Full EVM</td><td>Contribution system</td></tr>
+                    <tr><td>Privacy</td><td>Transparent (mixers available)</td><td>Native MWEB</td></tr>
+                    <tr><td>Focus</td><td>General-purpose platform</td><td>Contribution rewards + privacy</td></tr>
+                    <tr><td>Transaction Model</td><td>Account-based</td><td>UTXO-based</td></tr>
+                </table>
+
+                <h2>Ecosystem Value Propositions</h2>
+
+                <h3>For Contributors</h3>
+                <ul>
+                    <li>✅ <strong>Recognition:</strong> Verifiable proof of contributions on-chain</li>
+                    <li>✅ <strong>Rewards:</strong> Higher block rewards for verified contributions</li>
+                    <li>✅ <strong>Transparency:</strong> Public record of contributions and impact</li>
+                    <li>✅ <strong>Diversity:</strong> Eight different contribution types recognized</li>
+                </ul>
+
+                <h3>For Miners</h3>
+                <ul>
+                    <li>✅ <strong>Higher Rewards:</strong> Up to 3.69x base reward by including contributions</li>
+                    <li>✅ <strong>ASIC Resistance:</strong> Scrypt algorithm favors GPU mining</li>
+                    <li>✅ <strong>Fast Blocks:</strong> 60-second blocks for quicker reward distribution</li>
+                    <li>✅ <strong>Predictable Issuance:</strong> Fixed base reward, no halving</li>
+                </ul>
+
+                <h3>For Users</h3>
+                <ul>
+                    <li>✅ <strong>Privacy Options:</strong> Optional MWEB for private transactions</li>
+                    <li>✅ <strong>Fast Confirmations:</strong> 60-second block time</li>
+                    <li>✅ <strong>Low Fees:</strong> Dynamic fee structure supports micro-transactions</li>
+                    <li>✅ <strong>Transparency:</strong> Full blockchain transparency when desired</li>
+                </ul>
+
+                <h3>For Developers</h3>
+                <ul>
+                    <li>✅ <strong>Complete RPC API:</strong> Full programmatic access</li>
+                    <li>✅ <strong>Privacy Integration:</strong> MWEB support for privacy-focused apps</li>
+                    <li>✅ <strong>Contribution Platform:</strong> Build apps that leverage contribution system</li>
+                    <li>✅ <strong>Open Source:</strong> MIT license, full source code available</li>
+                </ul>
+
+                <h2>Ecosystem Roadmap</h2>
+
+                <h3>Current Status (2025)</h3>
+                <ul>
+                    <li>✅ Core blockchain implementation complete</li>
+                    <li>✅ MWEB privacy layer implemented</li>
+                    <li>✅ Contribution system architecture in place</li>
+                    <li>✅ Developer tools and documentation</li>
+                    <li>✅ Testnet and regtest environments operational</li>
+                    <li>🔄 Oracle verification system (in development)</li>
+                    <li>🔄 Governance proposals (in development)</li>
+                </ul>
+
+                <h3>Pre-Launch (Before April 2026)</h3>
+                <ul>
+                    <li>🔄 Complete oracle verification system</li>
+                    <li>🔄 Governance proposal and voting implementation</li>
+                    <li>🔄 Seed node deployment</li>
+                    <li>🔄 Security audits</li>
+                    <li>🔄 Community reserve initialization</li>
+                </ul>
+
+                <h3>Post-Launch (After April 2026)</h3>
+                <ul>
+                    <li>📋 Mainnet launch (April 20, 2026)</li>
+                    <li>📋 Public seed nodes</li>
+                    <li>📋 Exchange listings</li>
+                    <li>📋 Third-party integrations</li>
+                    <li>📋 Community-driven development</li>
+                </ul>
+
+                <h2>Getting Involved</h2>
+
+                <h3>For Developers</h3>
+                <ol>
+                    <li>Read the <a href="building.html">Building & Setup</a> guide</li>
+                    <li>Set up a <a href="testing-overview.html">regtest environment</a></li>
+                    <li>Explore the <a href="rpc-overview.html">RPC API</a></li>
+                    <li>Review the <a href="architecture.html">architecture documentation</a></li>
+                    <li>Contribute code via GitHub</li>
+                </ol>
+
+                <h3>For Contributors</h3>
+                <ol>
+                    <li>Learn about <a href="contribution-types.html">contribution types</a></li>
+                    <li>Understand the <a href="verification-system.html">verification process</a></li>
+                    <li>Submit contributions via RPC (when mainnet launches)</li>
+                    <li>Track contribution status and rewards</li>
+                </ol>
+
+                <h3>For Miners</h3>
+                <ol>
+                    <li>Set up Scrypt mining hardware</li>
+                    <li>Configure mining software</li>
+                    <li>Connect to testnet or wait for mainnet</li>
+                    <li>Include verified contributions in blocks for higher rewards</li>
+                </ol>
+
+                <h3>For Node Operators</h3>
+                <ol>
+                    <li>Follow the <a href="server-installation.html">Server Installation</a> guide</li>
+                    <li>Configure as seed node (optional)</li>
+                    <li>Provide RPC services (optional)</li>
+                    <li>Monitor network health</li>
+                </ol>
+
+                <h2>See Also</h2>
+                <ul>
+                    <li><a href="contribution-overview.html">Contribution System</a> - How contributions work</li>
+                    <li><a href="mweb-overview.html">MWEB Privacy</a> - Privacy features</li>
+                    <li><a href="network-architecture.html">Network Architecture</a> - P2P network details</li>
+                    <li><a href="consensus.html">Consensus & PoW</a> - Mining and consensus</li>
+                    <li><a href="community-reserve.html">Community Reserve</a> - Governance and funding</li>
+                    <li><a href="rpc-overview.html">RPC API</a> - Developer tools</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
+

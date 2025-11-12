@@ -340,6 +340,35 @@ make check
                     <li>Run tests locally before committing</li>
                 </ol>
                 
+                <h3>Regtest Mode for Testing</h3>
+                <p>Fleet Credits supports regtest mode for isolated local testing. <strong>Important:</strong> Regtest requires the <code>-mocktime=1776643200</code> flag because the genesis block timestamp is in the future (April 20, 2026).</p>
+                
+                <h4>Starting Regtest</h4>
+                <pre><code># Daemon
+./src/fleetcreditsd -regtest -mocktime=1776643200 -daemon
+
+# Qt Client
+./src/qt/fleetcredits-qt -regtest -mocktime=1776643200
+
+# Verify genesis block
+./src/fleetcredits-cli -regtest getblockhash 0
+# Should return: 556f8207d42c427a03d882d2e338a0102342648ce203f82a11efbe596da0f55e</code></pre>
+                
+                <h4>Regtest Configuration</h4>
+                <p>Create <code>~/.fleetcredits/regtest/fleetcredits.conf</code>:</p>
+                <pre><code>regtest=1
+port=18444
+rpcport=42068
+addnode=YOUR_SERVER_IP:18444</code></pre>
+                
+                <div class="warning-box">
+                    <strong>Genesis Block Mismatch:</strong> If you encounter a "genesis block mismatch" error, clear old regtest data:
+                    <pre><code>rm -rf ~/.fleetcredits/regtest/blocks
+rm -rf ~/.fleetcredits/regtest/chainstate
+rm -f ~/.fleetcredits/regtest/peers.dat</code></pre>
+                    Then restart with <code>-regtest -mocktime=1776643200</code>.
+                </div>
+                
                 <h3>Test Coverage</h3>
                 <p>Current test coverage includes:</p>
                 <ul>
@@ -348,6 +377,7 @@ make check
                     <li>✅ Transaction validation</li>
                     <li>✅ MWEB structures (basic)</li>
                     <li>✅ Wallet operations</li>
+                    <li>✅ Regtest mode with mocktime support</li>
                     <li>🔄 Contribution system (in progress)</li>
                     <li>🔄 Oracle verification (planned)</li>
                 </ul>
