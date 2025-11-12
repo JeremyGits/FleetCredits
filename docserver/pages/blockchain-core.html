@@ -256,7 +256,7 @@ static const uint32_t GENESIS_BITS  = 0x1e0ffff0;
 
 genesis = CreateGenesisBlock(GENESIS_TIME, GENESIS_NONCE, GENESIS_BITS, 1, FC_BASE_BLOCK_REWARD);
 consensus.hashGenesisBlock = genesis.GetHash();
-assert(consensus.hashGenesisBlock == uint256S("0x00000aeebd696b5c091e4bc6575876635b4f68e9c7e143a243b74191d043ed3d"));
+assert(consensus.hashGenesisBlock == uint256S("0x0c233e4e9a757cade6ec5892756f6449dcc66e4497d531faed987142f1a23f6b"));
 assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));</code></pre>
                 
                 <h4>Genesis Block Properties</h4>
@@ -264,7 +264,7 @@ assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf7
                     <li><strong>Previous Hash:</strong> <code>hashPrevBlock.SetNull()</code> (all zeros)</li>
                     <li><strong>Merkle Root:</strong> Deterministic result of the coinbase transaction</li>
                     <li><strong>No AuxPow:</strong> Genesis blocks never include merge-mining data</li>
-                    <li><strong>Checkpoint:</strong> Height 0 checkpoint records <code>00000aeebd...</code></li>
+                    <li><strong>Checkpoint:</strong> Height 0 checkpoint records <code>0c233e4e...</code></li>
                     <li><strong>PoW:</strong> Hardcoded nonce/difficulty represent a valid Scrypt solution</li>
                 </ul>
                 

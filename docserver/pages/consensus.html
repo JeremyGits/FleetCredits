@@ -234,14 +234,15 @@
                     <li><strong>Difficulty:</strong> <code>0x1e0ffff0</code></li>
                     <li><strong>Reward:</strong> 1.00000069 FC</li>
                     <li><strong>Coinbase Message:</strong> <code>"4/20/26 - TTLH-TimeToLive(*￣▽￣*)ブHumans"</code></li>
-                    <li><strong>Genesis Hash:</strong> <code>00000aeebd696b5c091e4bc6575876635b4f68e9c7e143a243b74191d043ed3d</code></li>
+                    <li><strong>Genesis Hash (double SHA):</strong> <code>0c233e4e9a757cade6ec5892756f6449dcc66e4497d531faed987142f1a23f6b</code></li>
+                    <li><strong>PoW Hash (Scrypt):</strong> <code>00000aeebd696b5c091e4bc6575876635b4f68e9c7e143a243b74191d043ed3d</code></li>
                     <li><strong>Merkle Root:</strong> <code>53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5</code></li>
                 </ul>
                 
                 <pre><code>// src/chainparams.cpp (mainnet)
 genesis = CreateGenesisBlock(1776643200, 2804420, 0x1e0ffff0, 1, FC_BASE_BLOCK_REWARD);
 consensus.hashGenesisBlock = genesis.GetHash();
-assert(consensus.hashGenesisBlock == uint256S("0x00000aeebd696b5c091e4bc6575876635b4f68e9c7e143a243b74191d043ed3d"));
+assert(consensus.hashGenesisBlock == uint256S("0x0c233e4e9a757cade6ec5892756f6449dcc66e4497d531faed987142f1a23f6b"));
 assert(genesis.hashMerkleRoot == uint256S("0x53c8a599e03c0a52223047a26582c2c8cf73c11ec98075eb037a9abc98cc10b5"));
 </code></pre>
                 
