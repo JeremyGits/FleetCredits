@@ -3282,8 +3282,16 @@ bool ContextualCheckBlockHeader(const CBlockHeader& block, CValidationState& sta
         return state.Invalid(false, REJECT_INVALID, "time-too-old", "block's timestamp is too early");
 
     // Check timestamp
-    if (block.GetBlockTime() > nAdjustedTime + 2 * 60 * 60)
-        return state.Invalid(false, REJECT_INVALID, "time-too-new", "block timestamp too far in the future");
+    // In regtest mode with mocktime, skip the future block check since blocks can be
+    // generated with timestamps far in the future for testing purposes
+    if (block.GetBlockTime() > nAdjustedTime + 2 * 60 * 60) {
+        // Skip this check in regtest mode when mocktime is set
+        if (params.MineBlocksOnDemand() && GetMockTime() != 0) {
+            // Allow future blocks in regtest with mocktime
+        } else {
+            return state.Invalid(false, REJECT_INVALID, "time-too-new", "block timestamp too far in the future");
+        }
+    }
 
     // Reject outdated version blocks when 95% (75% on testnet) of the network has upgraded:
     // check for version 2, 3 and 4 upgrades
